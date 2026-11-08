@@ -10,6 +10,17 @@ data/skills.json              Actions 產生的快照（目前 1,249 筆，約 4
 .nojekyll                     避免 Pages 跑 Jekyll 處理
 ```
 
+## 來源管理（新增／移除商店）
+
+右上角「商店來源」按鈕開面板：
+
+- 內建三源可一鍵「移除」（暫時隱藏，資料仍在快照裡），再按「加入」復原。
+- 貼上任何回傳 JSON 的網址即可新增來源，例如 GitHub 搜尋 API：`https://api.github.com/search/repositories?q=topic:claude-skill&sort=stars&per_page=20`
+- 支援的 JSON 形狀：`{items:[]}`、`{data:[]}`、`{skills:[]}`、`{results:[]}` 或純陣列；欄位自動對應 `name / displayName / title / full_name`、`stars / stargazers_count`、`downloads / installs`、`url / html_url`。
+- 目標網址必須允許跨網域（CORS），否則會提示 CORS 被擋；純靜態 `.json` 網址一律可用。
+- 新增的來源存在該瀏覽器的 `localStorage`（`skh-customs`），只對你這台裝置生效；要全站共用，就在 `scripts/collect.js` 多加一個抓取器，把資料併進快照。
+- 每個商店固定一色：CocoLoop 青綠、ClawHub 琥珀、skills.sh 靛藍，自訂來源由網址雜湊自動配色；卡片、篩選 chip、左側色條、圖例一致對應。
+
 ## 語言切換（11 種）
 
 頁面右上角有語言選單，一鍵切換：繁體中文、简体中文、English、日本語、한국어、Español、Deutsch、Français、Português、Русский、العربية（阿拉伯語自動切 RTL 由右至左排版）。
