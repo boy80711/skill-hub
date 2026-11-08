@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill 商店聚合工作台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6f62'/%3E%3Cpath d='M32 12l6.2 13.6 14.8 1.6-11 10 3 14.6-13-7.6-13 7.6 3-14.6-11-10 14.8-1.6z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f3f3ef;
+    --panel:#fff;
+    --ink:#16181c;
+    --muted:#6a6f78;
+    --faint:#9aa0a8;
+    --line:#e2e2db;
+    --line-strong:#cfcfc6;
+    --accent:#0f6f62;
+    --accent-soft:#e6f2ef;
+    --coco:#0f6f62;
+    --claw:#8a5a12;
+    --skillsio:#3d4d6b;
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Hiragino Sans CNS","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:20px 16px 56px}
+
+  /* ---------- 頂部 ---------- */
+  .top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;gap:12px;align-items:center;min-width:0}
+  .mark{width:38px;height:38px;flex:0 0 auto}
+  h1{margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em}
+  .sub{margin:2px 0 0;font-size:13px;color:var(--muted)}
+  .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .total{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .total b{color:var(--ink);font-size:17px;font-weight:650}
+  button{font-family:inherit;font-size:14px}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;
+    border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);
+    border-radius:8px;cursor:pointer;
+  }
+  .btn:hover{background:#fafaf7;border-color:#b9b9af}
+  .btn[disabled]{opacity:.55;cursor:progress}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:#0c5f54}
+  .spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(0,0,0,.18);border-top-color:currentColor;border-radius:50%;animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ---------- 來源卡 ---------- */
+  .sources{display:grid;grid-template-columns:1fr;gap:10px;margin:16px 0}
+  .src-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;
+  }
+  .src-head{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#c9c9c1;flex:0 0 auto}
+  .dot.ok{background:var(--accent)}
+  .dot.err{background:#b4331f}
+  .src-count{font-variant-numeric:tabular-nums;font-size:22px;font-weight:650;letter-spacing:-.02em}
+  .src-note{font-size:12px;color:var(--muted);line-height:1.45;word-break:break-word}
+  .src-note a{color:var(--muted)}
+
+  /* ---------- 工具列 ---------- */
+  .toolbar{display:flex;flex-direction:column;gap:10px;margin:18px 0 12px}
+  .search{position:relative;display:flex;align-items:center}
+  .search svg{position:absolute;left:12px;width:16px;height:16px;color:var(--faint);pointer-events:none}
+  .search input{
+    width:100%;height:44px;padding:0 40px 0 36px;font-size:16px;
+    border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);
+    color:var(--ink);outline:none;
+  }
+  .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .search .clear{position:absolute;right:6px;width:32px;height:32px;border:0;background:none;color:var(--faint);cursor:pointer;font-size:18px;display:none}
+  .search.has-value .clear{display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line-strong);
+    background:var(--panel);color:var(--muted);cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;font-variant-numeric:tabular-nums;
+  }
+  .chip:hover{border-color:#b9b9af;color:var(--ink)}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .chip .n{opacity:.68;font-size:12px}
+  .sorts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .sorts label{font-size:13px;color:var(--muted)}
+  select{
+    height:36px;padding:0 30px 0 10px;font-size:14px;font-family:inherit;
+    border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);color:var(--ink);
+    appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6f78'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;
+  }
+
+  /* ---------- 列表 ---------- */
+  .table{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .thead,.row{display:grid;grid-template-columns:52px 1fr 118px 96px 92px 72px 40px;align-items:center}
+  .thead{
+    position:sticky;top:0;z-index:2;background:#fafaf7;border-bottom:1px solid var(--line);
+    font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em;
+  }
+  .th{padding:11px 10px;display:flex;align-items:center;gap:4px;white-space:nowrap}
+  .th.num{justify-content:flex-end;cursor:pointer;user-select:none}
+  .th.num:hover{color:var(--ink)}
+  .th .arrow{font-size:11px;opacity:.85}
+  .th.active{color:var(--ink)}
+  .rows{divide-y:1px solid}
+  .row{border-bottom:1px solid var(--line);text-decoration:none;color:inherit;padding:0;transition:background .1s}
+  .row:last-child{border-bottom:0}
+  .row:hover{background:#fbfbf8}
+  .cell{padding:11px 10px;min-width:0}
+  .rank{color:var(--faint);font-variant-numeric:tabular-nums;font-size:13px;text-align:right;padding-right:2px}
+  .name{font-weight:600;font-size:14.5px;letter-spacing:-.005em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .desc{font-size:12.5px;color:var(--muted);margin-top:2px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.45}
+  .author{font-size:11.5px;color:var(--faint);margin-top:3px}
+  .badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:11px;font-size:11.5px;font-weight:600;white-space:nowrap}
+  .badge.coco{background:#e6f2ef;color:#0f6f62}
+  .badge.claw{background:#f7efdf;color:#8a5a12}
+  .badge.skillsio{background:#e9ecf2;color:#3d4d6b}
+  .num-cell{font-variant-numeric:tabular-nums;text-align:right;font-size:14px}
+  .num-cell.strong{font-weight:650}
+  .num-cell.na{color:var(--faint);font-weight:400}
+  .rating{display:inline-block;min-width:24px;height:22px;line-height:22px;padding:0 7px;border-radius:5px;font-size:11px;font-weight:700;text-align:center;background:#ecece6;color:#555}
+  .rating.S{background:#dff0ea;color:#0f6f62}
+  .rating.A{background:#f8efd8;color:#8a5a12}
+  .open{display:flex;justify-content:center;color:var(--faint)}
+  .row:hover .open{color:var(--accent)}
+  .open svg{width:15px;height:15px}
+
+  .state{padding:44px 20px;text-align:center;color:var(--muted);font-size:14px}
+  .state b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+  .state code{background:#ecece6;padding:2px 6px;border-radius:4px;font-size:12.5px}
+  .state .btn{margin-top:14px}
+
+  .foot{margin-top:16px;font-size:12px;color:var(--faint);line-height:1.7}
+  .foot a{color:var(--muted)}
+
+  /* ---------- 窄屏 ---------- */
+  @media (min-width:720px){
+    .sources{grid-template-columns:repeat(3,1fr)}
+    .toolbar{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .search{flex:1 1 320px;max-width:460px}
+  }
+  @media (max-width:899px){
+    .wrap{padding:16px 12px 40px}
+    h1{font-size:18px}
+    .thead{display:none}
+    .row{grid-template-columns:1fr;padding:13px 14px;gap:6px;position:relative}
+    .row .cell{padding:0}
+    .rank{display:none}
+    .name{white-space:normal;font-size:15.5px;padding-right:34px}
+    .desc{-webkit-line-clamp:3;font-size:13px}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+    .src-cell,.cat-cell{display:none}
+    .m-stars,.m-dl{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+    .m-stars b,.m-dl b{color:var(--ink);font-weight:650}
+    .open{position:absolute;top:12px;right:10px}
+    .num-cell{text-align:left}
+  }
+  @media (min-width:900px){
+    .meta{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0f6f62"/>
+        <path d="M32 12l6.2 13.6 14.8 1.6-11 10 3 14.6-13-7.6-13 7.6 3-14.6-11-10 14.8-1.6z" fill="#fff" opacity=".92"/>
+      </svg>
+      <div>
+        <h1>Skill 商店聚合工作台</h1>
+        <p class="sub">CocoLoop · ClawHub · skills.sh 三源合一，按星數／下載量排序</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="total">符合條件 <b id="count">—</b> 筆 · 資料 <span id="stamp">—</span></span>
+      <button class="btn primary" id="refresh">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        <span id="refreshLabel">重新整理</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="sources" id="sources"></section>
+
+  <section class="toolbar">
+    <div class="search" id="searchWrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="搜尋名稱、作者、分類、描述（按 / 聚焦）" autocomplete="off" enterkeyhint="search">
+      <button class="clear" id="clearQ" aria-label="清除">×</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="sorts">
+      <label for="sortSel">排序</label>
+      <select id="sortSel">
+        <option value="stars:desc">星數 高→低</option>
+        <option value="stars:asc">星數 低→高</option>
+        <option value="downloads:desc">下載量 高→低</option>
+        <option value="downloads:asc">下載量 低→高</option>
+        <option value="updated:desc">最近更新</option>
+        <option value="name:asc">名稱 A→Z</option>
+        <option value="name:desc">名稱 Z→A</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="table" id="tableBox">
+    <div class="thead">
+      <div class="th" style="justify-content:flex-end">#</div>
+      <div class="th">Skill</div>
+      <div class="th">來源</div>
+      <div class="th num" data-sort="stars">星數<span class="arrow" id="ar-stars"></span></div>
+      <div class="th num" data-sort="downloads">下載量<span class="arrow" id="ar-downloads"></span></div>
+      <div class="th" style="justify-content:center">安全</div>
+      <div class="th" style="justify-content:center">前往</div>
+    </div>
+    <div id="rows" class="rows"></div>
+  </div>
+
+  <div id="state" class="table" hidden><div class="state" id="stateInner"></div></div>
+
+  <footer class="foot">
+    <p>資料來自各商店公開介面即時抓取，內容與排序僅供瀏覽參考；點擊任一列可開啟該商店的原始頁面。</p>
+    <p id="notes"></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var S = { all: [], sources: [], q: '', source: 'all', sort: 'stars', dir: 'desc', loading: false, mode: 'live' };
+  var $ = function (id) { return document.getElementById(id); };
+  var rowsEl = $('rows'), chipsEl = $('chips'), sourcesEl = $('sources');
+  var stateBox = $('state'), stateInner = $('stateInner');
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function fmt(n) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    return Number(n).toLocaleString('en-US');
+  }
+  function timeAgo(ts) {
+    if (!ts) return '—';
+    var d = new Date(ts), diff = (Date.now() - d.getTime()) / 1000;
+    if (diff < 60) return '剛剛';
+    if (diff < 3600) return Math.floor(diff / 60) + ' 分鐘前';
+    return d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+  }
+  var SRC_NAME = { coco: 'CocoLoop', claw: 'ClawHub', skillsio: 'skills.sh' };
+
+  // ---------- 取數 ----------
+  function load(force) {
+    if (S.loading) return;
+    S.loading = true;
+    $('refresh').disabled = true;
+    $('refreshLabel').textContent = '讀取中';
+    if (!S.all.length) showState('loading');
+    var LIVE = '/api/skills?source=all&sort=stars&dir=desc&limit=2000' + (force ? '&refresh=1' : '');
+    var SNAP = './data/skills.json?t=' + Date.now();
+    function pull(url, fallback) {
+      return fetch(url, { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).catch(function (e) {
+        if (fallback) return pull(fallback, null);
+        throw e;
+      });
+    }
+    pull(LIVE, SNAP)
+      .then(function (d) {
+        if (!d.ok) throw new Error(d.error || '介面回傳錯誤');
+        S.mode = d.mode || 'live';
+        S.all = d.items || [];
+        S.sources = d.sources || [];
+        S.stamp = d.generatedAt;
+        S.ttl = d.cacheTtlSec;
+        renderSources();
+        renderChips();
+        render();
+      })
+      .catch(function (e) { showState('error', e.message); })
+      .then(function () {
+        S.loading = false;
+        $('refresh').disabled = false;
+        $('refreshLabel').textContent = '重新整理';
+      });
+  }
+
+  function showState(kind, msg) {
+    if (kind === null) { stateBox.hidden = true; $('tableBox').hidden = false; return; }
+    $('tableBox').hidden = true;
+    stateBox.hidden = false;
+    if (kind === 'loading') {
+      stateInner.innerHTML = '<b>正在向三個商店取資料</b>首次載入約需 5–15 秒，之後會走快取。';
+    } else if (kind === 'empty') {
+      stateInner.innerHTML = '<b>沒有符合的 Skill</b>換個關鍵字，或把來源切回「全部」。';
+    } else if (kind === 'error') {
+      stateInner.innerHTML = '<b>取不到資料</b>' +
+        'GitHub Pages 版本請確認 <code>data/skills.json</code> 存在（由 Actions 產生）；' +
+        '本機版本請先在專案資料夾執行 <code>node server.js</code>，再從 <code>http://localhost:8787</code> 開啟，不要直接雙擊 HTML 檔。<br>' +
+        '<span style="color:#b4331f">錯誤：' + esc(msg || '') + '</span>' +
+        '<br><button class="btn" onclick="location.reload()">重試</button>';
+    }
+  }
+
+  // ---------- 來源卡 ----------
+  function renderSources() {
+    sourcesEl.innerHTML = S.sources.map(function (s) {
+      var cls = s.ok ? 'ok' : 'err';
+      var note = s.ok ? (s.note || '') : ('抓取失敗：' + esc(s.error || ''));
+      var site = { coco: 'https://hub.cocoloop.cn', claw: 'https://hub.openclaw.ai', skillsio: 'https://www.skills.sh' }[s.id];
+      return '<div class="src-card">' +
+        '<div class="src-head"><span class="dot ' + cls + '"></span>' + esc(s.label) +
+        '<span style="margin-left:auto;font-size:11.5px;font-weight:400;color:var(--faint)">' +
+        (s.ok ? (s.cached ? '快取' : '即時') + ' · ' + s.ms + 'ms' : '失敗') + '</span></div>' +
+        '<div class="src-count">' + fmt(s.count) + '<span style="font-size:12px;font-weight:400;color:var(--muted)"> 筆</span></div>' +
+        '<div class="src-note">' + note + ' · <a href="' + site + '" target="_blank" rel="noopener">商店首頁</a></div>' +
+        '</div>';
+    }).join('');
+  }
+
+  // ---------- 來源篩選 ----------
+  function renderChips() {
+    var counts = { all: S.all.length };
+    S.all.forEach(function (x) { counts[x.source] = (counts[x.source] || 0) + 1; });
+    var order = ['all', 'coco', 'claw', 'skillsio'];
+    chipsEl.innerHTML = order.filter(function (k) { return k === 'all' || counts[k]; }).map(function (k) {
+      var label = k === 'all' ? '全部來源' : (SRC_NAME[k] || k);
+      return '<button class="chip' + (S.source === k ? ' on' : '') + '" data-src="' + k + '">' +
+        label + '<span class="n">' + fmt(counts[k] || 0) + '</span></button>';
+    }).join('');
+  }
+
+  // ---------- 列表 ----------
+  function current() {
+    var list = S.all;
+    if (S.source !== 'all') list = list.filter(function (x) { return x.source === S.source; });
+    if (S.q) {
+      var kw = S.q.toLowerCase();
+      list = list.filter(function (x) {
+        return (x.name || '').toLowerCase().indexOf(kw) >= 0 ||
+          (x.summary || '').toLowerCase().indexOf(kw) >= 0 ||
+          (x.author || '').toLowerCase().indexOf(kw) >= 0 ||
+          (x.category || '').toLowerCase().indexOf(kw) >= 0;
+      });
+    }
+    var d = S.dir === 'asc' ? 1 : -1;
+    list = list.slice().sort(function (a, b) {
+      if (S.sort === 'name') return d * String(a.name).localeCompare(String(b.name), 'zh-Hant');
+      if (S.sort === 'updated') return d * ((a.updatedAt || 0) - (b.updatedAt || 0));
+      var av = a[S.sort] === null || a[S.sort] === undefined ? -1 : a[S.sort];
+      var bv = b[S.sort] === null || b[S.sort] === undefined ? -1 : b[S.sort];
+      if (av === bv) return (b.downloads || 0) - (a.downloads || 0);
+      return d * (av - bv);
+    });
+    return list;
+  }
+
+  function rowHTML(x, i) {
+    var starTxt = fmt(x.stars), dlTxt = fmt(x.downloads);
+    var starCls = x.stars === null || x.stars === undefined ? ' num-cell na' : ' num-cell strong';
+    var rating = x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '<span style="color:var(--faint)">—</span>';
+    return '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener">' +
+      '<div class="cell rank">' + (i + 1) + '</div>' +
+      '<div class="cell name-cell">' +
+        '<div class="name">' + esc(x.name) + '</div>' +
+        '<div class="desc">' + esc(x.summary || '（此來源未提供描述）') + '</div>' +
+        (x.author ? '<div class="author">@' + esc(x.author) + '</div>' : '') +
+        '<div class="meta">' +
+          '<span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span>' +
+          '<span class="m-stars">星數 <b>' + starTxt + '</b></span>' +
+          '<span class="m-dl">下載 <b>' + dlTxt + '</b></span>' +
+          (x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '') +
+        '</div>' +
+      '</div>' +
+      '<div class="cell src-cell"><span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span></div>' +
+      '<div class="cell num-cell' + starCls + '">' + starTxt + '</div>' +
+      '<div class="cell num-cell strong">' + dlTxt + '</div>' +
+      '<div class="cell" style="text-align:center">' + rating + '</div>' +
+      '<div class="cell open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></div>' +
+      '</a>';
+  }
+
+  function render() {
+    var list = current();
+    $('count').textContent = fmt(list.length);
+    $('stamp').textContent = (S.stamp ? timeAgo(S.stamp) : '—') + (S.mode === 'snapshot' ? '（快照）' : '');
+    $('ar-stars').textContent = S.sort === 'stars' ? (S.dir === 'desc' ? '↓' : '↑') : '';
+    $('ar-downloads').textContent = S.sort === 'downloads' ? (S.dir === 'desc' ? '↓' : '↑') : '';
+    document.querySelectorAll('.th[data-sort]').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-sort') === S.sort);
+    });
+    $('sortSel').value = S.sort + ':' + S.dir;
+    if (!list.length) { showState('empty'); return; }
+    showState(null);
+    rowsEl.innerHTML = list.map(rowHTML).join('');
+    var notes = S.sources.filter(function (s) { return s.ok; }).map(function (s) { return s.label + '：' + s.note; });
+    $('notes').innerHTML = '取樣說明 — ' + notes.map(esc).join('；') +
+      '。' + (S.mode === 'snapshot'
+        ? '目前讀取 GitHub Actions 產生的靜態快照（每 6 小時更新一次）'
+        : '目前直連本機後端，快取 ' + Math.round((S.ttl || 600) / 60) + ' 分鐘') +
+      '；各商店星數／下載量口徑不同（skills.sh 僅有安裝數）。';
+  }
+
+  // ---------- 互動 ----------
+  $('refresh').addEventListener('click', function () { load(true); });
+
+  var t = null;
+  $('q').addEventListener('input', function (e) {
+    $('searchWrap').classList.toggle('has-value', !!e.target.value);
+    clearTimeout(t);
+    t = setTimeout(function () { S.q = e.target.value.trim(); render(); }, 180);
+  });
+  $('clearQ').addEventListener('click', function () {
+    $('q').value = ''; S.q = ''; $('searchWrap').classList.remove('has-value'); render(); $('q').focus();
+  });
+  chipsEl.addEventListener('click', function (e) {
+    var c = e.target.closest('.chip'); if (!c) return;
+    S.source = c.getAttribute('data-src');
+    renderChips(); render();
+  });
+  $('sortSel').addEventListener('change', function (e) {
+    var v = e.target.value.split(':');
+    S.sort = v[0]; S.dir = v[1]; render();
+  });
+  document.querySelectorAll('.th[data-sort]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var k = el.getAttribute('data-sort');
+      if (S.sort === k) S.dir = S.dir === 'desc' ? 'asc' : 'desc';
+      else { S.sort = k; S.dir = 'desc'; }
+      render();
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== $('q')) { e.preventDefault(); $('q').focus(); }
+    if (e.key === 'Escape' && document.activeElement === $('q')) { $('q').blur(); }
+  });
+
+  load(false);
+})();
+</script>
+</body>
+</html>
