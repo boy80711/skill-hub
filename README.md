@@ -10,6 +10,16 @@ data/skills.json              Actions 產生的快照（目前 1,249 筆，約 4
 .nojekyll                     避免 Pages 跑 Jekyll 處理
 ```
 
+## 語言切換（11 種）
+
+頁面右上角有語言選單，一鍵切換：繁體中文、简体中文、English、日本語、한국어、Español、Deutsch、Français、Português、Русский、العربية（阿拉伯語自動切 RTL 由右至左排版）。
+
+- 介面文字全部內嵌在 `index.html` 的 `I18N` 字典，沒有外部請求，離線也能切。
+- 選擇會存在 `localStorage`，下次打開沿用；也可用網址參數直接指定：`?lang=en`、`?lang=ja`、`?lang=ar`。
+- 沒有記錄時依瀏覽器語言自動判斷（繁中 / 簡中會分開）。
+- Skill 名稱與描述保留各商店原文（多為英文），只翻譯介面，避免二次翻譯失真；頁尾有註明。
+- 新增語言：在 `I18N` 加一組 key（照 `en` 的欄位逐項翻），再在 `LANGS` 陣列補一行即可。
+
 ## 部署步驟（約 3 分鐘）
 
 1. 在 GitHub 建一個新 repo（public 或 private 都可以，Pages 要 public 除非有 Pro）。
