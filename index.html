@@ -484,6 +484,14 @@
     }
   };
 
+  var SUBTAIL = {
+    'zh-Hant':'按星數／下載量排序','zh-Hans':'按星数／下载量排序',en:'sorted by stars or downloads',
+    ja:'スター数／DL数で並べ替え',ko:'스타·다운로드 순 정렬',es:'ordenado por estrellas o descargas',
+    de:'nach Sternen oder Downloads sortiert',fr:'trié par étoiles ou téléchargements',
+    pt:'ordenado por estrelas ou downloads',ru:'сортировка по звёздам или загрузкам',
+    ar:'مرتّبة حسب النجوم أو التنزيلات'
+  };
+
   var EXTRA = {
     'zh-Hant': { manTitle:'商店來源', manHint:'勾選要顯示的商店；也可貼上任何回傳 JSON 的網址，把新商店加進來。', addBtn:'新增', addPlaceholder:'貼上商店 API 或 JSON 網址', addHelp:'支援 items / data / skills / results 陣列或純陣列；該網址需允許跨網域（CORS）。', customTag:'自訂', hide:'移除', restore:'加入', remove:'刪除', hiddenTag:'已移除', manEmpty:'目前沒有來源', srcFailShort:'讀取失敗', errShape:'資料格式不符（需陣列或 items/data/skills/results）', errEmpty:'回傳 0 筆', errCors:'跨網域被擋（CORS），請改用允許 CORS 或靜態 JSON 網址', errUrl:'網址格式不正確', errDup:'這個網址已經加過了', addLoading:'讀取中…', addOk:'已加入，共 {n} 筆', addHintFail:'可換一個允許跨網域的網址再試' },
     'zh-Hans': { manTitle:'商店来源', manHint:'勾选要显示的商店；也可粘贴任何返回 JSON 的网址，把新商店加进来。', addBtn:'新增', addPlaceholder:'粘贴商店 API 或 JSON 网址', addHelp:'支持 items / data / skills / results 数组或纯数组；该网址需允许跨域（CORS）。', customTag:'自定义', hide:'移除', restore:'加入', remove:'删除', hiddenTag:'已移除', manEmpty:'目前没有来源', srcFailShort:'读取失败', errShape:'数据格式不符（需数组或 items/data/skills/results）', errEmpty:'返回 0 条', errCors:'被跨域拦截（CORS），请改用允许 CORS 或静态 JSON 网址', errUrl:'网址格式不正确', errDup:'这个网址已经加过了', addLoading:'读取中…', addOk:'已加入，共 {n} 条', addHintFail:'可换一个允许跨域的网址再试' },
@@ -651,7 +659,7 @@
 
   function applyStatic() {
     $('t-title').textContent = t('title');
-    $('t-subtitle').textContent = t('subtitle');
+    updateSubtitle();
     $('t-langLabel').textContent = t('langLabel');
     $('t-countLabel').textContent = t('countLabel');
     $('t-itemsUnit').textContent = t('itemsUnit');
@@ -789,7 +797,15 @@
     return code;
   }
 
+  function updateSubtitle() {
+    var vis = allSources().filter(function (s) { return !isHidden(s.id); });
+    if (!vis.length) { $('t-subtitle').textContent = t('subtitle'); return; }
+    var names = vis.map(function (s) { return s.label; }).join(' \u00b7 ');
+    $('t-subtitle').textContent = names + ' \u00b7 ' + (SUBTAIL[S.lang] || SUBTAIL.en);
+  }
+
   function renderSources() {
+    updateSubtitle();
     var list = allSources().filter(function (s) { return !isHidden(s.id); });
     sourcesEl.innerHTML = list.map(function (s) {
       var c = colorOf(s.id);
