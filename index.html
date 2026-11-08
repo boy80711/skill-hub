@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,33 +7,19 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6f62'/%3E%3Cpath d='M32 12l6.2 13.6 14.8 1.6-11 10 3 14.6-13-7.6-13 7.6 3-14.6-11-10 14.8-1.6z' fill='%23fff'/%3E%3C/svg%3E">
 <style>
   :root{
-    --bg:#f3f3ef;
-    --panel:#fff;
-    --ink:#16181c;
-    --muted:#6a6f78;
-    --faint:#9aa0a8;
-    --line:#e2e2db;
-    --line-strong:#cfcfc6;
-    --accent:#0f6f62;
-    --accent-soft:#e6f2ef;
-    --coco:#0f6f62;
-    --claw:#8a5a12;
-    --skillsio:#3d4d6b;
+    --bg:#f3f3ef; --panel:#fff; --ink:#16181c; --muted:#6a6f78; --faint:#9aa0a8;
+    --line:#e2e2db; --line-strong:#cfcfc6; --accent:#0f6f62; --accent-soft:#e6f2ef;
     --radius:10px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Hiragino Sans CNS","Microsoft JhengHei","Noto Sans TC",sans-serif;
-    font-size:15px;
-    line-height:1.5;
+    background:var(--bg); color:var(--ink); font-size:15px; line-height:1.5;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Hiragino Sans CNS","Microsoft JhengHei","Noto Sans TC","Noto Sans JP","Noto Sans KR","Noto Sans Arabic",sans-serif;
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1280px;margin:0 auto;padding:20px 16px 56px}
 
-  /* ---------- 頂部 ---------- */
   .top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--line)}
   .brand{display:flex;gap:12px;align-items:center;min-width:0}
   .mark{width:38px;height:38px;flex:0 0 auto}
@@ -43,24 +29,14 @@
   .total{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
   .total b{color:var(--ink);font-size:17px;font-weight:650}
   button{font-family:inherit;font-size:14px}
-  .btn{
-    display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;
-    border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);
-    border-radius:8px;cursor:pointer;
-  }
+  .btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);border-radius:8px;cursor:pointer}
   .btn:hover{background:#fafaf7;border-color:#b9b9af}
   .btn[disabled]{opacity:.55;cursor:progress}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
   .btn.primary:hover{background:#0c5f54}
-  .spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(0,0,0,.18);border-top-color:currentColor;border-radius:50%;animation:sp .7s linear infinite}
-  @keyframes sp{to{transform:rotate(360deg)}}
 
-  /* ---------- 來源卡 ---------- */
   .sources{display:grid;grid-template-columns:1fr;gap:10px;margin:16px 0}
-  .src-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;
-  }
+  .src-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
   .src-head{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
   .dot{width:8px;height:8px;border-radius:50%;background:#c9c9c1;flex:0 0 auto}
   .dot.ok{background:var(--accent)}
@@ -69,49 +45,34 @@
   .src-note{font-size:12px;color:var(--muted);line-height:1.45;word-break:break-word}
   .src-note a{color:var(--muted)}
 
-  /* ---------- 工具列 ---------- */
   .toolbar{display:flex;flex-direction:column;gap:10px;margin:18px 0 12px}
   .search{position:relative;display:flex;align-items:center}
   .search svg{position:absolute;left:12px;width:16px;height:16px;color:var(--faint);pointer-events:none}
-  .search input{
-    width:100%;height:44px;padding:0 40px 0 36px;font-size:16px;
-    border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);
-    color:var(--ink);outline:none;
-  }
+  .search input{width:100%;height:44px;padding:0 40px 0 36px;font-size:16px;border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);color:var(--ink);outline:none}
   .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
   .search .clear{position:absolute;right:6px;width:32px;height:32px;border:0;background:none;color:var(--faint);cursor:pointer;font-size:18px;display:none}
   .search.has-value .clear{display:block}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{
-    height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line-strong);
-    background:var(--panel);color:var(--muted);cursor:pointer;
-    display:inline-flex;align-items:center;gap:6px;font-size:13px;font-variant-numeric:tabular-nums;
-  }
+  .chip{height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line-strong);background:var(--panel);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-variant-numeric:tabular-nums}
   .chip:hover{border-color:#b9b9af;color:var(--ink)}
   .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
   .chip .n{opacity:.68;font-size:12px}
   .sorts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .sorts label{font-size:13px;color:var(--muted)}
-  select{
-    height:36px;padding:0 30px 0 10px;font-size:14px;font-family:inherit;
-    border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);color:var(--ink);
+  select{height:36px;padding:0 30px 0 10px;font-size:14px;font-family:inherit;border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);color:var(--ink);
     appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6f78'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;
-  }
+    background-repeat:no-repeat;background-position:right 10px center;cursor:pointer}
+  .lang{display:flex;align-items:center;gap:8px}
+  .lang label{font-size:13px;color:var(--muted)}
 
-  /* ---------- 列表 ---------- */
   .table{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .thead,.row{display:grid;grid-template-columns:52px 1fr 118px 96px 92px 72px 40px;align-items:center}
-  .thead{
-    position:sticky;top:0;z-index:2;background:#fafaf7;border-bottom:1px solid var(--line);
-    font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em;
-  }
+  .thead{position:sticky;top:0;z-index:2;background:#fafaf7;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
   .th{padding:11px 10px;display:flex;align-items:center;gap:4px;white-space:nowrap}
   .th.num{justify-content:flex-end;cursor:pointer;user-select:none}
   .th.num:hover{color:var(--ink)}
   .th .arrow{font-size:11px;opacity:.85}
   .th.active{color:var(--ink)}
-  .rows{divide-y:1px solid}
   .row{border-bottom:1px solid var(--line);text-decoration:none;color:inherit;padding:0;transition:background .1s}
   .row:last-child{border-bottom:0}
   .row:hover{background:#fbfbf8}
@@ -138,15 +99,22 @@
   .state b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
   .state code{background:#ecece6;padding:2px 6px;border-radius:4px;font-size:12.5px}
   .state .btn{margin-top:14px}
-
   .foot{margin-top:16px;font-size:12px;color:var(--faint);line-height:1.7}
   .foot a{color:var(--muted)}
 
-  /* ---------- 窄屏 ---------- */
+  [dir="rtl"] .th.num,[dir="rtl"] .num-cell{text-align:left}
+  [dir="rtl"] .rank{text-align:left;padding-right:0;padding-left:2px}
+  [dir="rtl"] .search svg{left:auto;right:12px}
+  [dir="rtl"] .search input{padding:0 36px 0 40px}
+  [dir="rtl"] .search .clear{right:auto;left:6px}
+  [dir="rtl"] .open{right:auto;left:10px}
+  [dir="rtl"] .name{padding-right:0;padding-left:34px}
+  [dir="rtl"] select{padding:0 10px 0 30px;background-position:left 10px center}
+
   @media (min-width:720px){
     .sources{grid-template-columns:repeat(3,1fr)}
     .toolbar{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .search{flex:1 1 320px;max-width:460px}
+    .search{flex:1 1 320px;max-width:440px}
   }
   @media (max-width:899px){
     .wrap{padding:16px 12px 40px}
@@ -164,9 +132,7 @@
     .open{position:absolute;top:12px;right:10px}
     .num-cell{text-align:left}
   }
-  @media (min-width:900px){
-    .meta{display:none}
-  }
+  @media (min-width:900px){ .meta{display:none} }
 </style>
 </head>
 <body>
@@ -179,12 +145,16 @@
         <path d="M32 12l6.2 13.6 14.8 1.6-11 10 3 14.6-13-7.6-13 7.6 3-14.6-11-10 14.8-1.6z" fill="#fff" opacity=".92"/>
       </svg>
       <div>
-        <h1>Skill 商店聚合工作台</h1>
-        <p class="sub">CocoLoop · ClawHub · skills.sh 三源合一，按星數／下載量排序</p>
+        <h1 id="t-title">Skill 商店聚合工作台</h1>
+        <p class="sub" id="t-subtitle">CocoLoop · ClawHub · skills.sh 三源合一</p>
       </div>
     </div>
     <div class="top-actions">
-      <span class="total">符合條件 <b id="count">—</b> 筆 · 資料 <span id="stamp">—</span></span>
+      <div class="lang">
+        <label for="langSel" id="t-langLabel">語言</label>
+        <select id="langSel" aria-label="Language"></select>
+      </div>
+      <span class="total"><span id="t-countLabel">符合條件</span> <b id="count">—</b> <span id="t-itemsUnit">筆</span> · <span id="t-data">資料</span> <span id="stamp">—</span></span>
       <button class="btn primary" id="refresh">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
         <span id="refreshLabel">重新整理</span>
@@ -197,42 +167,35 @@
   <section class="toolbar">
     <div class="search" id="searchWrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-      <input id="q" type="search" placeholder="搜尋名稱、作者、分類、描述（按 / 聚焦）" autocomplete="off" enterkeyhint="search">
-      <button class="clear" id="clearQ" aria-label="清除">×</button>
+      <input id="q" type="search" autocomplete="off" enterkeyhint="search">
+      <button class="clear" id="clearQ" aria-label="clear">×</button>
     </div>
     <div class="chips" id="chips"></div>
     <div class="sorts">
-      <label for="sortSel">排序</label>
-      <select id="sortSel">
-        <option value="stars:desc">星數 高→低</option>
-        <option value="stars:asc">星數 低→高</option>
-        <option value="downloads:desc">下載量 高→低</option>
-        <option value="downloads:asc">下載量 低→高</option>
-        <option value="updated:desc">最近更新</option>
-        <option value="name:asc">名稱 A→Z</option>
-        <option value="name:desc">名稱 Z→A</option>
-      </select>
+      <label for="sortSel" id="t-sort">排序</label>
+      <select id="sortSel"></select>
     </div>
   </section>
 
   <div class="table" id="tableBox">
     <div class="thead">
       <div class="th" style="justify-content:flex-end">#</div>
-      <div class="th">Skill</div>
-      <div class="th">來源</div>
-      <div class="th num" data-sort="stars">星數<span class="arrow" id="ar-stars"></span></div>
-      <div class="th num" data-sort="downloads">下載量<span class="arrow" id="ar-downloads"></span></div>
-      <div class="th" style="justify-content:center">安全</div>
-      <div class="th" style="justify-content:center">前往</div>
+      <div class="th" id="t-hSkill">Skill</div>
+      <div class="th" id="t-hSource">來源</div>
+      <div class="th num" data-sort="stars"><span id="t-hStars">星數</span><span class="arrow" id="ar-stars"></span></div>
+      <div class="th num" data-sort="downloads"><span id="t-hDl">下載量</span><span class="arrow" id="ar-downloads"></span></div>
+      <div class="th" style="justify-content:center" id="t-hSafety">安全</div>
+      <div class="th" style="justify-content:center" id="t-hOpen">前往</div>
     </div>
-    <div id="rows" class="rows"></div>
+    <div id="rows"></div>
   </div>
 
   <div id="state" class="table" hidden><div class="state" id="stateInner"></div></div>
 
   <footer class="foot">
-    <p>資料來自各商店公開介面即時抓取，內容與排序僅供瀏覽參考；點擊任一列可開啟該商店的原始頁面。</p>
+    <p id="t-foot1">資料來自各商店公開介面即時抓取。</p>
     <p id="notes"></p>
+    <p id="t-footNote"></p>
   </footer>
 </div>
 
@@ -240,15 +203,269 @@
 (function () {
   'use strict';
 
-  var S = { all: [], sources: [], q: '', source: 'all', sort: 'stars', dir: 'desc', loading: false, mode: 'live' };
+  var I18N = {
+    'zh-Hant': {
+      title:'Skill 商店聚合工作台',
+      subtitle:'CocoLoop · ClawHub · skills.sh 三源合一，按星數／下載量排序',
+      langLabel:'語言', countLabel:'符合條件', itemsUnit:'筆', data:'資料', snapshot:'（快照）',
+      justNow:'剛剛', minAgo:'{n} 分鐘前', refresh:'重新整理', loadingBtn:'讀取中',
+      searchPh:'搜尋名稱、作者、分類、描述（按 / 聚焦）', sort:'排序',
+      sStarsDesc:'星數 高→低', sStarsAsc:'星數 低→高', sDlDesc:'下載量 高→低', sDlAsc:'下載量 低→高',
+      sUpdated:'最近更新', sNameAsc:'名稱 A→Z', sNameDesc:'名稱 Z→A',
+      allSources:'全部來源', hSkill:'Skill', hSource:'來源', hStars:'星數', hDl:'下載量', hSafety:'安全', hOpen:'前往',
+      itemsSmall:'筆', cached:'快取', live:'即時', failed:'失敗', storeHome:'商店首頁', fetchFailed:'抓取失敗：',
+      loadTitle:'正在向三個商店取資料', loadBody:'首次載入約需 5–15 秒，之後走快取。',
+      emptyTitle:'沒有符合的 Skill', emptyBody:'換個關鍵字，或把來源切回「全部」。',
+      errTitle:'取不到資料',
+      errBody:'GitHub Pages 版請確認 data/skills.json 存在（由 Actions 產生）；本機版請先執行 node server.js，再從 http://localhost:8787 開啟，不要直接雙擊 HTML。',
+      retry:'重試', errLabel:'錯誤：', noDesc:'（此來源未提供描述）',
+      foot1:'資料來自各商店公開介面即時抓取，內容與排序僅供瀏覽參考；點擊任一列可開啟該商店的原始頁面。',
+      footPrefix:'取樣說明', footSample:'（頁面取樣，非全站）',
+      footSnap:'目前讀取 GitHub Actions 產生的靜態快照（每 6 小時更新一次）',
+      footLive:'目前直連本機後端，快取 {n} 分鐘',
+      footNote:'各商店星數與下載量口徑不同（skills.sh 僅有安裝數）；Skill 名稱與描述保留各商店原始語言。'
+    },
+    'zh-Hans': {
+      title:'Skill 商店聚合工作台',
+      subtitle:'CocoLoop · ClawHub · skills.sh 三源合一，按星数／下载量排序',
+      langLabel:'语言', countLabel:'符合条件', itemsUnit:'条', data:'数据', snapshot:'（快照）',
+      justNow:'刚刚', minAgo:'{n} 分钟前', refresh:'重新整理', loadingBtn:'读取中',
+      searchPh:'搜索名称、作者、分类、描述（按 / 聚焦）', sort:'排序',
+      sStarsDesc:'星数 高→低', sStarsAsc:'星数 低→高', sDlDesc:'下载量 高→低', sDlAsc:'下载量 低→高',
+      sUpdated:'最近更新', sNameAsc:'名称 A→Z', sNameDesc:'名称 Z→A',
+      allSources:'全部来源', hSkill:'Skill', hSource:'来源', hStars:'星数', hDl:'下载量', hSafety:'安全', hOpen:'前往',
+      itemsSmall:'条', cached:'缓存', live:'实时', failed:'失败', storeHome:'商店首页', fetchFailed:'抓取失败：',
+      loadTitle:'正在向三个商店取数据', loadBody:'首次载入约需 5–15 秒，之后走缓存。',
+      emptyTitle:'没有符合的 Skill', emptyBody:'换个关键词，或把来源切回「全部」。',
+      errTitle:'取不到数据',
+      errBody:'GitHub Pages 版本请确认 data/skills.json 存在（由 Actions 生成）；本地版请先运行 node server.js，再从 http://localhost:8787 打开，不要直接双击 HTML。',
+      retry:'重试', errLabel:'错误：', noDesc:'（此来源未提供描述）',
+      foot1:'数据来自各商店公开接口实时抓取，内容与排序仅供浏览参考；点击任意一行可打开该商店的原始页面。',
+      footPrefix:'取样说明', footSample:'（页面取样，非全站）',
+      footSnap:'当前读取 GitHub Actions 生成的静态快照（每 6 小时更新一次）',
+      footLive:'当前直连本机后端，缓存 {n} 分钟',
+      footNote:'各商店星数与下载量口径不同（skills.sh 仅有安装数）；Skill 名称与描述保留各商店原始语言。'
+    },
+    en: {
+      title:'Skill Store Workbench',
+      subtitle:'CocoLoop · ClawHub · skills.sh in one view, sorted by stars or downloads',
+      langLabel:'Language', countLabel:'Matching', itemsUnit:'items', data:'data', snapshot:' (snapshot)',
+      justNow:'just now', minAgo:'{n} min ago', refresh:'Refresh', loadingBtn:'Loading',
+      searchPh:'Search name, author, category, description (press / to focus)', sort:'Sort',
+      sStarsDesc:'Stars high → low', sStarsAsc:'Stars low → high', sDlDesc:'Downloads high → low', sDlAsc:'Downloads low → high',
+      sUpdated:'Recently updated', sNameAsc:'Name A → Z', sNameDesc:'Name Z → A',
+      allSources:'All sources', hSkill:'Skill', hSource:'Source', hStars:'Stars', hDl:'Downloads', hSafety:'Safety', hOpen:'Open',
+      itemsSmall:'items', cached:'cached', live:'live', failed:'failed', storeHome:'Store home', fetchFailed:'Fetch failed: ',
+      loadTitle:'Fetching from three stores', loadBody:'The first load takes about 5–15 seconds; later loads use the cache.',
+      emptyTitle:'No matching skills', emptyBody:'Try another keyword, or switch the source back to All.',
+      errTitle:'Could not load data',
+      errBody:'On GitHub Pages, make sure data/skills.json exists (generated by Actions). For the local version, run node server.js first and open http://localhost:8787 — do not open the HTML file directly.',
+      retry:'Retry', errLabel:'Error: ', noDesc:'(no description provided by this source)',
+      foot1:'Data is fetched live from each store\u2019s public endpoint; content and ranking are for browsing only. Click any row to open the original page.',
+      footPrefix:'Sampling', footSample:' (page sample, not full catalogue)',
+      footSnap:'Reading a static snapshot generated by GitHub Actions (refreshed every 6 hours)',
+      footLive:'Connected to the local backend, cache {n} min',
+      footNote:'Star and download counts use different definitions per store (skills.sh reports installs only). Skill names and descriptions stay in the store\u2019s original language.'
+    },
+    ja: {
+      title:'Skill ストア統合ワークベンチ',
+      subtitle:'CocoLoop · ClawHub · skills.sh を一画面に集約、スター数／ダウンロード数で並べ替え',
+      langLabel:'言語', countLabel:'該当', itemsUnit:'件', data:'データ', snapshot:'（スナップショット）',
+      justNow:'たった今', minAgo:'{n} 分前', refresh:'再読み込み', loadingBtn:'読み込み中',
+      searchPh:'名前・作者・カテゴリ・説明を検索（/ キーでフォーカス）', sort:'並べ替え',
+      sStarsDesc:'スター 多い→少ない', sStarsAsc:'スター 少ない→多い', sDlDesc:'DL数 多い→少ない', sDlAsc:'DL数 少ない→多い',
+      sUpdated:'更新が新しい順', sNameAsc:'名前 A→Z', sNameDesc:'名前 Z→A',
+      allSources:'すべてのソース', hSkill:'Skill', hSource:'ソース', hStars:'スター', hDl:'DL数', hSafety:'安全性', hOpen:'開く',
+      itemsSmall:'件', cached:'キャッシュ', live:'リアルタイム', failed:'失敗', storeHome:'ストアへ', fetchFailed:'取得失敗：',
+      loadTitle:'3 つのストアから取得中', loadBody:'初回は 5〜15 秒ほどかかります。以降はキャッシュを使います。',
+      emptyTitle:'該当する Skill がありません', emptyBody:'キーワードを変えるか、ソースを「すべて」に戻してください。',
+      errTitle:'データを取得できません',
+      errBody:'GitHub Pages 版では data/skills.json の存在を確認してください（Actions が生成）。ローカル版では node server.js を実行し、http://localhost:8787 から開いてください。',
+      retry:'再試行', errLabel:'エラー：', noDesc:'（このソースは説明を提供していません）',
+      foot1:'各ストアの公開エンドポイントから取得したデータです。内容と順位は閲覧用です。行をクリックすると元のページが開きます。',
+      footPrefix:'サンプリング', footSample:'（ページ単位の抽出で、全件ではありません）',
+      footSnap:'GitHub Actions が生成した静的スナップショットを表示中（6 時間ごとに更新）',
+      footLive:'ローカルバックエンドに接続中、キャッシュ {n} 分',
+      footNote:'スター数とダウンロード数はストアごとに定義が異なります（skills.sh はインストール数のみ）。Skill 名と説明は各ストアの原文のまま表示します。'
+    },
+    ko: {
+      title:'스킬 스토어 통합 워크벤치',
+      subtitle:'CocoLoop · ClawHub · skills.sh를 한 화면에 모아 스타·다운로드 순으로 정렬',
+      langLabel:'언어', countLabel:'조건 일치', itemsUnit:'개', data:'데이터', snapshot:' (스냅샷)',
+      justNow:'방금', minAgo:'{n}분 전', refresh:'새로고침', loadingBtn:'불러오는 중',
+      searchPh:'이름·작성자·분류·설명 검색 (/ 키로 포커스)', sort:'정렬',
+      sStarsDesc:'스타 많은→적은', sStarsAsc:'스타 적은→많은', sDlDesc:'다운로드 많은→적은', sDlAsc:'다운로드 적은→많은',
+      sUpdated:'최근 업데이트', sNameAsc:'이름 A→Z', sNameDesc:'이름 Z→A',
+      allSources:'전체 소스', hSkill:'스킬', hSource:'소스', hStars:'스타', hDl:'다운로드', hSafety:'안전성', hOpen:'열기',
+      itemsSmall:'개', cached:'캐시', live:'실시간', failed:'실패', storeHome:'스토어 홈', fetchFailed:'가져오기 실패: ',
+      loadTitle:'세 개 스토어에서 데이터를 가져오는 중', loadBody:'처음 로딩은 5~15초 정도 걸리고, 이후에는 캐시를 사용합니다.',
+      emptyTitle:'일치하는 스킬이 없습니다', emptyBody:'다른 키워드를 입력하거나 소스를 전체로 되돌려 보세요.',
+      errTitle:'데이터를 불러오지 못했습니다',
+      errBody:'GitHub Pages 버전은 data/skills.json이 있는지 확인하세요(Actions가 생성). 로컬 버전은 node server.js를 실행한 뒤 http://localhost:8787에서 여세요.',
+      retry:'다시 시도', errLabel:'오류: ', noDesc:'(이 소스는 설명을 제공하지 않습니다)',
+      foot1:'각 스토어의 공개 엔드포인트에서 가져온 데이터입니다. 내용과 순위는 열람용이며, 행을 클릭하면 원본 페이지가 열립니다.',
+      footPrefix:'샘플링', footSample:' (페이지 단위 표본, 전체 목록 아님)',
+      footSnap:'GitHub Actions가 만든 정적 스냅샷을 읽는 중 (6시간마다 갱신)',
+      footLive:'로컬 백엔드에 연결됨, 캐시 {n}분',
+      footNote:'스타와 다운로드 수는 스토어마다 기준이 다릅니다(skills.sh는 설치 수만 제공). 스킬 이름과 설명은 각 스토어의 원문 언어로 표시됩니다.'
+    },
+    es: {
+      title:'Banco de trabajo de skills',
+      subtitle:'CocoLoop · ClawHub · skills.sh en una sola vista, ordenado por estrellas o descargas',
+      langLabel:'Idioma', countLabel:'Coincidencias', itemsUnit:'elementos', data:'datos', snapshot:' (instantánea)',
+      justNow:'ahora mismo', minAgo:'hace {n} min', refresh:'Actualizar', loadingBtn:'Cargando',
+      searchPh:'Buscar nombre, autor, categoría o descripción (pulsa / para enfocar)', sort:'Ordenar',
+      sStarsDesc:'Estrellas: de mayor a menor', sStarsAsc:'Estrellas: de menor a mayor', sDlDesc:'Descargas: de mayor a menor', sDlAsc:'Descargas: de menor a mayor',
+      sUpdated:'Actualizados recientemente', sNameAsc:'Nombre A → Z', sNameDesc:'Nombre Z → A',
+      allSources:'Todas las fuentes', hSkill:'Skill', hSource:'Fuente', hStars:'Estrellas', hDl:'Descargas', hSafety:'Seguridad', hOpen:'Abrir',
+      itemsSmall:'elementos', cached:'en caché', live:'en vivo', failed:'falló', storeHome:'Ir a la tienda', fetchFailed:'Error de obtención: ',
+      loadTitle:'Obteniendo datos de tres tiendas', loadBody:'La primera carga tarda unos 5–15 segundos; después se usa la caché.',
+      emptyTitle:'No hay skills coincidentes', emptyBody:'Prueba otra palabra clave o vuelve a la fuente Todas.',
+      errTitle:'No se pudieron cargar los datos',
+      errBody:'En GitHub Pages, comprueba que exista data/skills.json (generado por Actions). En local, ejecuta node server.js y abre http://localhost:8787; no abras el HTML directamente.',
+      retry:'Reintentar', errLabel:'Error: ', noDesc:'(esta fuente no proporciona descripción)',
+      foot1:'Los datos se obtienen en vivo del endpoint público de cada tienda; el contenido y el orden son solo informativos. Pulsa cualquier fila para abrir la página original.',
+      footPrefix:'Muestreo', footSample:' (muestra por páginas, no el catálogo completo)',
+      footSnap:'Mostrando una instantánea estática generada por GitHub Actions (se actualiza cada 6 horas)',
+      footLive:'Conectado al backend local, caché de {n} min',
+      footNote:'Las estrellas y descargas se definen de forma distinta en cada tienda (skills.sh solo informa instalaciones). Los nombres y descripciones se mantienen en el idioma original de la tienda.'
+    },
+    de: {
+      title:'Skill-Store-Arbeitsbereich',
+      subtitle:'CocoLoop · ClawHub · skills.sh in einer Ansicht, sortiert nach Sternen oder Downloads',
+      langLabel:'Sprache', countLabel:'Treffer', itemsUnit:'Einträge', data:'Daten', snapshot:' (Snapshot)',
+      justNow:'gerade eben', minAgo:'vor {n} Min.', refresh:'Aktualisieren', loadingBtn:'Wird geladen',
+      searchPh:'Name, Autor, Kategorie oder Beschreibung suchen (/ zum Fokussieren)', sort:'Sortieren',
+      sStarsDesc:'Sterne: hoch → niedrig', sStarsAsc:'Sterne: niedrig → hoch', sDlDesc:'Downloads: hoch → niedrig', sDlAsc:'Downloads: niedrig → hoch',
+      sUpdated:'Zuletzt aktualisiert', sNameAsc:'Name A → Z', sNameDesc:'Name Z → A',
+      allSources:'Alle Quellen', hSkill:'Skill', hSource:'Quelle', hStars:'Sterne', hDl:'Downloads', hSafety:'Sicherheit', hOpen:'Öffnen',
+      itemsSmall:'Einträge', cached:'Cache', live:'live', failed:'fehlgeschlagen', storeHome:'Zum Store', fetchFailed:'Abruf fehlgeschlagen: ',
+      loadTitle:'Daten von drei Stores werden geladen', loadBody:'Der erste Ladevorgang dauert etwa 5–15 Sekunden, danach greift der Cache.',
+      emptyTitle:'Keine passenden Skills', emptyBody:'Anderes Stichwort versuchen oder die Quelle auf „Alle“ zurücksetzen.',
+      errTitle:'Daten konnten nicht geladen werden',
+      errBody:'Bei GitHub Pages prüfen, ob data/skills.json existiert (von Actions erzeugt). Lokal node server.js starten und http://localhost:8787 öffnen – die HTML-Datei nicht direkt öffnen.',
+      retry:'Erneut versuchen', errLabel:'Fehler: ', noDesc:'(diese Quelle liefert keine Beschreibung)',
+      foot1:'Die Daten stammen live vom öffentlichen Endpunkt der jeweiligen Store; Inhalt und Reihenfolge dienen nur der Ansicht. Ein Klick auf eine Zeile öffnet die Originalseite.',
+      footPrefix:'Stichprobe', footSample:' (seitenweise Stichprobe, nicht der gesamte Katalog)',
+      footSnap:'Statischer Snapshot von GitHub Actions wird gelesen (Aktualisierung alle 6 Stunden)',
+      footLive:'Mit dem lokalen Backend verbunden, Cache {n} Min.',
+      footNote:'Sterne und Downloads sind pro Store unterschiedlich definiert (skills.sh meldet nur Installationen). Skill-Namen und Beschreibungen bleiben in der Originalsprache der Store.'
+    },
+    fr: {
+      title:'Atelier des boutiques de skills',
+      subtitle:'CocoLoop · ClawHub · skills.sh dans une seule vue, triés par étoiles ou téléchargements',
+      langLabel:'Langue', countLabel:'Correspondances', itemsUnit:'éléments', data:'données', snapshot:' (instantané)',
+      justNow:'à l\u2019instant', minAgo:'il y a {n} min', refresh:'Actualiser', loadingBtn:'Chargement',
+      searchPh:'Rechercher un nom, un auteur, une catégorie, une description (/ pour cibler)', sort:'Trier',
+      sStarsDesc:'Étoiles : décroissant', sStarsAsc:'Étoiles : croissant', sDlDesc:'Téléchargements : décroissant', sDlAsc:'Téléchargements : croissant',
+      sUpdated:'Mise à jour récente', sNameAsc:'Nom A → Z', sNameDesc:'Nom Z → A',
+      allSources:'Toutes les sources', hSkill:'Skill', hSource:'Source', hStars:'Étoiles', hDl:'Téléchargements', hSafety:'Sécurité', hOpen:'Ouvrir',
+      itemsSmall:'éléments', cached:'cache', live:'en direct', failed:'échec', storeHome:'Aller à la boutique', fetchFailed:'Échec de récupération : ',
+      loadTitle:'Récupération depuis trois boutiques', loadBody:'Le premier chargement prend environ 5 à 15 secondes, ensuite le cache est utilisé.',
+      emptyTitle:'Aucun skill correspondant', emptyBody:'Essayez un autre mot-clé ou revenez à la source Toutes.',
+      errTitle:'Impossible de charger les données',
+      errBody:'Sur GitHub Pages, vérifiez que data/skills.json existe (généré par Actions). En local, lancez node server.js puis ouvrez http://localhost:8787 ; n\u2019ouvrez pas le fichier HTML directement.',
+      retry:'Réessayer', errLabel:'Erreur : ', noDesc:'(aucune description fournie par cette source)',
+      foot1:'Les données sont récupérées en direct depuis l\u2019endpoint public de chaque boutique ; le contenu et l\u2019ordre sont indicatifs. Cliquez sur une ligne pour ouvrir la page d\u2019origine.',
+      footPrefix:'Échantillonnage', footSample:' (échantillon par pages, pas le catalogue complet)',
+      footSnap:'Lecture d\u2019un instantané statique généré par GitHub Actions (mis à jour toutes les 6 heures)',
+      footLive:'Connecté au backend local, cache {n} min',
+      footNote:'Les étoiles et les téléchargements sont définis différemment selon la boutique (skills.sh ne compte que les installations). Les noms et descriptions restent dans la langue d\u2019origine.'
+    },
+    pt: {
+      title:'Bancada de skills',
+      subtitle:'CocoLoop · ClawHub · skills.sh numa só vista, ordenado por estrelas ou downloads',
+      langLabel:'Idioma', countLabel:'Correspondências', itemsUnit:'itens', data:'dados', snapshot:' (instantâneo)',
+      justNow:'agora mesmo', minAgo:'há {n} min', refresh:'Atualizar', loadingBtn:'Carregando',
+      searchPh:'Pesquisar nome, autor, categoria ou descrição (/ para focar)', sort:'Ordenar',
+      sStarsDesc:'Estrelas: maior → menor', sStarsAsc:'Estrelas: menor → maior', sDlDesc:'Downloads: maior → menor', sDlAsc:'Downloads: menor → maior',
+      sUpdated:'Atualizados recentemente', sNameAsc:'Nome A → Z', sNameDesc:'Nome Z → A',
+      allSources:'Todas as fontes', hSkill:'Skill', hSource:'Fonte', hStars:'Estrelas', hDl:'Downloads', hSafety:'Segurança', hOpen:'Abrir',
+      itemsSmall:'itens', cached:'cache', live:'ao vivo', failed:'falhou', storeHome:'Ir à loja', fetchFailed:'Falha ao obter: ',
+      loadTitle:'Obtendo dados de três lojas', loadBody:'O primeiro carregamento leva cerca de 5 a 15 segundos; depois é usado o cache.',
+      emptyTitle:'Nenhum skill correspondente', emptyBody:'Tente outra palavra-chave ou volte a fonte Todas.',
+      errTitle:'Não foi possível carregar os dados',
+      errBody:'No GitHub Pages, confirme que data/skills.json existe (gerado pelo Actions). No local, execute node server.js e abra http://localhost:8787; não abra o HTML diretamente.',
+      retry:'Tentar novamente', errLabel:'Erro: ', noDesc:'(esta fonte não fornece descrição)',
+      foot1:'Os dados são obtidos ao vivo do endpoint público de cada loja; o conteúdo e a ordem são apenas informativos. Clique em qualquer linha para abrir a página original.',
+      footPrefix:'Amostragem', footSample:' (amostra por páginas, não o catálogo completo)',
+      footSnap:'Lendo um instantâneo estático gerado pelo GitHub Actions (atualizado a cada 6 horas)',
+      footLive:'Conectado ao backend local, cache de {n} min',
+      footNote:'Estrelas e downloads têm definições diferentes em cada loja (skills.sh informa apenas instalações). Nomes e descrições permanecem no idioma original da loja.'
+    },
+    ru: {
+      title:'Рабочая панель магазинов навыков',
+      subtitle:'CocoLoop · ClawHub · skills.sh в одном окне, сортировка по звёздам или загрузкам',
+      langLabel:'Язык', countLabel:'Совпадений', itemsUnit:'записей', data:'данные', snapshot:' (снимок)',
+      justNow:'только что', minAgo:'{n} мин назад', refresh:'Обновить', loadingBtn:'Загрузка',
+      searchPh:'Поиск по названию, автору, категории, описанию (/ — фокус)', sort:'Сортировка',
+      sStarsDesc:'Звёзды: по убыванию', sStarsAsc:'Звёзды: по возрастанию', sDlDesc:'Загрузки: по убыванию', sDlAsc:'Загрузки: по возрастанию',
+      sUpdated:'Недавно обновлённые', sNameAsc:'Название A → Z', sNameDesc:'Название Z → A',
+      allSources:'Все источники', hSkill:'Навык', hSource:'Источник', hStars:'Звёзды', hDl:'Загрузки', hSafety:'Безопасность', hOpen:'Открыть',
+      itemsSmall:'записей', cached:'кэш', live:'онлайн', failed:'ошибка', storeHome:'В магазин', fetchFailed:'Ошибка загрузки: ',
+      loadTitle:'Получение данных из трёх магазинов', loadBody:'Первая загрузка занимает 5–15 секунд, далее используется кэш.',
+      emptyTitle:'Подходящих навыков нет', emptyBody:'Попробуйте другое слово или верните источник «Все».',
+      errTitle:'Не удалось загрузить данные',
+      errBody:'В версии GitHub Pages проверьте наличие data/skills.json (создаётся Actions). Локально запустите node server.js и откройте http://localhost:8787; не открывайте HTML напрямую.',
+      retry:'Повторить', errLabel:'Ошибка: ', noDesc:'(источник не предоставляет описание)',
+      foot1:'Данные берутся напрямую с публичного эндпоинта каждого магазина; содержимое и порядок носят справочный характер. Нажмите на строку, чтобы открыть исходную страницу.',
+      footPrefix:'Выборка', footSample:' (постраничная выборка, а не весь каталог)',
+      footSnap:'Показан статический снимок, созданный GitHub Actions (обновляется каждые 6 часов)',
+      footLive:'Подключено к локальному бэкенду, кэш {n} мин',
+      footNote:'Звёзды и загрузки считаются по-разному в каждом магазине (skills.sh сообщает только установки). Названия и описания остаются на исходном языке магазина.'
+    },
+    ar: {
+      title:'منصة تجميع متاجر المهارات',
+      subtitle:'CocoLoop و ClawHub و skills.sh في صفحة واحدة، مرتّبة حسب النجوم أو التنزيلات',
+      langLabel:'اللغة', countLabel:'المطابقات', itemsUnit:'عنصرًا', data:'البيانات', snapshot:' (لقطة)',
+      justNow:'الآن', minAgo:'قبل {n} دقيقة', refresh:'تحديث', loadingBtn:'جارٍ التحميل',
+      searchPh:'ابحث بالاسم أو المؤلف أو التصنيف أو الوصف (اضغط / للتركيز)', sort:'الترتيب',
+      sStarsDesc:'النجوم من الأعلى إلى الأقل', sStarsAsc:'النجوم من الأقل إلى الأعلى', sDlDesc:'التنزيلات من الأعلى إلى الأقل', sDlAsc:'التنزيلات من الأقل إلى الأعلى',
+      sUpdated:'المحدَّثة حديثًا', sNameAsc:'الاسم A → Z', sNameDesc:'الاسم Z → A',
+      allSources:'كل المصادر', hSkill:'المهارة', hSource:'المصدر', hStars:'النجوم', hDl:'التنزيلات', hSafety:'الأمان', hOpen:'فتح',
+      itemsSmall:'عنصرًا', cached:'مخزّن مؤقتًا', live:'مباشر', failed:'فشل', storeHome:'زيارة المتجر', fetchFailed:'فشل الجلب: ',
+      loadTitle:'جارٍ جلب البيانات من ثلاثة متاجر', loadBody:'يستغرق التحميل الأول نحو 5–15 ثانية، ثم يُستخدم التخزين المؤقت.',
+      emptyTitle:'لا توجد مهارات مطابقة', emptyBody:'جرّب كلمة أخرى أو أعد المصدر إلى «الكل».',
+      errTitle:'تعذّر تحميل البيانات',
+      errBody:'في نسخة GitHub Pages تأكّد من وجود data/skills.json (تنشئه Actions). وفي النسخة المحلية شغّل node server.js ثم افتح http://localhost:8787، ولا تفتح ملف HTML مباشرة.',
+      retry:'إعادة المحاولة', errLabel:'خطأ: ', noDesc:'(هذا المصدر لا يوفّر وصفًا)',
+      foot1:'تُجلب البيانات مباشرة من الواجهة العامة لكل متجر؛ المحتوى والترتيب للعرض فقط. اضغط أي صف لفتح الصفحة الأصلية.',
+      footPrefix:'العيّنة', footSample:' (عيّنة على مستوى الصفحات وليست الكتالوج الكامل)',
+      footSnap:'تُقرأ لقطة ثابتة أنشأها GitHub Actions (تُحدَّث كل 6 ساعات)',
+      footLive:'متصل بالخادم المحلي، التخزين المؤقت {n} دقيقة',
+      footNote:'تعريف النجوم والتنزيلات يختلف بين المتاجر (skills.sh يعرض عدد التثبيتات فقط). تبقى أسماء المهارات وأوصافها بلغة المتجر الأصلية.'
+    }
+  };
+
+  var LANGS = [
+    {id:'zh-Hant', label:'繁體中文'},
+    {id:'zh-Hans', label:'简体中文'},
+    {id:'en', label:'English'},
+    {id:'ja', label:'日本語'},
+    {id:'ko', label:'한국어'},
+    {id:'es', label:'Español'},
+    {id:'de', label:'Deutsch'},
+    {id:'fr', label:'Français'},
+    {id:'pt', label:'Português'},
+    {id:'ru', label:'Русский'},
+    {id:'ar', label:'العربية'}
+  ];
+
+  var S = { all:[], sources:[], q:'', source:'all', sort:'stars', dir:'desc', loading:false, mode:'live', lang:'zh-Hant', stamp:0, ttl:600, errored:false };
   var $ = function (id) { return document.getElementById(id); };
   var rowsEl = $('rows'), chipsEl = $('chips'), sourcesEl = $('sources');
   var stateBox = $('state'), stateInner = $('stateInner');
 
+  function t(key, vars) {
+    var d = I18N[S.lang] || I18N.en;
+    var v = d[key];
+    if (v === undefined) v = I18N.en[key];
+    if (v === undefined) return key;
+    if (vars) { for (var k in vars) { if (vars.hasOwnProperty(k)) v = v.split('{' + k + '}').join(vars[k]); } }
+    return v;
+  }
   function esc(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
   function fmt(n) {
     if (n === null || n === undefined || !isFinite(n)) return '—';
@@ -256,49 +473,102 @@
   }
   function timeAgo(ts) {
     if (!ts) return '—';
-    var d = new Date(ts), diff = (Date.now() - d.getTime()) / 1000;
-    if (diff < 60) return '剛剛';
-    if (diff < 3600) return Math.floor(diff / 60) + ' 分鐘前';
-    return d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+    var diff = (Date.now() - new Date(ts).getTime()) / 1000;
+    if (diff < 60) return t('justNow');
+    if (diff < 3600) return t('minAgo', { n: Math.floor(diff / 60) });
+    return new Date(ts).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
   }
-  var SRC_NAME = { coco: 'CocoLoop', claw: 'ClawHub', skillsio: 'skills.sh' };
+  var SRC_NAME = { coco:'CocoLoop', claw:'ClawHub', skillsio:'skills.sh' };
+  var SRC_SITE = { coco:'https://hub.cocoloop.cn', claw:'https://hub.openclaw.ai', skillsio:'https://www.skills.sh' };
 
-  // ---------- 取數 ----------
+  function detectLang() {
+    var q = (location.search.match(/[?&]lang=([^&]+)/) || [])[1];
+    if (q) { q = decodeURIComponent(q); if (I18N[q]) return q; }
+    try { var saved = localStorage.getItem('skh-lang'); if (saved && I18N[saved]) return saved; } catch (e) {}
+    var n = (navigator.language || 'zh-Hant').toLowerCase();
+    if (n.indexOf('zh') === 0) { return /tw|hk|mo|hant/.test(n) ? 'zh-Hant' : 'zh-Hans'; }
+    if (n.indexOf('ja') === 0) return 'ja';
+    if (n.indexOf('ko') === 0) return 'ko';
+    if (n.indexOf('es') === 0) return 'es';
+    if (n.indexOf('de') === 0) return 'de';
+    if (n.indexOf('fr') === 0) return 'fr';
+    if (n.indexOf('pt') === 0) return 'pt';
+    if (n.indexOf('ru') === 0) return 'ru';
+    if (n.indexOf('ar') === 0) return 'ar';
+    return 'en';
+  }
+
+  function applyStatic() {
+    $('t-title').textContent = t('title');
+    $('t-subtitle').textContent = t('subtitle');
+    $('t-langLabel').textContent = t('langLabel');
+    $('t-countLabel').textContent = t('countLabel');
+    $('t-itemsUnit').textContent = t('itemsUnit');
+    $('t-data').textContent = t('data');
+    $('refreshLabel').textContent = S.loading ? t('loadingBtn') : t('refresh');
+    $('q').placeholder = t('searchPh');
+    $('t-sort').textContent = t('sort');
+    $('t-hSkill').textContent = t('hSkill');
+    $('t-hSource').textContent = t('hSource');
+    $('t-hStars').textContent = t('hStars');
+    $('t-hDl').textContent = t('hDl');
+    $('t-hSafety').textContent = t('hSafety');
+    $('t-hOpen').textContent = t('hOpen');
+    $('t-foot1').textContent = t('foot1');
+    $('t-footNote').textContent = t('footNote');
+    document.documentElement.lang = S.lang;
+    document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t('title');
+  }
+
+  function buildLangSelect() {
+    $('langSel').innerHTML = LANGS.map(function (l) {
+      return '<option value="' + l.id + '">' + l.label + '</option>';
+    }).join('');
+    $('langSel').value = S.lang;
+  }
+
+  function buildSortSelect() {
+    var opts = [
+      ['stars:desc', t('sStarsDesc')], ['stars:asc', t('sStarsAsc')],
+      ['downloads:desc', t('sDlDesc')], ['downloads:asc', t('sDlAsc')],
+      ['updated:desc', t('sUpdated')], ['name:asc', t('sNameAsc')], ['name:desc', t('sNameDesc')]
+    ];
+    $('sortSel').innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('');
+    $('sortSel').value = S.sort + ':' + S.dir;
+  }
+
   function load(force) {
     if (S.loading) return;
     S.loading = true;
+    S.errored = false;
     $('refresh').disabled = true;
-    $('refreshLabel').textContent = '讀取中';
+    $('refreshLabel').textContent = t('loadingBtn');
     if (!S.all.length) showState('loading');
     var LIVE = '/api/skills?source=all&sort=stars&dir=desc&limit=2000' + (force ? '&refresh=1' : '');
     var SNAP = './data/skills.json?t=' + Date.now();
     function pull(url, fallback) {
-      return fetch(url, { cache: 'no-store' }).then(function (r) {
+      return fetch(url, { cache:'no-store' }).then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
-      }).catch(function (e) {
-        if (fallback) return pull(fallback, null);
-        throw e;
-      });
+      }).catch(function (e) { if (fallback) return pull(fallback, null); throw e; });
     }
-    pull(LIVE, SNAP)
-      .then(function (d) {
-        if (!d.ok) throw new Error(d.error || '介面回傳錯誤');
-        S.mode = d.mode || 'live';
-        S.all = d.items || [];
-        S.sources = d.sources || [];
-        S.stamp = d.generatedAt;
-        S.ttl = d.cacheTtlSec;
-        renderSources();
-        renderChips();
-        render();
-      })
-      .catch(function (e) { showState('error', e.message); })
-      .then(function () {
-        S.loading = false;
-        $('refresh').disabled = false;
-        $('refreshLabel').textContent = '重新整理';
-      });
+    pull(LIVE, SNAP).then(function (d) {
+      if (!d.ok) throw new Error(d.error || 'bad payload');
+      S.mode = d.mode || 'live';
+      S.all = d.items || [];
+      S.sources = d.sources || [];
+      S.stamp = d.generatedAt;
+      S.ttl = d.cacheTtlSec || 600;
+      renderSources(); renderChips(); render();
+    }).catch(function (e) {
+      S.errored = true;
+      showState('error', e.message);
+    }).then(function () {
+      S.loading = false;
+      $('refresh').disabled = false;
+      $('refreshLabel').textContent = t('refresh');
+    });
   }
 
   function showState(kind, msg) {
@@ -306,47 +576,45 @@
     $('tableBox').hidden = true;
     stateBox.hidden = false;
     if (kind === 'loading') {
-      stateInner.innerHTML = '<b>正在向三個商店取資料</b>首次載入約需 5–15 秒，之後會走快取。';
+      stateInner.innerHTML = '<b>' + esc(t('loadTitle')) + '</b>' + esc(t('loadBody'));
     } else if (kind === 'empty') {
-      stateInner.innerHTML = '<b>沒有符合的 Skill</b>換個關鍵字，或把來源切回「全部」。';
+      stateInner.innerHTML = '<b>' + esc(t('emptyTitle')) + '</b>' + esc(t('emptyBody'));
     } else if (kind === 'error') {
-      stateInner.innerHTML = '<b>取不到資料</b>' +
-        'GitHub Pages 版本請確認 <code>data/skills.json</code> 存在（由 Actions 產生）；' +
-        '本機版本請先在專案資料夾執行 <code>node server.js</code>，再從 <code>http://localhost:8787</code> 開啟，不要直接雙擊 HTML 檔。<br>' +
-        '<span style="color:#b4331f">錯誤：' + esc(msg || '') + '</span>' +
-        '<br><button class="btn" onclick="location.reload()">重試</button>';
+      stateInner.innerHTML = '<b>' + esc(t('errTitle')) + '</b>' + esc(t('errBody')) +
+        '<br><span style="color:#b4331f">' + esc(t('errLabel')) + esc(msg || '') + '</span>' +
+        '<br><button class="btn" id="retryBtn">' + esc(t('retry')) + '</button>';
+      var rb = $('retryBtn');
+      if (rb) rb.addEventListener('click', function () { load(true); });
     }
   }
 
-  // ---------- 來源卡 ----------
   function renderSources() {
     sourcesEl.innerHTML = S.sources.map(function (s) {
-      var cls = s.ok ? 'ok' : 'err';
-      var note = s.ok ? (s.note || '') : ('抓取失敗：' + esc(s.error || ''));
-      var site = { coco: 'https://hub.cocoloop.cn', claw: 'https://hub.openclaw.ai', skillsio: 'https://www.skills.sh' }[s.id];
+      var note = s.ok
+        ? fmt(s.count) + ' ' + t('itemsSmall') + (s.truncated ? ' · ' + t('footSample') : '')
+        : esc(t('fetchFailed')) + esc(s.error || '');
+      var meta = s.ok ? (s.cached ? t('cached') : t('live')) + ' · ' + s.ms + 'ms' : t('failed');
+      var site = SRC_SITE[s.id] || '#';
       return '<div class="src-card">' +
-        '<div class="src-head"><span class="dot ' + cls + '"></span>' + esc(s.label) +
-        '<span style="margin-left:auto;font-size:11.5px;font-weight:400;color:var(--faint)">' +
-        (s.ok ? (s.cached ? '快取' : '即時') + ' · ' + s.ms + 'ms' : '失敗') + '</span></div>' +
-        '<div class="src-count">' + fmt(s.count) + '<span style="font-size:12px;font-weight:400;color:var(--muted)"> 筆</span></div>' +
-        '<div class="src-note">' + note + ' · <a href="' + site + '" target="_blank" rel="noopener">商店首頁</a></div>' +
+        '<div class="src-head"><span class="dot ' + (s.ok ? 'ok' : 'err') + '"></span>' + esc(s.label) +
+        '<span style="margin-inline-start:auto;font-size:11.5px;font-weight:400;color:var(--faint)">' + esc(meta) + '</span></div>' +
+        '<div class="src-count">' + fmt(s.count) + '<span style="font-size:12px;font-weight:400;color:var(--muted)"> ' + esc(t('itemsSmall')) + '</span></div>' +
+        '<div class="src-note">' + note + ' · <a href="' + site + '" target="_blank" rel="noopener">' + esc(t('storeHome')) + '</a></div>' +
         '</div>';
     }).join('');
   }
 
-  // ---------- 來源篩選 ----------
   function renderChips() {
     var counts = { all: S.all.length };
     S.all.forEach(function (x) { counts[x.source] = (counts[x.source] || 0) + 1; });
     var order = ['all', 'coco', 'claw', 'skillsio'];
     chipsEl.innerHTML = order.filter(function (k) { return k === 'all' || counts[k]; }).map(function (k) {
-      var label = k === 'all' ? '全部來源' : (SRC_NAME[k] || k);
+      var label = k === 'all' ? t('allSources') : (SRC_NAME[k] || k);
       return '<button class="chip' + (S.source === k ? ' on' : '') + '" data-src="' + k + '">' +
-        label + '<span class="n">' + fmt(counts[k] || 0) + '</span></button>';
+        esc(label) + '<span class="n">' + fmt(counts[k] || 0) + '</span></button>';
     }).join('');
   }
 
-  // ---------- 列表 ----------
   function current() {
     var list = S.all;
     if (S.source !== 'all') list = list.filter(function (x) { return x.source === S.source; });
@@ -360,15 +628,14 @@
       });
     }
     var d = S.dir === 'asc' ? 1 : -1;
-    list = list.slice().sort(function (a, b) {
-      if (S.sort === 'name') return d * String(a.name).localeCompare(String(b.name), 'zh-Hant');
+    return list.slice().sort(function (a, b) {
+      if (S.sort === 'name') return d * String(a.name).localeCompare(String(b.name), S.lang);
       if (S.sort === 'updated') return d * ((a.updatedAt || 0) - (b.updatedAt || 0));
       var av = a[S.sort] === null || a[S.sort] === undefined ? -1 : a[S.sort];
       var bv = b[S.sort] === null || b[S.sort] === undefined ? -1 : b[S.sort];
       if (av === bv) return (b.downloads || 0) - (a.downloads || 0);
       return d * (av - bv);
     });
-    return list;
   }
 
   function rowHTML(x, i) {
@@ -379,17 +646,17 @@
       '<div class="cell rank">' + (i + 1) + '</div>' +
       '<div class="cell name-cell">' +
         '<div class="name">' + esc(x.name) + '</div>' +
-        '<div class="desc">' + esc(x.summary || '（此來源未提供描述）') + '</div>' +
+        '<div class="desc">' + esc(x.summary || t('noDesc')) + '</div>' +
         (x.author ? '<div class="author">@' + esc(x.author) + '</div>' : '') +
         '<div class="meta">' +
           '<span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span>' +
-          '<span class="m-stars">星數 <b>' + starTxt + '</b></span>' +
-          '<span class="m-dl">下載 <b>' + dlTxt + '</b></span>' +
+          '<span class="m-stars">' + esc(t('hStars')) + ' <b>' + starTxt + '</b></span>' +
+          '<span class="m-dl">' + esc(t('hDl')) + ' <b>' + dlTxt + '</b></span>' +
           (x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '') +
         '</div>' +
       '</div>' +
       '<div class="cell src-cell"><span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span></div>' +
-      '<div class="cell num-cell' + starCls + '">' + starTxt + '</div>' +
+      '<div class="cell' + starCls + '">' + starTxt + '</div>' +
       '<div class="cell num-cell strong">' + dlTxt + '</div>' +
       '<div class="cell" style="text-align:center">' + rating + '</div>' +
       '<div class="cell open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></div>' +
@@ -399,32 +666,40 @@
   function render() {
     var list = current();
     $('count').textContent = fmt(list.length);
-    $('stamp').textContent = (S.stamp ? timeAgo(S.stamp) : '—') + (S.mode === 'snapshot' ? '（快照）' : '');
+    $('stamp').textContent = (S.stamp ? timeAgo(S.stamp) : '—') + (S.mode === 'snapshot' ? t('snapshot') : '');
     $('ar-stars').textContent = S.sort === 'stars' ? (S.dir === 'desc' ? '↓' : '↑') : '';
     $('ar-downloads').textContent = S.sort === 'downloads' ? (S.dir === 'desc' ? '↓' : '↑') : '';
-    document.querySelectorAll('.th[data-sort]').forEach(function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll('.th[data-sort]'), function (el) {
       el.classList.toggle('active', el.getAttribute('data-sort') === S.sort);
     });
     $('sortSel').value = S.sort + ':' + S.dir;
     if (!list.length) { showState('empty'); return; }
     showState(null);
     rowsEl.innerHTML = list.map(rowHTML).join('');
-    var notes = S.sources.filter(function (s) { return s.ok; }).map(function (s) { return s.label + '：' + s.note; });
-    $('notes').innerHTML = '取樣說明 — ' + notes.map(esc).join('；') +
-      '。' + (S.mode === 'snapshot'
-        ? '目前讀取 GitHub Actions 產生的靜態快照（每 6 小時更新一次）'
-        : '目前直連本機後端，快取 ' + Math.round((S.ttl || 600) / 60) + ' 分鐘') +
-      '；各商店星數／下載量口徑不同（skills.sh 僅有安裝數）。';
+    var notes = S.sources.filter(function (s) { return s.ok; }).map(function (s) {
+      return s.label + ': ' + fmt(s.count) + ' ' + t('itemsSmall') + (s.truncated ? t('footSample') : '');
+    });
+    $('notes').innerHTML = esc(t('footPrefix')) + ' — ' + esc(notes.join('; ')) + '. ' +
+      esc(S.mode === 'snapshot' ? t('footSnap') : t('footLive', { n: Math.round((S.ttl || 600) / 60) })) + '.';
   }
 
-  // ---------- 互動 ----------
-  $('refresh').addEventListener('click', function () { load(true); });
+  function applyLang(lang, persist) {
+    if (!I18N[lang]) return;
+    S.lang = lang;
+    if (persist) { try { localStorage.setItem('skh-lang', lang); } catch (e) {} }
+    applyStatic(); buildSortSelect(); buildLangSelect();
+    if (S.all.length) { renderSources(); renderChips(); render(); }
+    else if (!S.loading) { showState(S.errored ? 'error' : 'empty'); }
+  }
 
-  var t = null;
+  $('refresh').addEventListener('click', function () { load(true); });
+  $('langSel').addEventListener('change', function (e) { applyLang(e.target.value, true); });
+
+  var timer = null;
   $('q').addEventListener('input', function (e) {
     $('searchWrap').classList.toggle('has-value', !!e.target.value);
-    clearTimeout(t);
-    t = setTimeout(function () { S.q = e.target.value.trim(); render(); }, 180);
+    clearTimeout(timer);
+    timer = setTimeout(function () { S.q = e.target.value.trim(); render(); }, 180);
   });
   $('clearQ').addEventListener('click', function () {
     $('q').value = ''; S.q = ''; $('searchWrap').classList.remove('has-value'); render(); $('q').focus();
@@ -438,7 +713,7 @@
     var v = e.target.value.split(':');
     S.sort = v[0]; S.dir = v[1]; render();
   });
-  document.querySelectorAll('.th[data-sort]').forEach(function (el) {
+  Array.prototype.forEach.call(document.querySelectorAll('.th[data-sort]'), function (el) {
     el.addEventListener('click', function () {
       var k = el.getAttribute('data-sort');
       if (S.sort === k) S.dir = S.dir === 'desc' ? 'asc' : 'desc';
@@ -451,6 +726,8 @@
     if (e.key === 'Escape' && document.activeElement === $('q')) { $('q').blur(); }
   });
 
+  S.lang = detectLang();
+  applyStatic(); buildSortSelect(); buildLangSelect();
   load(false);
 })();
 </script>
