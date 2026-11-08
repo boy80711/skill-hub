@@ -37,7 +37,7 @@
 
   .sources{display:grid;grid-template-columns:1fr;gap:10px;margin:16px 0}
   .src-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
-  .src-head{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .src-head{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;flex-wrap:wrap}
   .dot{width:8px;height:8px;border-radius:50%;background:#c9c9c1;flex:0 0 auto}
   .dot.ok{background:var(--accent)}
   .dot.err{background:#b4331f}
@@ -57,6 +57,8 @@
   .chip:hover{border-color:#b9b9af;color:var(--ink)}
   .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
   .chip .n{opacity:.68;font-size:12px}
+  .chip .cdot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:0 0 auto}
+  .chip.on .cdot{box-shadow:0 0 0 1.5px #fff}
   .sorts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .sorts label{font-size:13px;color:var(--muted)}
   select{height:36px;padding:0 30px 0 10px;font-size:14px;font-family:inherit;border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);color:var(--ink);
@@ -82,9 +84,10 @@
   .desc{font-size:12.5px;color:var(--muted);margin-top:2px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.45}
   .author{font-size:11.5px;color:var(--faint);margin-top:3px}
   .badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:11px;font-size:11.5px;font-weight:600;white-space:nowrap}
-  .badge.coco{background:#e6f2ef;color:#0f6f62}
-  .badge.claw{background:#f7efdf;color:#8a5a12}
-  .badge.skillsio{background:#e9ecf2;color:#3d4d6b}
+  .badge{background:var(--sc-bg,#efefe8);color:var(--sc,#555)}
+  .row{position:relative}
+  .row::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--sc,#cfcfc6)}
+  [dir="rtl"] .row::before{left:auto;right:0}
   .num-cell{font-variant-numeric:tabular-nums;text-align:right;font-size:14px}
   .num-cell.strong{font-weight:650}
   .num-cell.na{color:var(--faint);font-weight:400}
@@ -102,6 +105,28 @@
   .foot{margin-top:16px;font-size:12px;color:var(--faint);line-height:1.7}
   .foot a{color:var(--muted)}
 
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:-4px 0 10px;font-size:12px;color:var(--muted);align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--sc)}
+  .srcman{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:0 0 14px}
+  .srcman-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+  .srcman-head .tt{font-size:14px;font-weight:650}
+  .srcman-head .h{font-size:12px;color:var(--muted);font-weight:400;margin-top:3px;line-height:1.5}
+  .src-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .src-row .nm{display:flex;align-items:center;gap:8px;flex:1 1 220px;min-width:0;font-size:14px;font-weight:600}
+  .src-row .nm i{width:10px;height:10px;border-radius:3px;background:var(--sc);flex:0 0 auto}
+  .src-row .nm .u{display:block;font-weight:400;font-size:11.5px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .src-row .cn{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .mini{height:30px;padding:0 10px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);font-size:12.5px;cursor:pointer;color:var(--ink);font-family:inherit}
+  .mini:hover{background:#fafaf7}
+  .mini.danger{color:#b4331f;border-color:#e6cdc6}
+  .mini.danger:hover{background:#fdf3f1}
+  .addform{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .addform input{flex:1 1 260px;height:40px;min-width:0;padding:0 10px;font-size:16px;border:1px solid var(--line-strong);border-radius:8px;font-family:inherit;color:var(--ink);background:var(--panel);outline:none}
+  .addform input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .hint{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.55}
+  .hint.err{color:#b4331f}
+
   [dir="rtl"] .th.num,[dir="rtl"] .num-cell{text-align:left}
   [dir="rtl"] .rank{text-align:left;padding-right:0;padding-left:2px}
   [dir="rtl"] .search svg{left:auto;right:12px}
@@ -112,7 +137,7 @@
   [dir="rtl"] select{padding:0 10px 0 30px;background-position:left 10px center}
 
   @media (min-width:720px){
-    .sources{grid-template-columns:repeat(3,1fr)}
+    .sources{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
     .toolbar{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .search{flex:1 1 320px;max-width:440px}
   }
@@ -155,6 +180,10 @@
         <select id="langSel" aria-label="Language"></select>
       </div>
       <span class="total"><span id="t-countLabel">符合條件</span> <b id="count">—</b> <span id="t-itemsUnit">筆</span> · <span id="t-data">資料</span> <span id="stamp">—</span></span>
+      <button class="btn" id="btnSrcMan" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/><circle cx="19" cy="18" r="2.2"/></svg>
+        <span id="srcManLabel">商店來源</span>
+      </button>
       <button class="btn primary" id="refresh">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
         <span id="refreshLabel">重新整理</span>
@@ -163,6 +192,24 @@
   </header>
 
   <section class="sources" id="sources"></section>
+
+  <section class="srcman" id="srcman" hidden>
+    <div class="srcman-head">
+      <div>
+        <div class="tt" id="t-manTitle">商店來源</div>
+        <div class="h" id="t-manHint">—</div>
+      </div>
+      <button class="mini" id="btnManClose" type="button" aria-label="close">×</button>
+    </div>
+    <div id="srcList"></div>
+    <form class="addform" id="addForm">
+      <input id="addUrl" type="url" inputmode="url" autocomplete="off" spellcheck="false">
+      <button class="mini" type="submit" id="addBtn">新增</button>
+    </form>
+    <p class="hint" id="addHint"></p>
+  </section>
+
+  <div class="legend" id="legend"></div>
 
   <section class="toolbar">
     <div class="search" id="searchWrap">
@@ -437,6 +484,20 @@
     }
   };
 
+  var EXTRA = {
+    'zh-Hant': { manTitle:'商店來源', manHint:'勾選要顯示的商店；也可貼上任何回傳 JSON 的網址，把新商店加進來。', addBtn:'新增', addPlaceholder:'貼上商店 API 或 JSON 網址', addHelp:'支援 items / data / skills / results 陣列或純陣列；該網址需允許跨網域（CORS）。', customTag:'自訂', hide:'移除', restore:'加入', remove:'刪除', hiddenTag:'已移除', manEmpty:'目前沒有來源', srcFailShort:'讀取失敗', errShape:'資料格式不符（需陣列或 items/data/skills/results）', errEmpty:'回傳 0 筆', errCors:'跨網域被擋（CORS），請改用允許 CORS 或靜態 JSON 網址', errUrl:'網址格式不正確', errDup:'這個網址已經加過了', addLoading:'讀取中…', addOk:'已加入，共 {n} 筆', addHintFail:'可換一個允許跨網域的網址再試' },
+    'zh-Hans': { manTitle:'商店来源', manHint:'勾选要显示的商店；也可粘贴任何返回 JSON 的网址，把新商店加进来。', addBtn:'新增', addPlaceholder:'粘贴商店 API 或 JSON 网址', addHelp:'支持 items / data / skills / results 数组或纯数组；该网址需允许跨域（CORS）。', customTag:'自定义', hide:'移除', restore:'加入', remove:'删除', hiddenTag:'已移除', manEmpty:'目前没有来源', srcFailShort:'读取失败', errShape:'数据格式不符（需数组或 items/data/skills/results）', errEmpty:'返回 0 条', errCors:'被跨域拦截（CORS），请改用允许 CORS 或静态 JSON 网址', errUrl:'网址格式不正确', errDup:'这个网址已经加过了', addLoading:'读取中…', addOk:'已加入，共 {n} 条', addHintFail:'可换一个允许跨域的网址再试' },
+    en: { manTitle:'Store sources', manHint:'Tick the stores to show, or paste any JSON URL to add a new store.', addBtn:'Add', addPlaceholder:'Paste a store API or JSON URL', addHelp:'Accepts items / data / skills / results arrays or a plain array; the URL must allow CORS.', customTag:'custom', hide:'Hide', restore:'Show', remove:'Remove', hiddenTag:'hidden', manEmpty:'No sources yet', srcFailShort:'Failed', errShape:'Unexpected shape (needs an array or items/data/skills/results)', errEmpty:'Returned 0 items', errCors:'Blocked by CORS — use a CORS-enabled or static JSON URL', errUrl:'Invalid URL', errDup:'That URL is already added', addLoading:'Loading…', addOk:'Added — {n} items', addHintFail:'Try another URL that allows CORS' },
+    ja: { manTitle:'ストアのソース', manHint:'表示するストアにチェック。JSON を返す URL を貼れば新しいストアも追加できます。', addBtn:'追加', addPlaceholder:'ストア API または JSON の URL を貼り付け', addHelp:'items / data / skills / results の配列、または配列に対応。CORS を許可した URL が必要です。', customTag:'追加', hide:'非表示', restore:'表示', remove:'削除', hiddenTag:'非表示中', manEmpty:'ソースがありません', srcFailShort:'取得失敗', errShape:'形式が一致しません（配列または items/data/skills/results が必要）', errEmpty:'0 件でした', errCors:'CORS で遮断されました。CORS 許可または静的 JSON の URL を使ってください', errUrl:'URL が正しくありません', errDup:'この URL は追加済みです', addLoading:'読み込み中…', addOk:'追加しました（{n} 件）', addHintFail:'CORS を許可した別の URL をお試しください' },
+    ko: { manTitle:'스토어 소스', manHint:'표시할 스토어를 선택하세요. JSON을 반환하는 URL을 붙이면 새 스토어도 추가할 수 있습니다.', addBtn:'추가', addPlaceholder:'스토어 API 또는 JSON URL 붙여넣기', addHelp:'items / data / skills / results 배열 또는 일반 배열을 지원하며, URL이 CORS를 허용해야 합니다.', customTag:'사용자 추가', hide:'숨기기', restore:'표시', remove:'삭제', hiddenTag:'숨김', manEmpty:'소스가 없습니다', srcFailShort:'불러오기 실패', errShape:'형식이 맞지 않습니다(배열 또는 items/data/skills/results 필요)', errEmpty:'0건을 반환했습니다', errCors:'CORS로 차단되었습니다. CORS 허용 또는 정적 JSON URL을 사용하세요', errUrl:'URL 형식이 올바르지 않습니다', errDup:'이미 추가된 URL입니다', addLoading:'불러오는 중…', addOk:'추가됨 — {n}개', addHintFail:'CORS를 허용한 다른 URL을 시도해 보세요' },
+    es: { manTitle:'Fuentes de tiendas', manHint:'Marca las tiendas que quieres ver; o pega cualquier URL JSON para añadir una tienda nueva.', addBtn:'Añadir', addPlaceholder:'Pega una API de tienda o URL JSON', addHelp:'Acepta arrays items / data / skills / results o un array simple; la URL debe permitir CORS.', customTag:'propia', hide:'Ocultar', restore:'Mostrar', remove:'Eliminar', hiddenTag:'oculta', manEmpty:'Aún no hay fuentes', srcFailShort:'Error', errShape:'Formato inesperado (se requiere array o items/data/skills/results)', errEmpty:'Devolvió 0 elementos', errCors:'Bloqueado por CORS: usa una URL con CORS o JSON estático', errUrl:'URL no válida', errDup:'Esa URL ya está añadida', addLoading:'Cargando…', addOk:'Añadida — {n} elementos', addHintFail:'Prueba otra URL que permita CORS' },
+    de: { manTitle:'Store-Quellen', manHint:'Wähle die Stores aus, die angezeigt werden; oder füge eine JSON-URL ein, um einen Store hinzuzufügen.', addBtn:'Hinzufügen', addPlaceholder:'Store-API oder JSON-URL einfügen', addHelp:'Akzeptiert items / data / skills / results oder ein einfaches Array; die URL muss CORS erlauben.', customTag:'eigene', hide:'Ausblenden', restore:'Anzeigen', remove:'Entfernen', hiddenTag:'ausgeblendet', manEmpty:'Noch keine Quellen', srcFailShort:'Fehlgeschlagen', errShape:'Unerwartetes Format (Array oder items/data/skills/results nötig)', errEmpty:'0 Einträge zurückgegeben', errCors:'Durch CORS blockiert – URL mit CORS oder statisches JSON verwenden', errUrl:'Ungültige URL', errDup:'Diese URL ist bereits hinzugefügt', addLoading:'Wird geladen…', addOk:'Hinzugefügt – {n} Einträge', addHintFail:'Andere URL mit CORS versuchen' },
+    fr: { manTitle:'Sources des boutiques', manHint:'Cochez les boutiques à afficher ; ou collez une URL JSON pour ajouter une boutique.', addBtn:'Ajouter', addPlaceholder:'Collez une API de boutique ou une URL JSON', addHelp:'Accepte les tableaux items / data / skills / results ou un tableau simple ; l\u2019URL doit autoriser le CORS.', customTag:'ajoutée', hide:'Masquer', restore:'Afficher', remove:'Supprimer', hiddenTag:'masquée', manEmpty:'Aucune source', srcFailShort:'Échec', errShape:'Format inattendu (tableau ou items/data/skills/results requis)', errEmpty:'0 élément renvoyé', errCors:'Bloqué par CORS : utilisez une URL CORS ou un JSON statique', errUrl:'URL invalide', errDup:'Cette URL est déjà ajoutée', addLoading:'Chargement…', addOk:'Ajoutée — {n} éléments', addHintFail:'Essayez une autre URL autorisant le CORS' },
+    pt: { manTitle:'Origens das lojas', manHint:'Marque as lojas que queres ver; ou cola um URL JSON para adicionar uma loja nova.', addBtn:'Adicionar', addPlaceholder:'Cola uma API de loja ou URL JSON', addHelp:'Aceita arrays items / data / skills / results ou um array simples; o URL tem de permitir CORS.', customTag:'própria', hide:'Ocultar', restore:'Mostrar', remove:'Remover', hiddenTag:'oculta', manEmpty:'Ainda sem origens', srcFailShort:'Falhou', errShape:'Formato inesperado (precisa de array ou items/data/skills/results)', errEmpty:'Devolveu 0 itens', errCors:'Bloqueado por CORS: usa um URL com CORS ou JSON estático', errUrl:'URL inválido', errDup:'Esse URL já foi adicionado', addLoading:'A carregar…', addOk:'Adicionada — {n} itens', addHintFail:'Tenta outro URL que permita CORS' },
+    ru: { manTitle:'Источники магазинов', manHint:'Отметьте магазины для показа или вставьте URL с JSON, чтобы добавить новый магазин.', addBtn:'Добавить', addPlaceholder:'Вставьте API магазина или URL JSON', addHelp:'Поддерживаются массивы items / data / skills / results или обычный массив; URL должен разрешать CORS.', customTag:'свой', hide:'Скрыть', restore:'Показать', remove:'Удалить', hiddenTag:'скрыт', manEmpty:'Источников пока нет', srcFailShort:'Ошибка', errShape:'Неподходящий формат (нужен массив или items/data/skills/results)', errEmpty:'Вернулось 0 записей', errCors:'Заблокировано CORS — нужен URL с CORS или статический JSON', errUrl:'Некорректный URL', errDup:'Этот URL уже добавлен', addLoading:'Загрузка…', addOk:'Добавлено — {n} записей', addHintFail:'Попробуйте другой URL с CORS' },
+    ar: { manTitle:'مصادر المتاجر', manHint:'حدّد المتاجر التي تريد عرضها، أو ألصق رابط JSON لإضافة متجر جديد.', addBtn:'إضافة', addPlaceholder:'ألصق واجهة المتجر أو رابط JSON', addHelp:'يقبل مصفوفات items أو data أو skills أو results أو مصفوفة عادية، ويجب أن يسمح الرابط بـ CORS.', customTag:'مخصّص', hide:'إخفاء', restore:'إظهار', remove:'حذف', hiddenTag:'مخفي', manEmpty:'لا توجد مصادر بعد', srcFailShort:'فشل الجلب', errShape:'تنسيق غير متوقّع (يلزم مصفوفة أو items/data/skills/results)', errEmpty:'أعاد 0 عنصر', errCors:'محجوب بسبب CORS — استخدم رابطًا يسمح بـ CORS أو JSON ثابتًا', errUrl:'رابط غير صالح', errDup:'هذا الرابط مضاف مسبقًا', addLoading:'جارٍ التحميل…', addOk:'تمت الإضافة — {n} عنصرًا', addHintFail:'جرّب رابطًا آخر يسمح بـ CORS' }
+  };
+
   var LANGS = [
     {id:'zh-Hant', label:'繁體中文'},
     {id:'zh-Hans', label:'简体中文'},
@@ -451,7 +512,7 @@
     {id:'ar', label:'العربية'}
   ];
 
-  var S = { all:[], sources:[], q:'', source:'all', sort:'stars', dir:'desc', loading:false, mode:'live', lang:'zh-Hant', stamp:0, ttl:600, errored:false };
+  var S = { all:[], sources:[], customs:[], customItems:[], hidden:{}, q:'', source:'all', sort:'stars', dir:'desc', loading:false, mode:'live', lang:'zh-Hant', stamp:0, ttl:600, errored:false };
   var $ = function (id) { return document.getElementById(id); };
   var rowsEl = $('rows'), chipsEl = $('chips'), sourcesEl = $('sources');
   var stateBox = $('state'), stateInner = $('stateInner');
@@ -478,8 +539,98 @@
     if (diff < 3600) return t('minAgo', { n: Math.floor(diff / 60) });
     return new Date(ts).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
   }
-  var SRC_NAME = { coco:'CocoLoop', claw:'ClawHub', skillsio:'skills.sh' };
-  var SRC_SITE = { coco:'https://hub.cocoloop.cn', claw:'https://hub.openclaw.ai', skillsio:'https://www.skills.sh' };
+  /* --- 商店來源註冊表：顏色 = 分類識別 --- */
+  var PALETTE = ['#0f6f62', '#a1601a', '#3d4d6b', '#7b3f8f', '#b4331f', '#2c6e9b', '#5b7c2a', '#8a4b32'];
+  var BUILTIN = {
+    coco:     { label:'CocoLoop', url:'https://hub.cocoloop.cn',  color:'#0f6f62' },
+    claw:     { label:'ClawHub',  url:'https://hub.openclaw.ai',  color:'#a1601a' },
+    skillsio: { label:'skills.sh', url:'https://www.skills.sh',   color:'#3d4d6b' }
+  };
+  function hashHue(s) {
+    var h = 0; s = String(s);
+    for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) % 100003; }
+    return h;
+  }
+  function colorOf(id) {
+    if (BUILTIN[id]) return BUILTIN[id].color;
+    for (var i = 0; i < S.customs.length; i++) if (S.customs[i].id === id) return S.customs[i].color;
+    return PALETTE[hashHue(id) % PALETTE.length];
+  }
+  function tint(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+  function scVar(id) { var c = colorOf(id); return '--sc:' + c + ';--sc-bg:' + tint(c, 0.12); }
+  function labelOf(id) {
+    if (BUILTIN[id]) return BUILTIN[id].label;
+    for (var i = 0; i < S.customs.length; i++) if (S.customs[i].id === id) return S.customs[i].label;
+    for (var j = 0; j < S.sources.length; j++) if (S.sources[j].id === id) return S.sources[j].label || id;
+    return id;
+  }
+
+  /* --- 數值解析：支援 3.4k / 422.2k / "1,234" --- */
+  function parseNum(v) {
+    if (v === null || v === undefined || v === '') return null;
+    if (typeof v === 'number') return isFinite(v) ? v : null;
+    var s = String(v).replace(/[,\s]/g, '').toLowerCase();
+    var m = s.match(/^([\d.]+)([km]?)$/);
+    if (!m) { var n = Number(s); return isFinite(n) ? n : null; }
+    var num = parseFloat(m[1]);
+    if (m[2] === 'k') num *= 1000;
+    if (m[2] === 'm') num *= 1000000;
+    return Math.round(num);
+  }
+
+  /* --- 新增來源的萬用轉接器：陣列 / {items} / {data} / {skills} --- */
+  function adaptItems(raw, src) {
+    var arr = null;
+    if (Array.isArray(raw)) arr = raw;
+    else if (raw && Array.isArray(raw.items)) arr = raw.items;
+    else if (raw && Array.isArray(raw.data)) arr = raw.data;
+    else if (raw && Array.isArray(raw.skills)) arr = raw.skills;
+    else if (raw && Array.isArray(raw.results)) arr = raw.results;
+    if (!arr) throw new Error('SHAPE');
+    var out = [];
+    for (var i = 0; i < arr.length && out.length < 2000; i++) {
+      var o = arr[i] || {};
+      var name = o.name || o.displayName || o.title || o.full_name || o.slug || o.skillId;
+      if (!name) continue;
+      var st = o.stats || {};
+      var url = o.url || o.html_url || o.link || o.detail_url || o.homepage || src.url;
+      var ts = o.updatedAt || o.updated_at || o.pushed_at || null;
+      out.push({
+        id: src.id + ':' + (o.id || o.slug || name),
+        source: src.id,
+        sourceLabel: src.label,
+        name: String(name),
+        summary: String(o.summary || o.description || o.desc || ''),
+        author: String((o.owner && o.owner.login) || o.ownerHandle || (typeof o.owner === 'string' ? o.owner : '') || ''),
+        category: String(o.category || ''),
+        stars: parseNum(o.stars != null ? o.stars : (o.stargazers_count != null ? o.stargazers_count : st.stars)),
+        downloads: parseNum(o.downloads != null ? o.downloads : (o.installs != null ? o.installs : st.downloads)),
+        rating: null,
+        updatedAt: ts ? new Date(ts).getTime() : null,
+        url: String(url)
+      });
+    }
+    return out;
+  }
+
+  function loadStored() {
+    try {
+      var c = JSON.parse(localStorage.getItem('skh-customs') || '[]');
+      if (Array.isArray(c)) S.customs = c.filter(function (x) { return x && x.id && x.url; });
+    } catch (e) {}
+    try {
+      var h = JSON.parse(localStorage.getItem('skh-hidden') || '{}');
+      if (h && typeof h === 'object') S.hidden = h;
+    } catch (e) {}
+  }
+  function saveCustoms() {
+    try { localStorage.setItem('skh-customs', JSON.stringify(S.customs)); } catch (e) {}
+    try { localStorage.setItem('skh-hidden', JSON.stringify(S.hidden)); } catch (e) {}
+  }
+  function isHidden(id) { return !!S.hidden[id]; }
 
   function detectLang() {
     var q = (location.search.match(/[?&]lang=([^&]+)/) || [])[1];
@@ -505,6 +656,13 @@
     $('t-countLabel').textContent = t('countLabel');
     $('t-itemsUnit').textContent = t('itemsUnit');
     $('t-data').textContent = t('data');
+    $('srcManLabel').textContent = t('manTitle');
+    $('t-manTitle').textContent = t('manTitle');
+    $('t-manHint').textContent = t('manHint');
+    $('addBtn').textContent = t('addBtn');
+    $('addUrl').placeholder = t('addPlaceholder');
+    var hint = $('addHint');
+    if (!hint.classList.contains('err')) hint.textContent = t('addHelp');
     $('refreshLabel').textContent = S.loading ? t('loadingBtn') : t('refresh');
     $('q').placeholder = t('searchPh');
     $('t-sort').textContent = t('sort');
@@ -560,7 +718,9 @@
       S.sources = d.sources || [];
       S.stamp = d.generatedAt;
       S.ttl = d.cacheTtlSec || 600;
-      renderSources(); renderChips(); render();
+      return loadCustoms();
+    }).then(function () {
+      renderSources(); renderChips(); render(); renderManager();
     }).catch(function (e) {
       S.errored = true;
       showState('error', e.message);
@@ -569,6 +729,39 @@
       $('refresh').disabled = false;
       $('refreshLabel').textContent = t('refresh');
     });
+  }
+
+  function loadCustoms() {
+    if (!S.customs.length) { S.customItems = []; S.customStatus = []; return Promise.resolve(); }
+    return Promise.all(S.customs.map(function (c) {
+      if (isHidden(c.id)) return { id:c.id, label:c.label, ok:true, count:0, ms:0, items:[], url:c.url };
+      var t0 = Date.now();
+      return fetch(c.url, { cache:'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (raw) {
+        var items = adaptItems(raw, c);
+        if (!items.length) throw new Error('EMPTY');
+        return { id:c.id, label:c.label, ok:true, count:items.length, ms:Date.now() - t0, items:items, url:c.url };
+      }).catch(function (e) {
+        return { id:c.id, label:c.label, ok:false, count:0, error:(e && e.message) || 'ERR', ms:Date.now() - t0, items:[], url:c.url };
+      });
+    })).then(function (res) {
+      var all = [];
+      res.forEach(function (r) { all = all.concat(r.items || []); });
+      S.customItems = all;
+      S.customStatus = res;
+      return res;
+    });
+  }
+
+  function allItems() { return S.all.concat(S.customItems); }
+  function allSources() {
+    var list = S.sources.slice();
+    (S.customStatus || []).forEach(function (c) {
+      list.push({ id:c.id, label:c.label, ok:c.ok, count:c.count, error:c.error, ms:c.ms, custom:true, site:c.url });
+    });
+    return list;
   }
 
   function showState(kind, msg) {
@@ -588,35 +781,59 @@
     }
   }
 
+  function errText(code) {
+    if (!code) return '';
+    if (code === 'SHAPE') return t('errShape');
+    if (code === 'EMPTY') return t('errEmpty');
+    if (code === 'ERR' || /Failed to fetch|NetworkError|Load failed/i.test(code)) return t('errCors');
+    return code;
+  }
+
   function renderSources() {
-    sourcesEl.innerHTML = S.sources.map(function (s) {
+    var list = allSources().filter(function (s) { return !isHidden(s.id); });
+    sourcesEl.innerHTML = list.map(function (s) {
+      var c = colorOf(s.id);
       var note = s.ok
         ? fmt(s.count) + ' ' + t('itemsSmall') + (s.truncated ? ' · ' + t('footSample') : '')
-        : esc(t('fetchFailed')) + esc(s.error || '');
-      var meta = s.ok ? (s.cached ? t('cached') : t('live')) + ' · ' + s.ms + 'ms' : t('failed');
-      var site = SRC_SITE[s.id] || '#';
-      return '<div class="src-card">' +
-        '<div class="src-head"><span class="dot ' + (s.ok ? 'ok' : 'err') + '"></span>' + esc(s.label) +
-        '<span style="margin-inline-start:auto;font-size:11.5px;font-weight:400;color:var(--faint)">' + esc(meta) + '</span></div>' +
-        '<div class="src-count">' + fmt(s.count) + '<span style="font-size:12px;font-weight:400;color:var(--muted)"> ' + esc(t('itemsSmall')) + '</span></div>' +
-        '<div class="src-note">' + note + ' · <a href="' + site + '" target="_blank" rel="noopener">' + esc(t('storeHome')) + '</a></div>' +
+        : esc(t('srcFailShort')) + ' · ' + esc(errText(s.error));
+      var meta = s.ok ? ((s.cached ? t('cached') : t('live')) + ' · ' + s.ms + 'ms') : t('failed');
+      var site = BUILTIN[s.id] ? BUILTIN[s.id].url : (s.site || '');
+      return '<div class="src-card" style="' + scVar(s.id) + '">' +
+        '<div class="src-head"><span class="dot ' + (s.ok ? 'ok' : 'err') + '" style="background:' + c + '"></span>' + esc(s.label) +
+        (s.custom ? '<span style="font-size:10.5px;font-weight:400;color:var(--faint);white-space:nowrap">' + esc(t('customTag')) + '</span>' : '') +
+        '<span style="margin-inline-start:auto;font-size:11.5px;font-weight:400;color:var(--faint);white-space:nowrap">' + esc(meta) + '</span></div>' +
+        '<div class="src-count" style="color:' + c + '">' + fmt(s.count) + '<span style="font-size:12px;font-weight:400;color:var(--muted)"> ' + esc(t('itemsSmall')) + '</span></div>' +
+        '<div class="src-note">' + note + (site && !s.custom ? ' · <a href="' + esc(site) + '" target="_blank" rel="noopener">' + esc(t('storeHome')) + '</a>' : '') + '</div>' +
         '</div>';
     }).join('');
   }
 
   function renderChips() {
-    var counts = { all: S.all.length };
-    S.all.forEach(function (x) { counts[x.source] = (counts[x.source] || 0) + 1; });
-    var order = ['all', 'coco', 'claw', 'skillsio'];
-    chipsEl.innerHTML = order.filter(function (k) { return k === 'all' || counts[k]; }).map(function (k) {
-      var label = k === 'all' ? t('allSources') : (SRC_NAME[k] || k);
-      return '<button class="chip' + (S.source === k ? ' on' : '') + '" data-src="' + k + '">' +
-        esc(label) + '<span class="n">' + fmt(counts[k] || 0) + '</span></button>';
+    var items = allItems().filter(function (x) { return !isHidden(x.source); });
+    var counts = {};
+    items.forEach(function (x) { counts[x.source] = (counts[x.source] || 0) + 1; });
+    var order = [];
+    allSources().forEach(function (s) { if (!isHidden(s.id) && counts[s.id] && order.indexOf(s.id) < 0) order.push(s.id); });
+    var html = '<button class="chip' + (S.source === 'all' ? ' on' : '') + '" data-src="all">' +
+      esc(t('allSources')) + '<span class="n">' + fmt(items.length) + '</span></button>';
+    html += order.map(function (k) {
+      var c = colorOf(k);
+      return '<button class="chip' + (S.source === k ? ' on' : '') + '" data-src="' + esc(k) + '">' +
+        '<span class="cdot" style="background:' + c + '"></span>' + esc(labelOf(k)) +
+        '<span class="n">' + fmt(counts[k]) + '</span></button>';
+    }).join('');
+    chipsEl.innerHTML = html;
+  }
+
+  function renderLegend() {
+    var list = allSources().filter(function (s) { return !isHidden(s.id); });
+    $('legend').innerHTML = list.map(function (s) {
+      return '<span style="' + scVar(s.id) + '"><i></i>' + esc(s.label) + '</span>';
     }).join('');
   }
 
   function current() {
-    var list = S.all;
+    var list = allItems().filter(function (x) { return !isHidden(x.source); });
     if (S.source !== 'all') list = list.filter(function (x) { return x.source === S.source; });
     if (S.q) {
       var kw = S.q.toLowerCase();
@@ -642,20 +859,20 @@
     var starTxt = fmt(x.stars), dlTxt = fmt(x.downloads);
     var starCls = x.stars === null || x.stars === undefined ? ' num-cell na' : ' num-cell strong';
     var rating = x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '<span style="color:var(--faint)">—</span>';
-    return '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener">' +
+    var badge = '<span class="badge">' + esc(labelOf(x.source)) + '</span>';
+    return '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener" style="' + scVar(x.source) + '">' +
       '<div class="cell rank">' + (i + 1) + '</div>' +
       '<div class="cell name-cell">' +
         '<div class="name">' + esc(x.name) + '</div>' +
         '<div class="desc">' + esc(x.summary || t('noDesc')) + '</div>' +
         (x.author ? '<div class="author">@' + esc(x.author) + '</div>' : '') +
-        '<div class="meta">' +
-          '<span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span>' +
+        '<div class="meta">' + badge +
           '<span class="m-stars">' + esc(t('hStars')) + ' <b>' + starTxt + '</b></span>' +
           '<span class="m-dl">' + esc(t('hDl')) + ' <b>' + dlTxt + '</b></span>' +
           (x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '') +
         '</div>' +
       '</div>' +
-      '<div class="cell src-cell"><span class="badge ' + esc(x.source) + '">' + esc(SRC_NAME[x.source] || x.source) + '</span></div>' +
+      '<div class="cell src-cell">' + badge + '</div>' +
       '<div class="cell' + starCls + '">' + starTxt + '</div>' +
       '<div class="cell num-cell strong">' + dlTxt + '</div>' +
       '<div class="cell" style="text-align:center">' + rating + '</div>' +
@@ -676,11 +893,30 @@
     if (!list.length) { showState('empty'); return; }
     showState(null);
     rowsEl.innerHTML = list.map(rowHTML).join('');
-    var notes = S.sources.filter(function (s) { return s.ok; }).map(function (s) {
+    var notes = allSources().filter(function (s) { return s.ok && !isHidden(s.id); }).map(function (s) {
       return s.label + ': ' + fmt(s.count) + ' ' + t('itemsSmall') + (s.truncated ? t('footSample') : '');
     });
     $('notes').innerHTML = esc(t('footPrefix')) + ' — ' + esc(notes.join('; ')) + '. ' +
       esc(S.mode === 'snapshot' ? t('footSnap') : t('footLive', { n: Math.round((S.ttl || 600) / 60) })) + '.';
+    renderLegend(); renderManager();
+  }
+
+  function renderManager() {
+    if ($('srcman').hidden) return;
+    var list = allSources();
+    var rows = list.map(function (s) {
+      var hidden = isHidden(s.id);
+      var site = s.custom ? s.site : (BUILTIN[s.id] ? BUILTIN[s.id].url : '');
+      var btn = s.custom
+        ? '<button class="mini danger" data-act="del" data-id="' + esc(s.id) + '" type="button">' + esc(t('remove')) + '</button>'
+        : '<button class="mini" data-act="toggle" data-id="' + esc(s.id) + '" type="button">' + esc(hidden ? t('restore') : t('hide')) + '</button>';
+      return '<div class="src-row" style="' + scVar(s.id) + '">' +
+        '<div class="nm"><i></i><span>' + esc(s.label) +
+        (hidden ? ' <span style="font-weight:400;font-size:11.5px;color:var(--faint)">(' + esc(t('hiddenTag')) + ')</span>' : '') +
+        '<span class="u">' + esc(site) + '</span></span></div>' +
+        '<span class="cn">' + fmt(s.count) + ' ' + esc(t('itemsSmall')) + '</span>' + btn + '</div>';
+    }).join('');
+    $('srcList').innerHTML = rows || '<p class="hint">' + esc(t('manEmpty')) + '</p>';
   }
 
   function applyLang(lang, persist) {
@@ -688,12 +924,65 @@
     S.lang = lang;
     if (persist) { try { localStorage.setItem('skh-lang', lang); } catch (e) {} }
     applyStatic(); buildSortSelect(); buildLangSelect();
-    if (S.all.length) { renderSources(); renderChips(); render(); }
+    if (S.all.length || S.customItems.length) { renderSources(); renderChips(); render(); }
     else if (!S.loading) { showState(S.errored ? 'error' : 'empty'); }
+    renderManager();
+  }
+
+  function toggleSrcMan(open) {
+    var box = $('srcman');
+    box.hidden = open === undefined ? !box.hidden : !open;
+    $('btnSrcMan').setAttribute('aria-expanded', box.hidden ? 'false' : 'true');
+    if (!box.hidden) { renderManager(); $('addUrl').focus(); }
   }
 
   $('refresh').addEventListener('click', function () { load(true); });
   $('langSel').addEventListener('change', function (e) { applyLang(e.target.value, true); });
+  $('btnSrcMan').addEventListener('click', function () { toggleSrcMan(); });
+  $('btnManClose').addEventListener('click', function () { toggleSrcMan(false); });
+
+  $('srcList').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-act]'); if (!b) return;
+    var id = b.getAttribute('data-id');
+    if (b.getAttribute('data-act') === 'del') {
+      S.customs = S.customs.filter(function (c) { return c.id !== id; });
+      delete S.hidden[id];
+      if (S.source === id) S.source = 'all';
+      saveCustoms();
+      return loadCustoms().then(function () { renderSources(); renderChips(); render(); renderManager(); });
+    }
+    if (isHidden(id)) delete S.hidden[id]; else S.hidden[id] = 1;
+    if (isHidden(id) && S.source === id) S.source = 'all';
+    saveCustoms();
+    renderSources(); renderChips(); render(); renderManager();
+  });
+
+  $('addForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var hint = $('addHint');
+    var raw = $('addUrl').value.trim();
+    function fail(msg) { hint.className = 'hint err'; hint.textContent = msg; }
+    if (!raw) return fail(t('errUrl'));
+    if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+    var u;
+    try { u = new URL(raw); } catch (x) { return fail(t('errUrl')); }
+    if (S.customs.some(function (c) { return c.url === raw; })) return fail(t('errDup'));
+    var id = 'c' + hashHue(raw);
+    var base = u.hostname.replace(/^www\./, '');
+    var label = base, n = 2;
+    while (allSources().some(function (s) { return s.label === label; })) { label = base + ' #' + n++; }
+    S.customs.push({ id:id, label:label, url:raw, color:PALETTE[hashHue(raw) % PALETTE.length] });
+    saveCustoms();
+    $('addUrl').value = '';
+    hint.className = 'hint';
+    hint.textContent = t('addLoading');
+    loadCustoms().then(function (res) {
+      var r = (res || []).filter(function (x) { return x.id === id; })[0];
+      if (r && r.ok) { hint.className = 'hint'; hint.textContent = t('addOk', { n: fmt(r.count) }); }
+      else { hint.className = 'hint err'; hint.textContent = errText(r && r.error) + ' · ' + t('addHintFail'); }
+      renderSources(); renderChips(); render(); renderManager();
+    });
+  });
 
   var timer = null;
   $('q').addEventListener('input', function (e) {
@@ -727,6 +1016,14 @@
   });
 
   S.lang = detectLang();
+  (function mergeExtra() {
+    for (var L in EXTRA) {
+      if (!I18N[L]) continue;
+      for (var K in EXTRA[L]) { if (I18N[L][K] === undefined) I18N[L][K] = EXTRA[L][K]; }
+    }
+  })();
+  loadStored();
+  if (S.source !== 'all' && isHidden(S.source)) S.source = 'all';
   applyStatic(); buildSortSelect(); buildLangSelect();
   load(false);
 })();
