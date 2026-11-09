@@ -21,6 +21,28 @@ data/skills.json              Actions 產生的快照（目前 1,249 筆，約 4
 - 新增的來源存在該瀏覽器的 `localStorage`（`skh-customs`），只對你這台裝置生效；要全站共用，就在 `scripts/collect.js` 多加一個抓取器，把資料併進快照。
 - 每個商店固定一色：CocoLoop 青綠、ClawHub 琥珀、skills.sh 靛藍，自訂來源由網址雜湊自動配色；卡片、篩選 chip、左側色條、圖例一致對應。
 
+## 內容翻譯（Skill 名稱／描述）
+
+介面文字 100% 內建翻譯（11 種語言）。Skill 本身的 `name` / `summary` 是各商店的原文，要一起翻譯需先跑一次翻譯腳本，產生的檔案前端會自動疊上去：
+
+```bash
+# DeepL（免費 50 萬字/月）
+TRANSLATE_PROVIDER=deepl TRANSLATE_KEY=xxxx:fx LANGS=en,ja,ko,es,de,fr,pt,ru,ar node scripts/translate.js
+
+# Google Cloud Translation
+TRANSLATE_PROVIDER=google TRANSLATE_KEY=xxxx LANGS=en,ja node scripts/translate.js
+
+# Azure / OpenAI 相容端點 / 自架 LibreTranslate
+TRANSLATE_PROVIDER=azure TRANSLATE_KEY=xxx TRANSLATE_REGION=eastasia node scripts/translate.js
+TRANSLATE_PROVIDER=openai TRANSLATE_KEY=sk-xxx TRANSLATE_BASE=https://api.openai.com/v1 node scripts/translate.js
+TRANSLATE_PROVIDER=libre TRANSLATE_BASE=http://localhost:5000 node scripts/translate.js
+```
+
+- 產出 `data/i18n/<lang>.json`；前端切到該語言時自動讀取並覆蓋描述，沒有檔案就照原文顯示。
+- 可中斷續跑：已翻過的條目會沿用舊檔，只補缺的（資料更新後重跑即可）。
+- `FIELDS=summary`（預設）只翻描述，名稱保留原文——名稱常是安裝識別碼，翻了會找不到對應指令；要連名稱一起翻用 `FIELDS=name,summary`。
+- 量級參考：1,239 筆描述約 8.1 萬字元，9 種語言約 73 萬字元。DeepL／Google 免費額度每月各 50 萬字，一個月內可跑完主要語言。
+
 ## 語言切換（11 種）
 
 頁面右上角有語言選單，一鍵切換：繁體中文、简体中文、English、日本語、한국어、Español、Deutsch、Français、Português、Русский、العربية（阿拉伯語自動切 RTL 由右至左排版）。

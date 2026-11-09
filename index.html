@@ -506,6 +506,14 @@
     ar: { manTitle:'مصادر المتاجر', manHint:'حدّد المتاجر التي تريد عرضها، أو ألصق رابط JSON لإضافة متجر جديد.', addBtn:'إضافة', addPlaceholder:'ألصق واجهة المتجر أو رابط JSON', addHelp:'يقبل مصفوفات items أو data أو skills أو results أو مصفوفة عادية، ويجب أن يسمح الرابط بـ CORS.', customTag:'مخصّص', hide:'إخفاء', restore:'إظهار', remove:'حذف', hiddenTag:'مخفي', manEmpty:'لا توجد مصادر بعد', srcFailShort:'فشل الجلب', errShape:'تنسيق غير متوقّع (يلزم مصفوفة أو items/data/skills/results)', errEmpty:'أعاد 0 عنصر', errCors:'محجوب بسبب CORS — استخدم رابطًا يسمح بـ CORS أو JSON ثابتًا', errUrl:'رابط غير صالح', errDup:'هذا الرابط مضاف مسبقًا', addLoading:'جارٍ التحميل…', addOk:'تمت الإضافة — {n} عنصرًا', addHintFail:'جرّب رابطًا آخر يسمح بـ CORS' }
   };
 
+  var MTNOTE = {
+    'zh-Hant':'描述為機器翻譯','zh-Hans':'描述为机器翻译',en:'descriptions machine-translated',
+    ja:'説明は機械翻訳',ko:'설명은 기계 번역',es:'descripciones traducidas automáticamente',
+    de:'Beschreibungen maschinell übersetzt',fr:'descriptions traduites automatiquement',
+    pt:'descrições traduzidas automaticamente',ru:'описания переведены машинно',
+    ar:'الأوصاف مترجمة آليًا'
+  };
+
   var LANGS = [
     {id:'zh-Hant', label:'繁體中文'},
     {id:'zh-Hans', label:'简体中文'},
@@ -520,7 +528,7 @@
     {id:'ar', label:'العربية'}
   ];
 
-  var S = { all:[], sources:[], customs:[], customItems:[], hidden:{}, q:'', source:'all', sort:'stars', dir:'desc', loading:false, mode:'live', lang:'zh-Hant', stamp:0, ttl:600, errored:false };
+  var S = { all:[], sources:[], customs:[], customItems:[], hidden:{}, tr:{}, trLoaded:{}, q:'', source:'all', sort:'stars', dir:'desc', loading:false, mode:'live', lang:'zh-Hant', stamp:0, ttl:600, errored:false };
   var $ = function (id) { return document.getElementById(id); };
   var rowsEl = $('rows'), chipsEl = $('chips'), sourcesEl = $('sources');
   var stateBox = $('state'), stateInner = $('stateInner');
@@ -729,6 +737,7 @@
       return loadCustoms();
     }).then(function () {
       renderSources(); renderChips(); render(); renderManager();
+      ensureOverlay(S.lang, function () { render(); });
     }).catch(function (e) {
       S.errored = true;
       showState('error', e.message);
@@ -795,6 +804,19 @@
     if (code === 'EMPTY') return t('errEmpty');
     if (code === 'ERR' || /Failed to fetch|NetworkError|Load failed/i.test(code)) return t('errCors');
     return code;
+  }
+
+  function ensureOverlay(lang, cb) {
+    if (!lang || S.trLoaded[lang]) return;
+    S.trLoaded[lang] = 'pending';
+    fetch('./data/i18n/' + lang + '.json?t=' + Date.now(), { cache:'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.items && Object.keys(j.items).length) { S.tr[lang] = j.items; S.trProvider = j.provider; }
+        S.trLoaded[lang] = 'done';
+        if (cb) cb();
+      })
+      .catch(function () { S.trLoaded[lang] = 'done'; if (cb) cb(); });
   }
 
   function updateSubtitle() {
@@ -876,11 +898,14 @@
     var starCls = x.stars === null || x.stars === undefined ? ' num-cell na' : ' num-cell strong';
     var rating = x.rating ? '<span class="rating ' + esc(x.rating) + '">' + esc(x.rating) + '</span>' : '<span style="color:var(--faint)">—</span>';
     var badge = '<span class="badge">' + esc(labelOf(x.source)) + '</span>';
+    var tr = (S.tr[S.lang] || {})[x.id] || {};
+    var nm = tr.name || x.name;
+    var sm = tr.summary || x.summary || t('noDesc');
     return '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener" style="' + scVar(x.source) + '">' +
       '<div class="cell rank">' + (i + 1) + '</div>' +
       '<div class="cell name-cell">' +
-        '<div class="name">' + esc(x.name) + '</div>' +
-        '<div class="desc">' + esc(x.summary || t('noDesc')) + '</div>' +
+        '<div class="name">' + esc(nm) + '</div>' +
+        '<div class="desc">' + esc(sm) + '</div>' +
         (x.author ? '<div class="author">@' + esc(x.author) + '</div>' : '') +
         '<div class="meta">' + badge +
           '<span class="m-stars">' + esc(t('hStars')) + ' <b>' + starTxt + '</b></span>' +
@@ -913,7 +938,8 @@
       return s.label + ': ' + fmt(s.count) + ' ' + t('itemsSmall') + (s.truncated ? t('footSample') : '');
     });
     $('notes').innerHTML = esc(t('footPrefix')) + ' — ' + esc(notes.join('; ')) + '. ' +
-      esc(S.mode === 'snapshot' ? t('footSnap') : t('footLive', { n: Math.round((S.ttl || 600) / 60) })) + '.';
+      esc(S.mode === 'snapshot' ? t('footSnap') : t('footLive', { n: Math.round((S.ttl || 600) / 60) })) + '.' +
+      (S.tr[S.lang] ? ' ' + esc(t('mtNote')) + '.' : '');
     renderLegend(); renderManager();
   }
 
@@ -943,6 +969,7 @@
     if (S.all.length || S.customItems.length) { renderSources(); renderChips(); render(); }
     else if (!S.loading) { showState(S.errored ? 'error' : 'empty'); }
     renderManager();
+    ensureOverlay(lang, function () { if (S.all.length) render(); });
   }
 
   function toggleSrcMan(open) {
@@ -1036,6 +1063,7 @@
     for (var L in EXTRA) {
       if (!I18N[L]) continue;
       for (var K in EXTRA[L]) { if (I18N[L][K] === undefined) I18N[L][K] = EXTRA[L][K]; }
+      if (MTNOTE[L]) I18N[L]['mtNote'] = MTNOTE[L];
     }
   })();
   loadStored();
