@@ -200,7 +200,7 @@ function fromSeed() {
   const all = [...curated, ...gh, ...dc, ...tg];
   const seen = new Set();
   const items = all.filter(x => {
-    const k = (x.name || '').toLowerCase().trim() + '|' + x.platform;
+    const k = x.id;
     if (!x.name || seen.has(k)) return false;
     seen.add(k); return true;
   }).sort((a, b) => b.score - a.score);

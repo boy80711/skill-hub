@@ -68,7 +68,9 @@
   .dy{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
   .dy a{display:block;background:#fff;border:1px solid var(--line);padding:12px;font-size:13.5px}
   .dy .t{font-weight:600;display:block;margin-bottom:4px}
-  .dy .m{color:var(--muted);font-size:12px}
+  .dy .m{color:var(--muted);font-size:12px;display:block;margin-bottom:6px}
+  .dy .claim{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+  .dy .take{display:block;font-size:12.5px;color:var(--ink);border-left:2px solid var(--accent);padding-left:8px}
 
   footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 
@@ -177,7 +179,7 @@
 </ol>
 
 <h2>抖音上在講的 bot</h2>
-<p>抖音沒有可查的 bot 榜，只有影片。這裡只放「在講哪些 bot」的線索，數字不進上面的排名。</p>
+<p>抖音沒有可查的 bot 榜，只有影片。這裡放我實際搜到的內容——每張卡都能點回原影片，數字不進上面的排名。</p>
 <div class="dy" id="dy"></div>
 
 <footer>
@@ -290,12 +292,21 @@
   }
 
   function douyin(){
-    // 抖音只放線索卡片，不進排名
-    var q = encodeURIComponent('AI 机器人 bot 推荐');
-    $('dy').innerHTML =
-      '<a href="https://www.douyin.com/search/' + q + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：AI 機器人推薦</span><span class="m">平台內搜尋，結果為影片，不是可安裝的 bot</span></a>' +
-      '<a href="https://www.douyin.com/search/' + encodeURIComponent('tg bot 机器人') + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：TG bot</span><span class="m">多為搬運目錄站內容，數字不可信</span></a>' +
-      '<a href="https://www.douyin.com/search/' + encodeURIComponent('discord bot 搭建') + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：Discord bot 搭建</span><span class="m">自架教學為主，適合想看部署影片的人</span></a>';
+    fetch('../data/bots-douyin.json?t=' + Date.now(), { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d || !d.items || !d.items.length){ $('dy').innerHTML = '<p class="note">抖音線索尚未生成（data/bots-douyin.json）。</p>'; return; }
+        var html = d.items.map(function(it){
+          var extra = it.inBoard ? '<span class="m">已在榜單 · 編號 ' + esc(it.inBoard) + '</span>' : '';
+          return '<a href="' + esc(it.video) + '" target="_blank" rel="noopener">' +
+            '<span class="t">' + esc(it.entity) + '</span>' +
+            '<span class="m">' + esc(it.kind) + ' · 影片讚數 ' + nf(it.likes) + '</span>' +
+            '<span class="claim">' + esc(it.claim) + '</span>' +
+            '<span class="take">' + esc(it.takeaway) + '</span>' + extra + '</a>';
+        }).join('');
+        $('dy').innerHTML = html + '<p class="note">說明：抖音沒有可查的 bot 榜，這裡只放「在講哪些 bot」的線索。<strong>讚數是影片互動，不是 bot 用戶數</strong>；影片裡的數字（例如 200 萬用戶）未經獨立核實，因此不進綜合分。</p>';
+      })
+      .catch(function(){ $('dy').innerHTML = '<p class="note">抖音線索讀取失敗。</p>'; });
   }
 
   function bind(){

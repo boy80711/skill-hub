@@ -1,0 +1,86 @@
+{
+  "note": "抖音上實際在講的 bot 線索。Likes 為影片互動數，不是 bot 的用戶數；claim 欄是影片說法，未獨立核實。",
+  "checkedAt": "2026-11-10",
+  "items": [
+    {
+      "title": "只能查機票的機器人，200 萬人用，就他一個人在做",
+      "entity": "AirTrackBot",
+      "kind": "Telegram 工具 bot",
+      "likes": 107,
+      "claim": "影片稱 200 萬用戶、年費 12 美元、一人營運；只做「查便宜機票＋降價提醒」",
+      "takeaway": "單場景單動作的極簡 bot，靠高頻重複需求變現——這類最容易驗證，也最容易被山寨。",
+      "video": "https://www.iesdouyin.com/share/video/7704492708949151014",
+      "inBoard": "tg:airtrack_bot"
+    },
+    {
+      "title": "一個框架打通微信、QQ、Discord、Telegram：AstrBot 深度評測",
+      "entity": "AstrBot",
+      "kind": "開源多平台 bot 框架",
+      "likes": 89,
+      "claim": "影片稱 GitHub 萬星、插件熱載入、原生中文優化",
+      "takeaway": "想自架多平台 bot 的起點；框架本身不是 bot，裝完還要接模型與插件。",
+      "video": "https://www.iesdouyin.com/share/video/7648991019643538715",
+      "inBoard": "gh:AstrBotDevs/AstrBot"
+    },
+    {
+      "title": "下一門 AI 生意——BOT（Grok Bot 創作分潤）",
+      "entity": "Grok Bot",
+      "kind": "雲端個人 agent／bot 市集",
+      "likes": 7994,
+      "claim": "影片稱 Grok 已有 bot 市集與創作分潤（botcreatorrewards）",
+      "takeaway": "bot 開始有「市集＋分潤」，這跟 skill 的差別是：bot 賣的是持續服務，skill 賣的是一次性文字。",
+      "video": "https://www.iesdouyin.com/share/video/7702665276675902774",
+      "inBoard": ""
+    },
+    {
+      "title": "打造 bot 軍團得換種思維方式",
+      "entity": "bot 軍團（Grok Bot / Muse / dot）",
+      "kind": "多 agent 分工",
+      "likes": 839,
+      "claim": "影片把 coding agent 與 bot 軍團分成兩種用法：帶兵打仗 vs 建崗位",
+      "takeaway": "bot 越多越要寫「職責卡」，否則就是一群人搶同一件事——跟 skill 的邊界問題同源。",
+      "video": "https://www.iesdouyin.com/share/video/7698995372600921385",
+      "inBoard": ""
+    },
+    {
+      "title": "超火的 3 家雲端 Agents 到底怎麼選",
+      "entity": "Muse / Grok Bot / Dots",
+      "kind": "雲端 agent 橫向對比",
+      "likes": 481,
+      "claim": "影片結論：低門檻選 Muse、要串流程選 Grok Bot、GPT Pro 用戶用 Dots 最順",
+      "takeaway": "選 agent 的關鍵是「你已經有什麼」而不是誰最強；生態綁定比功能差異更影響體驗。",
+      "video": "https://www.iesdouyin.com/share/video/7704527134437526822",
+      "inBoard": ""
+    },
+    {
+      "title": "大學生除了 CodeX，還需要 Grok Bot",
+      "entity": "Grok Bot",
+      "kind": "個人祕書型 bot",
+      "likes": 421,
+      "claim": "影片稱可為每個 bot 命名並指派職責",
+      "takeaway": "把 bot 當「岗位」而不是「工具」，是這批內容共同的用法。",
+      "video": "https://www.iesdouyin.com/share/video/7692043162068922761",
+      "inBoard": ""
+    },
+    {
+      "title": "紙飛機 Telegram 黑產機器人大全",
+      "entity": "Telegram 黑灰產 bot 集群",
+      "kind": "風險警示",
+      "likes": 134726,
+      "claim": "影片拆解涉黃、網賭、電詐類 bot 的工業化模板與引流手法",
+      "takeaway": "互動最高的一條是風險警示，不是推薦——這也是這份榜單不放「來路不明高人气 bot」的原因。",
+      "video": "https://www.iesdouyin.com/share/video/7667957319904300288",
+      "inBoard": ""
+    },
+    {
+      "title": "Telegram 推出小程序與機器人開發功能",
+      "entity": "Telegram Bot Platform",
+      "kind": "平台動態",
+      "likes": 234,
+      "claim": "影片提到 20+ 支付供應商接入與小程序生態",
+      "takeaway": "平台自己在收斂「bot 即應用」，第三方目錄的排序會越來越不代表品質。",
+      "video": "https://www.iesdouyin.com/share/video/7399584673707347251",
+      "inBoard": ""
+    }
+  ]
+}
