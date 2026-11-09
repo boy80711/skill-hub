@@ -1,0 +1,1418 @@
+{
+"cur:gpt4telegrambot": {
+"desc": "同一餘額內切換 ChatGPT／Claude／Gemini／DeepSeek，目錄中用量最大。"
+},
+"cur:succubus": {
+"desc": "AI 角色扮演，靠角色設定與長期記憶維持人格。"
+},
+"cur:quantumbot": {
+"desc": "200+ 指令全能型：經濟、模板、管理一把抓。"
+},
+"cur:boltbot": {
+"desc": "免費 AI 聊天，可自訂人格，涵蓋寫程式、作業、音樂。"
+},
+"cur:eevee": {
+"desc": "AI 動漫風格角色對話，偏娛樂向。"
+},
+"cur:syntxaibot": {
+"desc": "多模型創作：16+ 圖像與影片模型，含對話式修圖。"
+},
+"gh:stablyai/orca": {
+"desc": "用你自己的訂閱跑一隊 coding agent（Claude Code、Codex 等），支援桌面、手機與遠端。"
+},
+"cur:itranslator": {
+"desc": "自動翻譯頻道訊息，跨語言社群常用。"
+},
+"cur:rpsentry": {
+"desc": "角色扮演＋經濟系統的守門機制。"
+},
+"cur:alice": {
+"desc": "AI 聊天型 bot，回覆輕量。"
+},
+"gh:xtekky/gpt4free": {
+"desc": "gpt4free 官方倉庫：多種語言模型集合（GPT、Kimi、DeepSeek、Gemini 等）。"
+},
+"dc:720351927581278219": {
+"desc": "追蹤邀請與訊息、送獎活動，可設參加條件（訊息數、身分組、加成），免費 24/7 在線。"
+},
+"dc:425382319449309197": {
+"desc": "娛樂向 bot，大量迷因與貼圖互動。"
+},
+"dc:444203099331231746": {
+"desc": "Fortnite 戰績查詢，附自動商店、伺服器狀態、每週挑戰與地圖。"
+},
+"gh:freqtrade/freqtrade": {
+"desc": "免費開源的加密貨幣交易機器人。"
+},
+"gh:HKUDS/nanobot": {
+"desc": "輕量開源個人助理 agent。"
+},
+"gh:AstrBotDevs/AstrBot": {
+"desc": "AI Agent 助手與開發框架，串接多種 IM、LLM 與外掛。"
+},
+"gh:ccxt/ccxt": {
+"desc": "統一交易 API，涵蓋 100+ 交易所與預測市場，多語言 SDK。"
+},
+"dc:884800931819048980": {
+"desc": "Discord 音樂 bot：自訂播放清單、24/7 串流、高音質。"
+},
+"gh:chatboxai/chatbox": {
+"desc": "功能完整的 AI 客戶端。"
+},
+"cur:juyeon": {
+"desc": "AI 角色結合卡牌玩法。"
+},
+"gh:The-Vibe-Company/quivr": {
+"desc": "開源引擎，把持續的內容流變成搜尋與監控，支援告警與外掛。"
+},
+"gh:agentscope-ai/QwenPaw": {
+"desc": "個人 AI 助理，可自架或上雲，支援多種聊天平台。"
+},
+"gh:Tencent/WeKnora": {
+"desc": "開源 LLM 知識平台：文件轉可查詢 RAG、自主推理 agent 與自動維護 Wiki。"
+},
+"gh:agentscope-ai/agentscope": {
+"desc": "建立並執行你看得到、能理解、可信任的 agent。"
+},
+"gh:iOfficeAI/AionUi": {
+"desc": "24/7 協作型 agent 平台，支援 OpenClaw、Claude Code、Codex 等 20+ CLI。"
+},
+"gh:78/xiaozhi-esp32": {
+"desc": "基於 MCP 的聊天機器人。"
+},
+"dc:171640650721132544": {
+"desc": "迷因、小遊戲、趣味圖片濾鏡、音樂、猜謎等上百個娛樂指令。"
+},
+"cur:grokai": {
+"desc": "Telegram 與 xAI 合作，Premium 會員可在 App 內直接用 Grok。"
+},
+"gh:python-telegram-bot/python-telegram-bot": {
+"desc": "包裝多個 AI 模型的統一呼叫層。"
+},
+"gh:simstudioai/sim": {
+"desc": "協作工作區，用來建置、部署與監控 agent 與工作流。"
+},
+"gh:yamadashy/repomix": {
+"desc": "Repomix：把整個倉庫打包成單一 AI 友善檔案，方便餵給 LLM。"
+},
+"gh:discordjs/discord.js": {
+"desc": "操作 Discord API 的 JavaScript 函式庫。"
+},
+"dc:766776316690432033": {
+"desc": "Discord 經濟型 bot：賺錢、組隊、玩股市、建帝國。"
+},
+"gh:AZeC4/TelegramGroup": {
+"desc": "Telegram 群組大合集，附站長精選 bot 導航。"
+},
+"gh:wechaty/wechaty": {
+"desc": "給 bot 開發者用的對話式 RPA SDK。"
+},
+"gh:1Panel-dev/MaxKB": {
+"desc": "MaxKB：開源企業級智能體平台，可建知識庫與 agent。"
+},
+"gh:wwebjs/whatsapp-web.js": {
+"desc": "WhatsApp 客戶端函式庫（Node.js，走 WhatsApp Web）。"
+},
+"gh:QuantConnect/Lean": {
+"desc": "QuantConnect 的輕量演算法交易引擎（Python／C#）。"
+},
+"gh:elizaOS/eliza": {
+"desc": "開源 agentic 作業系統。"
+},
+"gh:lss233/kirara-ai": {
+"desc": "可 DIY 的多模態聊天機器人，接微信／QQ／Telegram，支援多家模型與工作流。"
+},
+"gh:InstaPy/InstaPy": {
+"desc": "Instagram 自動化互動工具。"
+},
+"dc:368486558346772480": {
+"desc": "Discord 全能 bot：整合 MEE6、Dyno、送獎、音樂等常見功能。"
+},
+"gh:leon-ai/leon": {
+"desc": "Leon：開源個人助理。"
+},
+"gh:hubotio/hubot": {
+"desc": "可自訂的生活改善型機器人。"
+},
+"gh:rmyndharis/OpenWA": {
+"desc": "免費開源、可自架的 WhatsApp API 閘道。"
+},
+"cur:russiachatgptbot": {
+"desc": "多模型聚合，可處理文字、照片、語音與檔案。"
+},
+"dc:235088799074484224": {
+"desc": "Discord 多人同步聽音樂。"
+},
+"dc:830626887779876884": {
+"desc": "Discord 通訊工具：語音轉文字、文字轉語音。"
+},
+"dc:513423712582762502": {
+"desc": "讓沒麥克風的人也能在語音頻道說話。"
+},
+"dc:411916947773587456": {
+"desc": "多平台音樂 bot：150+ 指令，支援 Spotify、Tidal、Deezer、Apple Music。"
+},
+"dc:294882584201003009": {
+"desc": "快速開送獎活動。"
+},
+"dc:297153970613387264": {
+"desc": "Loritta：Discord 多功能 bot（巴西／英文社群）。"
+},
+"dc:416358583220043796": {
+"desc": "一鍵備份、複製與還原整個 Discord 伺服器。"
+},
+"dc:543567770579894272": {
+"desc": "主打安全與娛樂的 Discord 綜合 bot。"
+},
+"dc:470673087671566366": {
+"desc": "社群生日提醒，自動設身分組並發公告。"
+},
+"dc:713586207119900693": {
+"desc": "每日一問，自動發問題／冷知識維持社群活躍。"
+},
+"dc:458276816071950337": {
+"desc": "用頻道顯示成員、頻道、身分組、表情、加成與目標數量。"
+},
+"dc:797339074146205706": {
+"desc": "追蹤與記錄伺服器加成，自動給身分組與統計。"
+},
+"dc:675996677366218774": {
+"desc": "派對遊戲合集：飢餓遊戲、真心話、猜數字、抽籤等。"
+},
+"dc:575252669443211264": {
+"desc": "方便管理員與成員溝通的 Discord bot。"
+},
+"dc:651095740390834176": {
+"desc": "Discord 防禦型 bot：反清群、反突襲、自動審核、驗證碼、日誌。"
+},
+"dc:276060004262477825": {
+"desc": "多語言、可設定的綜合 bot。"
+},
+"dc:656621136808902656": {
+"desc": "高度可自訂的生日／紀念日提醒 bot。"
+},
+"dc:292953664492929025": {
+"desc": "每伺服器獨立經濟：賭場遊戲、管理、商店、身分組收入。"
+},
+"dc:434556304661544960": {
+"desc": "150+ 指令的社群綜合 bot，含迷因與圖片生成。"
+},
+"dc:338222603829510164": {
+"desc": "等級、音樂、自訂指令、觸發器、管理與網頁儀表板。"
+},
+"dc:472714545723342848": {
+"desc": "重低音／高音質 24/7 音樂，支援 YouTube、Twitch、Spotify。"
+},
+"dc:497196352866877441": {
+"desc": "自動回覆、自動審核、申訴、日誌、身分組、Starboard 等。"
+},
+"dc:270904126974590976": {
+"desc": "全球貨幣遊戲：收集、致富、搶朋友、養虛擬寵物、賭博。"
+},
+"dc:467377486141980682": {
+"desc": "管理計數頻道的 bot。"
+},
+"dc:285480424904327179": {
+"desc": "純風景圖片 bot。"
+},
+"dc:195244341038546948": {
+"desc": "可愛風 bot，大量表情與趣味圖片指令。"
+},
+"dc:512227974893010954": {
+"desc": "創作者開播／發片上線通知（Twitch、YouTube、TikTok），含等級與送獎。"
+},
+"dc:429457053791158281": {
+"desc": "西班牙語綜合 bot：音樂、動漫、結婚、角色扮演、經濟、管理。"
+},
+"dc:168128745893396480": {
+"desc": "Twitch／動畫開播通知、音樂播放、提醒、天氣、osu! 指令。"
+},
+"dc:261157845376958464": {
+"desc": "狗狗主題娛樂 bot：8ball、四子棋、俄羅斯輪盤、塔羅、井字遊戲。"
+},
+"dc:371789181954818050": {
+"desc": "Discord 猜字遊戲，支援單人、多人與私訊。"
+},
+"dc:439205512425504771": {
+"desc": "迷因＋音樂＋管理：下載 TikTok／IG 影片、600+ 影音特效、AI 修圖、去背。"
+},
+"dc:368521195940741122": {
+"desc": "穩定易用的綜合 bot：釣魚放置、賭博、管理、自動發圖。"
+},
+"dc:346353957029019648": {
+"desc": "不走尋常路線的經濟型 bot。"
+},
+"dc:402528814548254720": {
+"desc": "自動追蹤遊戲更新並公告到伺服器。"
+},
+"dc:563434444321587202": {
+"desc": "一個 App 管整個社群：管理、等級、音樂、工單、日誌、邀請追蹤，32 種語言。"
+},
+"dc:208946600620326912": {
+"desc": "娛樂＋管理＋音樂的綜合 Discord bot。"
+},
+"dc:168254458969456640": {
+"desc": "以工具型功能為主的 Discord bot。"
+},
+"dc:410138706490425344": {
+"desc": "用視覺化編輯器做嵌入訊息、按鈕身分組與定時訊息。"
+},
+"dc:974297735559806986": {
+"desc": "依聊天內容生成訊息與迷因。"
+},
+"dc:712011923176030229": {
+"desc": "匿名告白／投稿到伺服器。"
+},
+"dc:437808476106784770": {
+"desc": "等級獎勵＋管理＋音樂。"
+},
+"dc:462174014048043008": {
+"desc": "土耳其語社群 bot：播歌、管理秩序、維護安全。"
+},
+"dc:831140416312180756": {
+"desc": "Discord 版 Akinator 猜謎，多語言、每日挑戰、小遊戲。"
+},
+"dc:696870234262339614": {
+"desc": "多功能 bot：Twitch 通知、自動直播身分組、表情、邀請追蹤。"
+},
+"dc:469610550159212554": {
+"desc": "ZeroTwo 主題個性化：個人檔案、音樂、經濟、卡牌遊戲、自動身分組。"
+},
+"dc:530082442967646230": {
+"desc": "進階送獎 bot：範本、無限場次、參加條件、多筆抽獎。"
+},
+"dc:169678426360381451": {
+"desc": "Erisly：娛樂向 bot，迷因、影片、GIF、動漫指令。"
+},
+"dc:383995098754711555": {
+"desc": "桌遊與派對遊戲合集：UNO、戰艦、猜字、踩地雷。"
+},
+"dc:239631525350604801": {
+"desc": "簡單好用的多功能 bot：音樂、管理、娛樂。"
+},
+"dc:424137718961012737": {
+"desc": "音樂、播放清單、電台、Starboard、提醒、建議與管理。"
+},
+"dc:473370418007244852": {
+"desc": "表情／貼圖／身分組圖示管理，可跨伺服器匯入匯出。"
+},
+"dc:272937604339466240": {
+"desc": "語音頻道錄音 bot，支援多軌多聲道。"
+},
+"dc:827234880122650654": {
+"desc": "成人向角色扮演 bot，含角色設定、世界觀與私訊 AI 對話。"
+},
+"dc:413909677252935680": {
+"desc": "休閒娛樂型 bot。"
+},
+"dc:508759831755096074": {
+"desc": "K-pop 猜歌遊戲，加入語音頻道比反應。"
+},
+"dc:823980769961050162": {
+"desc": "美國氣象服務資料查詢：最新產品、雷達圖、警報地圖、氣象廣播。"
+},
+"dc:283330908524642304": {
+"desc": "迷因音效板。"
+},
+"dc:471091072546766849": {
+"desc": "跨時區時間換算，方便社群約活動。"
+},
+"dc:337654994461261825": {
+"desc": "Discord 益智問答：三種模式、24 個分類。"
+},
+"dc:431402543336390666": {
+"desc": "最進階的 Minecraft 主題 Discord bot。"
+},
+"dc:421646775749967872": {
+"desc": "寫作衝刺 bot：跟寫作群一起計時衝字數。"
+},
+"dc:278550142356029441": {
+"desc": "從指定 subreddit 抓貼文的成人向 bot，含搜尋與訂閱。"
+},
+"dc:893494390142697493": {
+"desc": "翻譯 bot：訊息即時互譯，可設自動翻譯。"
+},
+"dc:240254129333731328": {
+"desc": "管理／自動審核／日誌。"
+},
+"cur:askplexbot": {
+"desc": "官方驗證帳號，群組 @ 即回覆並附網路來源。"
+},
+"dc:985878374553632778": {
+"desc": "成人向 Discord bot，含 AI 聊天、圖片生成、角色扮演與遊戲。"
+},
+"dc:556287780762943507": {
+"desc": "24/7 音樂電台型 bot，整合多家音樂 bot 的功能。"
+},
+"dc:251239170058616833": {
+"desc": "日語學習＋動漫迷向的綜合 bot。"
+},
+"dc:735147814878969968": {
+"desc": "Disboard 推廣提醒，附計數、每日一問、管理與歡迎訊息。"
+},
+"dc:265562769397514242": {
+"desc": "FFXIV 主題多功能 bot：管理、音樂、自訂指令、送獎。"
+},
+"dc:810918366045798451": {
+"desc": "伺服器訊息排程：一次性與重複提醒。"
+},
+"dc:492706945917124619": {
+"desc": "成人向 bot，以 BDSM／角色扮演指令為主。"
+},
+"dc:558996910581612545": {
+"desc": "自建或玩全球會員出的題庫，附網頁介面。"
+},
+"gh:gunthercox/ChatterBot": {
+"desc": "ChatterBot：機器學習對話引擎，用來打造聊天 bot。"
+},
+"dc:1135864594146005042": {
+"desc": "把聊天內容用「ゆっくり」語音朗讀（YouTube／Niconico 常用音色）。"
+},
+"dc:658698521570181140": {
+"desc": "MMORPG 行程行事曆：副本、出團、重複事件與提醒。"
+},
+"dc:765598792535244820": {
+"desc": "自動推廣提醒，讓伺服器維持在 Discord 探索榜前段。"
+},
+"dc:478321260481478677": {
+"desc": "自動提醒推廣（bump），支援多個推廣服務。"
+},
+"dc:461189216198590464": {
+"desc": "Wiki-Bot：快速搜尋並連結 Wiki 頁面，附摘要。"
+},
+"dc:443545183997657120": {
+"desc": "伺服器備份、身分組、語音轉文字、頻道管理、歡迎訊息。"
+},
+"dc:551608985900417024": {
+"desc": "在伺服器辦電競賽事：排行榜、隊伍、種子序、對戰表。"
+},
+"gh:FlowiseAI/Flowise": {
+"desc": "視覺化建置 AI Agent。"
+},
+"dc:356831787445387285": {
+"desc": "綜合管理 bot：管理、審核、表單、突襲房間、社群動態、經濟。"
+},
+"dc:187636051135823872": {
+"desc": "鴨子隨機出現，比誰先打中。"
+},
+"dc:795063486988156958": {
+"desc": "占卜 bot：塔羅、符文、雷諾曼，附星座與每日運勢。"
+},
+"dc:618870941924982784": {
+"desc": "養寵物、培育、訓練與照顧。"
+},
+"gh:Mrs4s/go-cqhttp": {
+"desc": "cqhttp 的 Go 實作，輕量、原生跨平台。"
+},
+"cur:bot_brain_bot": {
+"desc": "拍題目照片直接解題，31 種語言，免費無廣告。"
+},
+"dc:480889253165793290": {
+"desc": "多語言社群管理 bot：活動、卡拉 OK、等級與經驗值。"
+},
+"dc:540349742178107409": {
+"desc": "開播通知 bot，支援 Kick、Twitch 等平台。"
+},
+"gh:LmeSzinc/AzurLaneAutoScript": {
+"desc": "碧藍航線自動腳本：無縫委託科研、自動大世界。"
+},
+"dc:670392580285923338": {
+"desc": "臨時語音／文字頻道、身分組、管理、直播與日誌。"
+},
+"gh:telegraf/telegraf": {
+"desc": "Node.js 現代化 Telegram bot 框架。"
+},
+"gh:yagop/node-telegram-bot-api": {
+"desc": "Telegram Bot API 的 Node.js 封裝。"
+},
+"dc:618817616542433283": {
+"desc": "追蹤伺服器成員生日。"
+},
+"gh:eternnoir/pyTelegramBotAPI": {
+"desc": "Python 的 Telegram Bot API。"
+},
+"gh:jesse-ai/jesse": {
+"desc": "Python 進階加密貨幣交易機器人。"
+},
+"dc:447266583459528715": {
+"desc": "顯示各成員所在時區的現在時間。"
+},
+"dc:381387277764395008": {
+"desc": "多功能 bot：動漫、waifu 與管理指令。"
+},
+"dc:321046928391667712": {
+"desc": "歡迎 bot：歡迎圖片、網頁儀表板、反應身分組、日誌、禁語。"
+},
+"gh:chatchat-space/Langchain-Chatchat": {
+"desc": "Langchain-Chatchat：以本地模型為主的 RAG 與 Agent 應用。"
+},
+"dc:916372883087974440": {
+"desc": "可自訂的人機驗證系統，防廣告與突襲。"
+},
+"gh:iyear/tdl": {
+"desc": "Go 寫的 Telegram 工具箱。"
+},
+"dc:797054687060819988": {
+"desc": "即時轉發 Twitter 貼文，也能把訊息變成推文樣式。"
+},
+"dc:828462865412784148": {
+"desc": "自訂音效板，像表情符號一樣但用聲音。"
+},
+"gh:LAION-AI/Open-Assistant": {
+"desc": "OpenAssistant：能理解任務、串接外部系統、動態查資料的聊天助理。"
+},
+"dc:298827078013288450": {
+"desc": "招呼語、開播通知、擲骰、計時、遊戲數據與定期訊息。"
+},
+"gh:nonebot/nonebot2": {
+"desc": "Python 非同步跨平台聊天機器人框架。"
+},
+"gh:devlikeapro/waha": {
+"desc": "WAHA：可一鍵設定的 WhatsApp HTTP API，支援多種引擎。"
+},
+"dc:634154640610426900": {
+"desc": "從 Spotify、SoundCloud、YouTube 聽歌，或選電台清單。"
+},
+"dc:493316754689359874": {
+"desc": "開箱、收集物品、與朋友對戰並衝排行榜。"
+},
+"dc:719912970829955094": {
+"desc": "37,000 個動漫角色可收集、升級、交易。"
+},
+"gh:Mai-with-u/MaiBot": {
+"desc": "MaiSaka：以 LLM 打造、模仿真人說話風格的數位生命。"
+},
+"gh:Drakkar-Software/OctoBot": {
+"desc": "開源交易 bot：AI、網格、DCA、TradingView 策略，支援 15+ 交易所。"
+},
+"dc:310039170792030211": {
+"desc": "娛樂指令、成人內容與簡易管理。"
+},
+"dc:310848622642069504": {
+"desc": "Fluffy：音樂、排名、提醒、VK 社群橋接。"
+},
+"dc:568083171455795200": {
+"desc": "Filo：可自訂多語言 bot，含檢舉、日誌、歡迎與防洗版。"
+},
+"dc:451139247538307082": {
+"desc": "查詢 Roblox 使用者、遊戲、社團、服飾並可直接加入遊戲。"
+},
+"gh:charliedream1/ai_quant_trade": {
+"desc": "股票 AI 交易平台：學習、模擬與實盤，含策略與模型。"
+},
+"dc:726560538145849374": {
+"desc": "最可自訂的計數 bot，可跨伺服器比數字。"
+},
+"dc:319801895352926209": {
+"desc": "Steam 個人檔案查詢 bot。"
+},
+"dc:668946506836869150": {
+"desc": "簡易音效板，200 個內建音效，可上傳自訂音效。"
+},
+"dc:911836896429232148": {
+"desc": "獸迷向 bot：管理、等級、角色扮演與經濟。"
+},
+"gh:itgoyo/TelegramGroup": {
+"desc": "Telegram 群組與頻道大合集（萬群級），附站長精選 bot 導航。"
+},
+"dc:302915036492333067": {
+"desc": "Sandra：音樂、管理、工具、社交與動漫助理。"
+},
+"dc:793143330455420938": {
+"desc": "最大 Lofi 電台 bot，24/7 高音質串流。"
+},
+"dc:375750637540868107": {
+"desc": "音樂與動漫為主的綜合 bot。"
+},
+"dc:880237210484506675": {
+"desc": "每日名言圖片（4.5 萬張），可自訂語言與樣式。"
+},
+"dc:310050883100737536": {
+"desc": "Guild Wars 2 功能查詢 bot。"
+},
+"gh:aiogram/aiogram": {
+"desc": "aiogram：Python 非同步 Telegram bot 框架。"
+},
+"dc:266624760782258186": {
+"desc": "可設定的娛樂＋管理 bot。"
+},
+"gh:ayn2op/discordo": {
+"desc": "輕量安全的 Discord 終端機（TUI）客戶端。"
+},
+"gh:Superalgos/Superalgos": {
+"desc": "開源交易 bot，可視化設計策略、自動買賣比特幣。"
+},
+"gh:Cog-Creators/Red-DiscordBot": {
+"desc": "多功能 Discord bot。"
+},
+"dc:456633518882160642": {
+"desc": "YouTube 通知與影片資訊 bot。"
+},
+"dc:170237838334492682": {
+"desc": "以自訂指令系統為核心的綜合 bot。"
+},
+"gh:rubenlagus/TelegramBots": {
+"desc": "用 Telegram Bot API 建 bot 的 Java 函式庫。"
+},
+"gh:Cinnamon/kotaemon": {
+"desc": "以 RAG 為基礎、可與文件對話的開源工具。"
+},
+"gh:chrisleekr/binance-trading-bot": {
+"desc": "幣安自動交易 bot：可插拔策略、回測、即時儀表板，可接 MCP agent。"
+},
+"gh:haotian-liu/LLaVA": {
+"desc": "LLaVA：視覺指令微調模型（NeurIPS 2023）。"
+},
+"gh:QwenAudio/CosyVoice": {
+"desc": "多語言大型語音生成模型，含推論、訓練與部署。"
+},
+"dc:620126394390675466": {
+"desc": "在 Discord 內管理 Trello 看板並接收更新通知。"
+},
+"dc:300800171988484096": {
+"desc": "高可設定綜合 bot：音樂、規約同意、娛樂、自動審核。"
+},
+"dc:415773861486002186": {
+"desc": "幫你的伺服器到其他伺服器打廣告。"
+},
+"gh:coze-dev/coze-studio": {
+"desc": "Coze：視覺化 AI agent 開發平台，建立、除錯、部署一體。"
+},
+"dc:530145634444115968": {
+"desc": "簡易 Discord 待辦清單 bot。"
+},
+"gh:tucnak/telebot": {
+"desc": "Go 的 Telegram bot 框架。"
+},
+"dc:624955196040282123": {
+"desc": "Hanni：一站式 bot，通知、AI 聊天與多平台下載（TikTok、IG、YouTube）。"
+},
+"gh:tdlib/telegram-bot-api": {
+"desc": "自架 Telegram Bot API 伺服器。"
+},
+"dc:303799630532050946": {
+"desc": "純貨幣型 bot：聊天累積箱子、開箱。"
+},
+"gh:xgit01/sgkrank": {
+"desc": "免費社工庫排行榜整理。"
+},
+"gh:anasty17/mirror-leech-telegram-bot": {
+"desc": "官方倉庫：可下載直連、BT、NZB、Google Drive 與 Telegram 檔案的 bot。"
+},
+"dc:999648623170162779": {
+"desc": "多款小遊戲：高低猜、拼字、顏色配對、笑話、西洋棋謎題。"
+},
+"gh:teloxide/teloxide": {
+"desc": "Rust 的優雅 Telegram bot 框架。"
+},
+"gh:groupultra/telegram-search": {
+"desc": "匯出 Telegram 聊天記錄並支援模糊搜尋。"
+},
+"dc:680507783359365121": {
+"desc": "工具型 bot：翻譯、搜圖、以圖搜圖、OCR、TTS。"
+},
+"dc:340476335279570945": {
+"desc": "電台與 Lofi 串流，含娛樂、社交與管理，法英雙語。"
+},
+"dc:511173424522199070": {
+"desc": "GW2 帳號資訊、成員驗證、身分組對應與活動管理。"
+},
+"dc:476303446547365891": {
+"desc": "讓伺服器更有活力的聊天 bot。"
+},
+"dc:650691698409734151": {
+"desc": "防護型 bot：反病毒、反洗版、分類身分組、驗證碼、自動懲處。"
+},
+"dc:534828939198070824": {
+"desc": "獸迷向圖片 bot（成人內容）。"
+},
+"dc:168682538028630017": {
+"desc": "純表情符號組成的趣味 bot。"
+},
+"gh:tbxark/ChatGPT-Telegram-Workers": {
+"desc": "用 Cloudflare Workers／Vercel／Docker 部署 Telegram ChatGPT bot。"
+},
+"gh:grammyjs/grammY": {
+"desc": "Telegram bot 框架。"
+},
+"gh:zhenxun-org/zhenxun_bot": {
+"desc": "基於 NoneBot2 的多平台、多 bot 管理（緒山真尋主題）。"
+},
+"gh:nextlevelbuilder/goclaw": {
+"desc": "GoClaw：用 Go 重寫的 agent 執行環境，多租戶隔離與五層安全。"
+},
+"gh:LLOneBot/LuckyLilliaBot": {
+"desc": "支援 OneBot 11、Satori 與 Milky 協議。"
+},
+"dc:846770591231246336": {
+"desc": "Manbo：管理、工具、音樂與設定齊全的綜合 bot。"
+},
+"gh:TelegramBots/Telegram.Bot": {
+"desc": "Telegram Bot API 的 .NET 客戶端。"
+},
+"dc:372831574942679040": {
+"desc": "拍賣市集 bot：刊登、競標與交易紀錄管理。"
+},
+"dc:804245390642642965": {
+"desc": "在 Discord 做漂亮投票。"
+},
+"gh:tgbot-collection/YYeTsBot": {
+"desc": "人人影視 bot 與站點，含資源與網盤分享。"
+},
+"gh:Rapptz/discord.py": {
+"desc": "Python 的 Discord API 封裝。"
+},
+"gh:thrasher-corp/gocryptotrader": {
+"desc": "Go 寫的多交易所交易 bot 框架。"
+},
+"gh:xmanrui/dsh-im": {
+"desc": "用掃碼或憑證把 IM bot 接上 DeepSeek Harness（飛書、微信、釘釘、QQ、Slack、Telegram、Discord、WhatsApp）。"
+},
+"dc:673994042450903089": {
+"desc": "把文字轉成表情符號的 bot。"
+},
+"gh:irazasyed/telegram-bot-sdk": {
+"desc": "Telegram Bot API 的 PHP SDK。"
+},
+"dc:398690824721924107": {
+"desc": "綜合 bot：娛樂、動物、搜尋、工具、文字、管理與表情。"
+},
+"gh:alsk1992/CloddsBot": {
+"desc": "開源 AI 交易 agent，可自主操作 1000+ 市場（Polymarket、Kalshi、幣安、Solana DEX 等）。"
+},
+"dc:816422484449951754": {
+"desc": "工單系統：成員與管理溝通、分類選單、多團隊通知。"
+},
+"gh:LagrangeDev/Lagrange.Core": {
+"desc": "NTQQ 協議的純 C# 實作。"
+},
+"dc:580159619415146506": {
+"desc": "用零件組表情符號並存成貼圖分享。"
+},
+"dc:805922495705251891": {
+"desc": "每日投票 bot，彙整全 Discord 結果。"
+},
+"dc:383777390851260426": {
+"desc": "可自訂的管理、工具與身分組 bot。"
+},
+"dc:210363111729790977": {
+"desc": "聊天 bot，含管理與 Spotify 音樂。"
+},
+"dc:609087387695316992": {
+"desc": "限制自訂表情只給特定身分組使用。"
+},
+"dc:1082828487058014259": {
+"desc": "伺服器小貓：放鬆圖片、心理健康小語與小遊戲。"
+},
+"dc:454145330347376651": {
+"desc": "SMITE 數據 bot：戰績、對局、神明與伺服器狀態。"
+},
+"dc:1097883389085892649": {
+"desc": "進階音樂 bot，含按鈕與音效濾鏡。"
+},
+"dc:327150443610505227": {
+"desc": "多功能 bot：提醒、送餅乾與抱抱。"
+},
+"dc:747997152248070225": {
+"desc": "Haunt：一站式社群經營 bot。"
+},
+"dc:527490735453241355": {
+"desc": "Rocket League 社群用的驗證 bot。"
+},
+"dc:503996428042108928": {
+"desc": "9000+ 內建音效，也可上傳自己的。"
+},
+"dc:284134563381248000": {
+"desc": "把圖片變成迷因或套上誇張濾鏡。"
+},
+"dc:601347755046076427": {
+"desc": "臨時頻道管理與動態配對，高度可設定。"
+},
+"dc:729046239181668397": {
+"desc": "在 Discord 直接玩各種熱門桌遊，輸入指令即可開局。"
+},
+"dc:314110696071888896": {
+"desc": "輕量管理：違規紀錄、臨時身分組、反應身分組、提醒。"
+},
+"dc:358463108433575937": {
+"desc": "邀請追蹤、網頁儀表板、自動身分組與自動審核。"
+},
+"dc:866819673906348063": {
+"desc": "快速建立 Q&A／FAQ，方便社群提問互動。"
+},
+"dc:267035345537728512": {
+"desc": "Bastion：功能齊全的綜合 bot。"
+},
+"dc:731734090365141062": {
+"desc": "PokeMMO 活動通知與工具。"
+},
+"dc:423637161632464906": {
+"desc": "「瑞士刀」型綜合 bot，什麼都能做。"
+},
+"dc:438959507389808641": {
+"desc": "動漫向：MyAnimeList／AniList 查詢、個人檔案與角色扮演。"
+},
+"dc:168238521713295360": {
+"desc": "彙整多個來源的豐富資訊。"
+},
+"dc:908613787333066773": {
+"desc": "動漫／漫畫／遊戲角色抽卡，收集與升級。"
+},
+"dc:873899503470661652": {
+"desc": "防詐 bot：擋釣魚、病毒、Token 竊取與分身帳號。"
+},
+"dc:566841380425695256": {
+"desc": "多功能 bot：日誌、管理、工具、自動審核、多語言。"
+},
+"dc:707726135173054501": {
+"desc": "太空主題伺服器的活動自動化。"
+},
+"dc:946107355316252763": {
+"desc": "從聊天中的網址下載 TikTok 影片。"
+},
+"dc:530825629793517590": {
+"desc": "成員進出語音頻道時播放自訂訊息，60+ 音色。"
+},
+"dc:709271563110973451": {
+"desc": "電影之夜排片與投票。"
+},
+"dc:617706329229754379": {
+"desc": "把待辦與任務集中在 Discord 裡。"
+},
+"dc:568437925453234176": {
+"desc": "查詢 SCP 基金會與 Backrooms 報告。"
+},
+"dc:705680059809398804": {
+"desc": "骰子、字型、加密、遊戲等雜項工具。"
+},
+"dc:384820232583249921": {
+"desc": "遊戲與語音頻道社群向 bot。"
+},
+"dc:543645076862140419": {
+"desc": "強大的邀請審核與管理 bot。"
+},
+"dc:528108872825700372": {
+"desc": "記錄成員平均上線時間。"
+},
+"dc:753217458029985852": {
+"desc": "建立複雜投票與問卷：匿名、身分組權重、匯出、排程。"
+},
+"dc:818808873166176266": {
+"desc": "成員通過規則篩選後自動給身分組。"
+},
+"dc:242249568794836993": {
+"desc": "把 TF2 的 Pyro 體驗搬進伺服器。"
+},
+"dc:1024240554097258496": {
+"desc": "在語音頻道聽 marss 的音樂。"
+},
+"dc:917332075412070430": {
+"desc": "免費語音經驗、身分組獎勵、前 100 排行榜與臨時語音頻道。"
+},
+"dc:661408036220436511": {
+"desc": "自訂配對與 Elo 積分，任何遊戲都能開排行榜與賽事。"
+},
+"dc:698889469532569671": {
+"desc": "大亂鬥社群向：判定框 GIF、幀數據、非排名配對。"
+},
+"dc:208460637368614913": {
+"desc": "主打安全與審核的進階 bot。"
+},
+"dc:871322553698906142": {
+"desc": "由社群驅動的聲望系統，被感謝就加分。"
+},
+"dc:699314590160388158": {
+"desc": "用 Discord.py 做角色扮演，畫面近似原作遊戲。"
+},
+"dc:830819903371739166": {
+"desc": "記錄伺服器幾乎所有動作，支援 PluralKit。"
+},
+"dc:879918811791388705": {
+"desc": "可愛女僕風管理 bot，幫你打理伺服器。"
+},
+"dc:757776996418715651": {
+"desc": "在 Discord 領取 Fortnite 拯救世界每日獎勵。"
+},
+"dc:392419127626694676": {
+"desc": "依語音頻道在線狀態自動給臨時身分組。"
+},
+"dc:706887214088323092": {
+"desc": "特戰英豪（Valorant）資訊查詢 bot。"
+},
+"dc:949014423660560415": {
+"desc": "自動審核、按鈕身分組、送獎、小遊戲與音樂。"
+},
+"dc:377563711927484418": {
+"desc": "大量娛樂與實用工具指令的綜合 bot。"
+},
+"dc:753757823535677561": {
+"desc": "定時隨機打招呼並歡迎新成員。"
+},
+"dc:337481187419226113": {
+"desc": "以「幫上忙」為目標的綜合 bot。"
+},
+"dc:526189797711151114": {
+"desc": "簡單的是／否投票 bot。"
+},
+"dc:705771937305067592": {
+"desc": "100+ 指令的免費綜合 bot，可自行設定。"
+},
+"dc:743737747407372308": {
+"desc": "暱稱管理：申請、自動去 hoist、防暱稱廣告。"
+},
+"dc:702660517617205248": {
+"desc": "讓成員自己改身分組顏色。"
+},
+"dc:411618411169447950": {
+"desc": "SpaceX 發射新聞與通知。"
+},
+"dc:604362556668248095": {
+"desc": "雜項指令取向的綜合 bot。"
+},
+"dc:688874978162376760": {
+"desc": "訊息下隨機長花，點擊可攻擊其他成員的小遊戲。"
+},
+"dc:492797767916191745": {
+"desc": "高效自動審核＋網頁後台設定。"
+},
+"dc:749986339721707550": {
+"desc": "臨時語音頻道、活動排程與嵌入訊息。"
+},
+"dc:807182830752628766": {
+"desc": "HLTV 新聞與 CS 電競資訊。"
+},
+"dc:655155797260501039": {
+"desc": "純工具型 bot，只提供實用功能。"
+},
+"dc:858799961209831446": {
+"desc": "用 EmojiRole 把表情鎖給特定身分組。"
+},
+"dc:637912282076282890": {
+"desc": "心理健康資源庫，從一般資訊到危機介入。"
+},
+"dc:420174649968558090": {
+"desc": "模仿 Cleverbot 的對話 bot。"
+},
+"dc:602158699900829706": {
+"desc": "魔獸世界 M+ 分數、寶庫、團本進度看板，自動更新。"
+},
+"gh:howdyai/botkit": {
+"desc": "Botkit：開源 bot 開發工具，支援多個通訊平台。"
+},
+"dc:856203974994952192": {
+"desc": "在 Discord 管理 Pterodactyl 伺服器，多語言。"
+},
+"dc:862039253574746125": {
+"desc": "AI 圖片審核 bot，減少人工巡場。"
+},
+"dc:754334784871858216": {
+"desc": "LGBTQ+／多重人格相關詞彙表 bot。"
+},
+"dc:1011327764168720454": {
+"desc": "在 Discord 內查 GitHub 資訊的斜線指令應用。"
+},
+"gh:je-suis-tm/quant-trading": {
+"desc": "Python 量化策略集：VIX、型態辨識、CTA、蒙地卡羅。"
+},
+"dc:553610702439579669": {
+"desc": "高階工單 bot，讓客服流程更順。"
+},
+"dc:369865463670374400": {
+"desc": "綜合 bot：娛樂、等級、音樂與貨幣。"
+},
+"gh:sfyc23/EverydayWechat": {
+"desc": "微信助手：定時發訊息、自動回覆、群助手查詢（垃圾分類、天氣、快遞等）。"
+},
+"gh:askmike/gekko": {
+"desc": "Node.js 寫的比特幣交易 bot（Gekko）。"
+},
+"dc:755504243322126426": {
+"desc": "猜字、益智、踩地雷、謎語、日文假名、排程等工具。"
+},
+"gh:huseinzol05/Stock-Prediction-Models": {
+"desc": "股市預測的機器學習／深度學習模型與交易模擬合集。"
+},
+"dc:310578566695878658": {
+"desc": "易設定的娛樂、日誌、管理、Starboard 與音樂 bot。"
+},
+"dc:789045930011656223": {
+"desc": "專精骰子與數學計算，高度可設定。"
+},
+"gh:codebymitch/TitanBot": {
+"desc": "全能型 Discord 助理。"
+},
+"gh:marketcalls/openalgo": {
+"desc": "開源交易生態系（資料、策略、回測）。"
+},
+"dc:685166801394335819": {
+"desc": "多語言多功能 bot，含大量自訂選項。"
+},
+"dc:782299960283627540": {
+"desc": "24/7 穩定易用的綜合 bot。"
+},
+"dc:306706699102715907": {
+"desc": "音樂、管理、圖片搜尋與隨機娛樂。"
+},
+"gh:heshengtao/super-agent-party": {
+"desc": "一站式 AI 伴侶：自架 neuro-sama ＋ openclaw 組合。"
+},
+"gh:overwirehq/claude-code-telegram": {
+"desc": "用 Telegram 遠端操作 Claude Code，隨時接續專案。"
+},
+"dc:1142862271639474186": {
+"desc": "把 Steam 接進 Discord：查檔案、VAC／封禁紀錄、CS2 與 Rust 數據。"
+},
+"dc:797974550834053203": {
+"desc": "Hypixel 伺服器專用 bot。"
+},
+"gh:Zero6992/chatGPT-discord-bot": {
+"desc": "把 ChatGPT 接進自己的 Discord bot。"
+},
+"gh:brndnmtthws/thetagang": {
+"desc": "ThetaGang：IBKR 選擇權收租 bot。"
+},
+"dc:577276278965796864": {
+"desc": "音樂、修圖、反應 GIF 與迷因的雜項 bot。"
+},
+"dc:667131062941384757": {
+"desc": "Kettu：SFW 獸迷 bot，社交指令、管理、防突襲與等級。"
+},
+"dc:698937734307512401": {
+"desc": "在 Discord 建自己的動漫清單、評分與新番通知。"
+},
+"dc:450301324635013131": {
+"desc": "高音質音樂、經濟、日誌等。"
+},
+"gh:microsoft/ailab": {
+"desc": "微軟 AI 的教學與範例程式碼。"
+},
+"gh:microsoft/botframework-sdk": {
+"desc": "Bot Framework：完整對話應用開發框架。"
+},
+"dc:735395698278924359": {
+"desc": "管理人員資訊訊息的 bot。"
+},
+"dc:426787835044036610": {
+"desc": "隨機鴨子圖片。"
+},
+"gh:Rongronggg9/RSS-to-Telegram-Bot": {
+"desc": "Telegram RSS bot，閱讀體驗佳。"
+},
+"dc:761269120691470357": {
+"desc": "查 GitHub 使用者、倉庫與組織資料。"
+},
+"gh:semicons/java_oci_manage": {
+"desc": "多雲管理 Web SSH 終端（OCI／AWS／GCP／Azure…），含 Telegram 通知。"
+},
+"dc:892454292924014592": {
+"desc": "Thor：自動審核 bot，主打防駭客與鬧版。"
+},
+"gh:AnswerOverflow/AnswerOverflow": {
+"desc": "把討論串做成網頁，供大型伺服器內容被搜尋。"
+},
+"gh:go-telegram-bot-api/telegram-bot-api": {
+"desc": "Go 的 Telegram Bot API 綁定。"
+},
+"dc:591861920328581120": {
+"desc": "大量 GIF 的綜合 bot。"
+},
+"dc:355050503459045378": {
+"desc": "音樂、備份、管理、腳本與小遊戲。"
+},
+"dc:583897295267954697": {
+"desc": "帶印度風格的綜合 bot，支援多語。"
+},
+"gh:Discord4J/Discord4J": {
+"desc": "Discord4J：Java／Kotlin 的反應式 bot 函式庫。"
+},
+"gh:jagrosh/MusicBot": {
+"desc": "好架設的 Discord 音樂 bot。"
+},
+"gh:CryptoSignal/Crypto-Signal": {
+"desc": "CryptoSignal：交易與技術分析 bot。"
+},
+"dc:475685785040060437": {
+"desc": "反應極快的 Discord bot。"
+},
+"gh:tangyoha/telegram_media_downloader": {
+"desc": "Telegram 影片與資源下載，支援網頁看進度與私有群。"
+},
+"gh:father-bot/chatgpt_telegram_bot": {
+"desc": "Python 寫的 Telegram bot，接 ChatGPT 與 Claude。"
+},
+"gh:freqtrade/freqtrade-strategies": {
+"desc": "Freqtrade 的免費策略集。"
+},
+"dc:811652199100317726": {
+"desc": "100% 本機、無日誌的語音轉文字。"
+},
+"gh:modmail-dev/Modmail": {
+"desc": "管理員與成員的共用收件匣（類似 Modmail）。"
+},
+"dc:474523344864280578": {
+"desc": "爐石戰記卡片資料查詢。"
+},
+"dc:505166442338058251": {
+"desc": "定時更換伺服器圖示等自動化工具。"
+},
+"gh:python-discord/bot": {
+"desc": "Python Discord 社群的官方 bot。"
+},
+"dc:780733752803852309": {
+"desc": "建立臨時語音頻道。"
+},
+"dc:669888310507995136": {
+"desc": "24 小時播放電梯音樂。"
+},
+"dc:282921751141285888": {
+"desc": "把 Reddit 貼文轉發到 Discord，含搜尋與訂閱。"
+},
+"dc:911674351248613426": {
+"desc": "把 X-SAMPA 等 ASCII 音標轉成 Unicode。"
+},
+"gh:stegripe/rawon": {
+"desc": "簡易強大的音樂 bot，不需寫程式即可開台。"
+},
+"gh:Ice9Coffee/HoshinoBot": {
+"desc": "公主連結主題的多用途 QQ bot。"
+},
+"dc:984437539844800624": {
+"desc": "RoGuard：用 Roblox 帳號驗證 Discord 成員。"
+},
+"gh:discord-tickets/bot": {
+"desc": "最熱門的開源自架工單管理 bot，付費方案的免費替代。"
+},
+"gh:aiko-chan-ai/DiscordBotClient": {
+"desc": "Discord 修改版客戶端，支援 bot 登入與外掛。"
+},
+"dc:953953187394617354": {
+"desc": "監控幣價並接受加密貨幣捐款。"
+},
+"dc:563197357697662988": {
+"desc": "驗證、工單、管理、日誌與自動審核一體。"
+},
+"dc:787041583580184609": {
+"desc": "Bento：影音與娛樂指令取向的 bot。"
+},
+"gh:botlabs-gg/yagpdb": {
+"desc": "通用型 Discord bot。"
+},
+"dc:913854536463032400": {
+"desc": "SCP 社群官方 bot。"
+},
+"gh:zvtvz/zvt": {
+"desc": "模組化量化交易框架。"
+},
+"dc:511565348039032862": {
+"desc": "隨機趣味指令 bot。"
+},
+"dc:744711991083532328": {
+"desc": "用 AI 偵測訊息中的不雅用語。"
+},
+"dc:308341734524452864": {
+"desc": "免費開源的工具型 bot，指令種類多。"
+},
+"dc:364745756634251264": {
+"desc": "取代多個 bot 的綜合型：身分組訊息、遊戲數據、寶可夢、Minecraft、Twitch 與管理。"
+},
+"gh:michaelgrosner/tribeca": {
+"desc": "Node.js 高頻做市交易平台。"
+},
+"gh:php-telegram-bot/core": {
+"desc": "以官方 Bot API 為基礎的 PHP Telegram bot。"
+},
+"dc:814379239930331157": {
+"desc": "QuoteBot：收藏並整理伺服器裡的趣味發言。"
+},
+"dc:270047199184945152": {
+"desc": "什麼都做一點的小型 bot。"
+},
+"gh:m1guelpf/chatgpt-telegram": {
+"desc": "一條指令開自己的 Telegram GPTChat bot。"
+},
+"dc:734376116810285078": {
+"desc": "用表情或指令開工單的免費管理 bot。"
+},
+"dc:542644843411800064": {
+"desc": "DunGen：產生高品質地城與洞窟地圖，供虛擬桌遊使用。"
+},
+"dc:662990111742492672": {
+"desc": "用訊息再生成訊息。"
+},
+"gh:ctubio/Krypto-trading-bot": {
+"desc": "C++ 自架高頻做市交易 bot。"
+},
+"gh:pandolia/qqbot": {
+"desc": "QQBot：基於騰訊 SmartQQ 的對話機器人。"
+},
+"gh:PastKing/tgbot-verify": {
+"desc": "自動化身份驗證工具（涉規避平台審查機制，不建議安裝）。"
+},
+"gh:Haehnchen/crypto-trading-bot": {
+"desc": "JavaScript 多交易所交易 bot（公開版）。"
+},
+"dc:536935359775506444": {
+"desc": "替動漫主題伺服器加功能的 bot。"
+},
+"gh:kkrypt0nn/Python-Discord-Bot-Template": {
+"desc": "Python 自建 Discord bot 的起手範本。"
+},
+"gh:n3d1117/chatgpt-telegram-bot": {
+"desc": "Python 寫的 Telegram bot，接 OpenAI 官方 API 回答問題。"
+},
+"dc:160674537418129409": {
+"desc": "指令五花八門的雜項 bot。"
+},
+"gh:cirosantilli/china-dictatorship": {
+"desc": "（此項目描述含政治宣傳內容，本站不提供翻譯與推薦。）"
+},
+"gh:ItzSudhan/Discord-MusicBot": {
+"desc": "進階音樂 bot：Spotify／SoundCloud／YouTube，含音量控制與網頁儀表板。"
+},
+"dc:744400204714737746": {
+"desc": "看伺服器裡有多少尷尬使用者名稱的趣味 bot。"
+},
+"dc:692019210683154462": {
+"desc": "丹麥語 Discord 管理型 bot，主打管理與娛樂。"
+},
+"gh:CorwinDev/Discord-Bot": {
+"desc": "400+ 指令、為大型伺服器設計的 bot。"
+},
+"gh:automuteus/automuteus": {
+"desc": "Among Us 回合切換時自動靜音玩家。"
+},
+"gh:serenity-rs/poise": {
+"desc": "Serenity 的指令框架，支援編輯追蹤與彈性參數解析。"
+},
+"gh:KimigaiiWuyi/GenshinUID": {
+"desc": "多平台（QQ、微信、KOOK、Telegram、飛書、Discord）原神主題機器人插件。"
+},
+"gh:SK-415/HarukaBot": {
+"desc": "把 B 站動態與開播推送到 QQ。"
+},
+"dc:625962497165230080": {
+"desc": "用 OAuth 驗證成員的 Wikimedia 帳號。"
+},
+"dc:663515546557480990": {
+"desc": "讓客服流程更專業的工單 bot。"
+},
+"dc:790910161953882147": {
+"desc": "Slashtags：簡易斜線指令標籤 bot。"
+},
+"dc:349573743343042560": {
+"desc": "Axel：功能齊全的綜合 bot。"
+},
+"dc:532220480577470464": {
+"desc": "進階可自訂的管理 bot。"
+},
+"dc:806572693657878549": {
+"desc": "FiveM 伺服器「Glife Extinction」的戰績與排行榜。"
+},
+"gh:sapphiredev/framework": {
+"desc": "以 discord.js 為基礎的進階 bot 框架。"
+},
+"gh:GraiaProject/Ariadne": {
+"desc": "優雅完整的 Python QQ 自動化框架（Graia）。"
+},
+"dc:913207344463220756": {
+"desc": "把伺服器變成虛擬股市：頻道人氣越高股價越貴。"
+},
+"gh:remiliacn/qqBot": {
+"desc": "會發圖、聊天、做資料分析與 NLP 的綜合 QQ bot。"
+},
+"gh:TannerGabriel/discord-bot": {
+"desc": "簡易音樂＋伺服器管理 bot。"
+},
+"dc:625669590566830080": {
+"desc": "Helio：一鍵備份伺服器（頻道、聊天、名稱與圖示）並可還原。"
+},
+"gh:Quan666/ELF_RSS": {
+"desc": "QQ 機器人 RSS 訂閱插件。"
+},
+"dc:811887256368840744": {
+"desc": "Ryuuzaki Ryuusei：查個人檔案與媒體作品。"
+},
+"dc:1066081427935993886": {
+"desc": "ChadCounting：不會漏數的計數 bot。"
+},
+"dc:953858283893035019": {
+"desc": "以娛樂與動物指令為主的療癒系 bot。"
+},
+"dc:456140067220750336": {
+"desc": "TicketBird：在 Discord 內輕鬆管理工單。"
+},
+"dc:847427963032174613": {
+"desc": "Ai Ohto：多功能伺服器管理與自訂 bot。"
+},
+"dc:440176226338865167": {
+"desc": "純娛樂型：娛樂、管理與迷因。"
+},
+"dc:325892959130222592": {
+"desc": "分享訊息／圖片／迷因並累積星星。"
+},
+"dc:863140071980924958": {
+"desc": "管理、娛樂與工具齊備的綜合 bot。"
+},
+"dc:847144338240569376": {
+"desc": "跨伺服器聊天、管理、經濟、遊戲與自訂角色。"
+},
+"dc:641626560457342987": {
+"desc": "Yukiko：管理、等級等功能齊全。"
+},
+"dc:562467981943111690": {
+"desc": "有「職業」玩法的綜合 bot：上班、自訂職業、升職。"
+},
+"dc:830798208158138388": {
+"desc": "用 Node.js 渲染 Lilypond 樂譜的 bot。"
+},
+"dc:979219206300106787": {
+"desc": "查 Lidraughts 棋手、對局與賽事統計。"
+},
+"dc:841879090038177792": {
+"desc": "Emobotji：把文字轉表情，沒 Nitro 也能用。"
+},
+"dc:805342184748220426": {
+"desc": "InviteManager：統計與管理邀請。"
+},
+"gh:Open-Trader/opentrader": {
+"desc": "開源交易 bot：DCA 與網格策略，附介面。"
+},
+"gh:wquguru/nof0": {
+"desc": "開源 AI 交易競技場，可跑並比較多個 LLM agent。"
+},
+"gh:wanikua/danghuangshang": {
+"desc": "多智能體協作系統，可部署與協調專職 agent。"
+},
+"gh:FloatTech/ZeroBot-Plugin": {
+"desc": "基於 ZeroBot 的 OneBot 插件。"
+},
+"gh:takayama-lily/oicq": {
+"desc": "Node.js 的騰訊 QQ Bot 函式庫。"
+},
+"gh:CodeXBotz/File-Sharing-Bot": {
+"desc": "儲存貼文與文件的 Telegram bot，可用特殊連結存取。"
+},
+"gh:nickoala/telepot": {
+"desc": "Python 的 Telegram Bot API 框架。"
+},
+"gh:V4NSH4J/discord-mass-DM-GO": {
+"desc": "Go 寫的 Discord 自動化工具，可大量發送訊息（易被視為騷擾）。"
+},
+"gh:botuniverse/onebot": {
+"desc": "OneBot：統一的聊天機器人介面標準。"
+},
+"gh:eritislami/evobot": {
+"desc": "EvoBot：TypeScript 音樂 bot，支援 20+ 語言在地化。"
+},
+"gh:kyubotics/coolq-http-api": {
+"desc": "讓 CoolQ 透過 HTTP／WebSocket 收發事件與 API。"
+},
+"gh:openai/gpt-discord-bot": {
+"desc": "Python 範例 bot：接 completions API 對話，並用 moderations API 過濾訊息。"
+},
+"gh:hexsum/Mojo-Webqq": {
+"desc": "Perl 寫的 WebQQ／SmartQQ 客戶端框架（已停止維護）。"
+},
+"gh:discordjs/guide": {
+"desc": "discord.js 指南的社群版本。"
+},
+"gh:AnIdiotsGuide/discordjs-bot-guide": {
+"desc": "新手友善的 discord.js 入門指南。"
+},
+"gh:Mrs4s/MiraiGo": {
+"desc": "QQ 協議的 Go 實作（移植自 mirai）。"
+},
+"gh:gys619/Thread": {
+"desc": "預留佔位描述。"
+},
+"gh:mamoe/mirai-console": {
+"desc": "高效的 mirai QQ 機器人控制台。"
+},
+"gh:CMHopeSunshine/LittlePaimon": {
+"desc": "小派蒙：原神主題 QQ bot，UID 查詢、抽卡分析、攻略圖鑑與群管。"
+},
+"gh:Androz2091/AtlantaBot": {
+"desc": "有網頁後台、13 萬用戶在用的 Discord bot。"
+},
+"gh:clansty/Q2TG": {
+"desc": "QQ 與 Telegram 群互轉 bot。"
+},
+"gh:Rapptz/RoboDanny": {
+"desc": "作者自用伺服器的 Discord bot。"
+},
+"gh:saiteja-madha/discord-js-bot": {
+"desc": "discord.js v14 綜合 bot：管理、音樂、工單與翻譯。"
+},
+"gh:Javacord/Javacord": {
+"desc": "Java 寫 Discord bot 的易用多執行緒函式庫。"
+},
+"gh:Kyomotoi/ATRI": {
+"desc": "ATRI 專案（go-cqhttp ＋ NoneBot2）。"
+},
+"gh:discordx-ts/discordx": {
+"desc": "用 TypeScript 與裝飾器寫 Discord bot。"
+},
+"gh:SanjaySunil/BetterDiscordPanel": {
+"desc": "自架的 Discord bot：訊息管理與自動化。"
+},
+"gh:samuelscheit/discord-bot-client": {
+"desc": "Discord 修改版客戶端，支援 bot 登入。"
+},
+"gh:KevinNovak/Discord-Bot-TypeScript-Template": {
+"desc": "TypeScript 寫的 discord.js bot 範本。"
+},
+"gh:ChristopherBThai/Discord-OwO-Bot": {
+"desc": "追蹤 OwO 的 bot。"
+},
+"dc:710121869818331268": {
+"desc": "Erza：管理、娛樂、音樂與存錢功能。"
+},
+"dc:1023272141501767792": {
+"desc": "配對 bot，找同好、交友或約會。"
+},
+"dc:756856376201969716": {
+"desc": "Partycord：成員自助建立臨時私人語音頻道。"
+},
+"dc:962444732229898300": {
+"desc": "全方位 bot：社群動態追蹤到管理一手包。"
+},
+"dc:281486759332806658": {
+"desc": "幫你處理雜務的簡易 bot。"
+},
+"dc:877644741339144244": {
+"desc": "資訊科技向 bot：查技术問題，附 Linux 工具。"
+},
+"dc:614495694769618944": {
+"desc": "新番通知、反應身分組、Reddit 動態與抽獎。"
+},
+"dc:796646075321679912": {
+"desc": "桌遊 Aborea 的輔助 bot，取代角色表。"
+},
+"dc:407903863778312196": {
+"desc": "SnailBot：新聞與工具型 bot，讓大小社群掌握時事。"
+},
+"dc:358598636436979713": {
+"desc": "Geometry Dash 玩家最常用的 Discord bot。"
+},
+"dc:921741299374239744": {
+"desc": "Phasmophobia 的輔助工具與挑戰。"
+},
+"dc:721772274830540833": {
+"desc": "聽 VK 音樂的 bot。"
+},
+"dc:698073745876582482": {
+"desc": "最容易上手的 Discord bot，主打維持良好風氣。"
+},
+"dc:924540290461736971": {
+"desc": "Watcher：監控其他 bot／網站的上線狀態。"
+},
+"dc:728115804826239017": {
+"desc": "Chai：Fortnite 主題 bot，含驗證、爆料、商店與 oAuth。"
+},
+"_meta": {
+"provider": "hand",
+"lang": "zh-Hant",
+"count": 469,
+"note": "人工翻譯的功能說明，不是逐字翻譯"
+}
+}

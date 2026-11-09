@@ -217,7 +217,7 @@
 <script>
 (function(){
   'use strict';
-  var S = { all:[], plat:'', cat:'', q:'', sort:'score', showQ:false };
+  var S = { zh:{}, all:[], plat:'', cat:'', q:'', sort:'score', showQ:false };
   var PC = { 'Discord':'#5865f2', 'Telegram':'#2a9dee', 'GitHub':'#6b4ea8', 'QQ':'#12b7f5', '多平台':'#6b7280', '人工核對':'#b3541e' };
   var LBL = { github:'GitHub', discord:'Discord', telegram:'Telegram', curated:'人工核對' };
   var $ = function(id){ return document.getElementById(id); };
@@ -231,6 +231,14 @@
     return PC[x.platform] || PC['多平台'];
   }
 
+  function descOf(x){
+    var z = S.zh && S.zh[x.id] && S.zh[x.id].desc;
+    var d = x.desc && x.desc.trim();
+    if (d) return z || d;
+    var cat = x.category ? ('分類：' + x.category) : '';
+    return z || (cat ? cat + '（原專案未寫描述）' : '原專案未寫描述');
+  }
+
   function filtered(){
     var list = S.all.filter(function(x){
       if (x.quarantined && !S.showQ) return false;
@@ -238,7 +246,7 @@
       if (S.cat && x.category !== S.cat) return false;
       if (S.q){
         var q = S.q.toLowerCase();
-        if ((x.name||'').toLowerCase().indexOf(q) < 0 && (x.desc||'').toLowerCase().indexOf(q) < 0) return false;
+        if ((x.name||'').toLowerCase().indexOf(q) < 0 && descOf(x).toLowerCase().indexOf(q) < 0) return false;
       }
       return true;
     });
@@ -276,7 +284,7 @@
       html += '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener" style="--sc:' + sc + '">' +
         '<div class="rank">' + (i+1) + '</div>' +
         '<div class="nm"><div class="name">' + esc(x.name) + (x.verified ? '<span class="vh">已驗證</span>' : '') + (x.quarantined ? '<span class="vh" style="background:#fbe9e7;color:#b3261e">已隔離</span>' : '') + '</div>' +
-          '<div class="desc">' + esc(x.desc || (x.category ? x.category : '—')) + '</div></div>' +
+          '<div class="desc">' + esc(descOf(x)) + '</div></div>' +
         '<div class="pf"><span class="dot"></span>' + esc(platOf(x)) + '</div>' + metric(x) +
         '<div class="score"><span class="v">' + (x.score ? x.score.toFixed(0) : '—') + '</span>' +
           '<span class="bar"><i style="width:' + Math.max(2, Math.min(100, +x.score||0)) + '%"></i></span></div>' +
@@ -404,7 +412,11 @@
 
   $('state').hidden = false; $('state').textContent = '載入榜單資料…';
 
-  fetch('../data/bots.json?t=' + Date.now(), { cache:'no-store' })
+  fetch('../data/bots-zh.json?t=' + Date.now(), { cache:'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j) { S.zh = j; } })
+    .catch(function () {})
+    .then(function () { return fetch('../data/bots.json?t=' + Date.now(), { cache:'no-store' }); })
     .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function(d){
       S.all = d.items || [];
