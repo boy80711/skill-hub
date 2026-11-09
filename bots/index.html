@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bot 榜單 · 跨平台綜合排名</title>
+<style>
+  :root{
+    --paper:#f7f7f4; --ink:#12171b; --muted:#5c6670; --line:#dcdfe1;
+    --dc:#5865f2; --tg:#2a9dee; --gh:#6b4ea8; --qq:#12b7f5; --cu:#b3541e;
+    --accent:#1b4d6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1{font-size:clamp(26px,4.4vw,40px);margin:0 0 10px;letter-spacing:.01em;font-family:"Songti SC","Source Han Serif SC",Georgia,serif}
+  h2{font-size:clamp(18px,2.4vw,23px);margin:34px 0 8px;font-family:"Songti SC","Source Han Serif SC",Georgia,serif}
+  h3{font-size:16px;margin:0 0 4px}
+  p{margin:0 0 12px;max-width:46em}
+  header{padding:44px 0 20px;border-bottom:2px solid var(--ink)}
+  .lede{color:var(--muted);max-width:44em}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:22px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kpis div{padding:12px 10px;border-right:1px solid var(--line)}
+  .kpis div:last-child{border-right:none}
+  .kpis .n{font-size:20px;font-family:ui-monospace,Menlo,monospace}
+  .kpis .t{font-size:12px;color:var(--muted)}
+
+  .toolbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:14px 0 10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .search{flex:1 1 240px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;padding:8px 10px}
+  .search input{flex:1;min-width:0;border:0;outline:0;font-size:16px;background:transparent}
+  select{border:1px solid var(--line);background:#fff;padding:9px 10px;font-size:14px;color:var(--ink);min-width:0}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;width:100%}
+  .chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;padding:7px 12px;font-size:13px;cursor:pointer;color:var(--ink)}
+  .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c,#888)}
+  .chip[aria-pressed="true"]{border-color:var(--c,var(--ink));box-shadow:inset 0 0 0 1px var(--c,var(--ink))}
+  .chip .c{font-family:ui-monospace,Menlo,monospace;color:var(--muted);font-size:12px}
+
+  .board{margin-top:6px}
+  .row{display:grid;grid-template-columns:52px 1fr 110px 110px 56px;gap:12px;align-items:center;padding:13px 10px;border-bottom:1px solid var(--line);color:inherit;position:relative}
+  .row::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:var(--sc,#888)}
+  .row:hover{background:#fff}
+  .rank{font-family:ui-monospace,Menlo,monospace;color:var(--muted);text-align:right;font-size:14px}
+  .nm{min-width:0}
+  .nm .name{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nm .desc{font-size:12.5px;color:var(--muted);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .pf{font-size:12px;display:inline-flex;align-items:center;gap:5px;color:var(--sc);white-space:nowrap}
+  .pf .dot{width:7px;height:7px;border-radius:50%;background:var(--sc)}
+  .metric{text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:13px;font-variant-numeric:tabular-nums}
+  .metric small{display:block;font-size:11px;color:var(--muted);font-family:inherit}
+  .score{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  .bar{width:56px;height:5px;background:#e4e6e8}
+  .bar i{display:block;height:5px;background:var(--sc);width:0}
+  .score .v{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+  .vh{font-size:11px;border:1px solid var(--sc);color:var(--sc);padding:0 4px;margin-left:5px;vertical-align:1px}
+
+  .state{padding:40px 10px;color:var(--muted);font-size:14px}
+  .note{font-size:12.5px;color:var(--muted);margin-top:14px;max-width:60em}
+
+  .pit{counter-reset:p;margin:18px 0 0;padding:0;list-style:none}
+  .pit li{counter-increment:p;padding:16px 0 16px 44px;border-top:1px solid var(--line);position:relative}
+  .pit li::before{content:counter(p,decimal-leading-zero);position:absolute;left:0;top:18px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--cu)}
+  .pit .why{color:var(--muted);font-size:13.5px;margin:5px 0 0}
+  .pit .do{margin:8px 0 0;font-size:13.5px;background:#fff;border-left:2px solid var(--accent);padding:9px 12px}
+
+  .dy{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+  .dy a{display:block;background:#fff;border:1px solid var(--line);padding:12px;font-size:13.5px}
+  .dy .t{font-weight:600;display:block;margin-bottom:4px}
+  .dy .m{color:var(--muted);font-size:12px}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+  @media (max-width:900px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .kpis div{border-bottom:1px solid var(--line)}
+    .row{display:flex;flex-wrap:wrap;gap:6px 10px}
+    .rank{width:26px}
+    .nm{flex:1 1 58%;order:1}
+    .score{order:2;flex-direction:row;align-items:center;gap:6px}
+    .pf{order:3}
+    .metric{order:4;text-align:left}
+    .dy{grid-template-columns:1fr}
+  }
+  @media (max-width:520px){
+    .toolbar p{display:none}
+    .nm{flex-basis:100%}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mono" style="font-size:12px;color:var(--muted);margin-bottom:14px">BOT BOARD · 資料更新 <span id="stamp">—</span></div>
+  <h1>跨平台 Bot 榜單</h1>
+  <p class="lede">GitHub 星數、Discord 伺服器數、Telegram 目錄排序、以及人工核對的第三方榜單，合成一個 0–100 的綜合分。同一頁排序、篩平台、看原始指標。</p>
+  <div class="kpis">
+    <div><div class="n" id="k-total">—</div><div class="t">收錄 bot</div></div>
+    <div><div class="n" id="k-dc">—</div><div class="t">Discord</div></div>
+    <div><div class="n" id="k-tg">—</div><div class="t">Telegram</div></div>
+    <div><div class="n" id="k-gh">—</div><div class="t">GitHub 開源</div></div>
+    <div><div class="n" id="k-cu">—</div><div class="t">人工核對</div></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search"><input id="q" type="search" placeholder="搜尋名稱或描述…" aria-label="搜尋"></div>
+  <select id="cat" aria-label="分類"><option value="">全部分類</option></select>
+  <select id="sort" aria-label="排序">
+    <option value="score">綜合分 高→低</option>
+    <option value="users">使用人數 高→低</option>
+    <option value="stars">星數 高→低</option>
+    <option value="name">名稱 A→Z</option>
+  </select>
+  <div class="chips" id="chips"></div>
+</div>
+
+<div class="board" id="board"></div>
+<div class="state" id="state" hidden></div>
+<p class="note" id="note"></p>
+
+<h2>Bot 避坑指南</h2>
+<p>跟 Skill 不同，bot 的坑大多不在「裝太多」，而在<strong>你把它請進了你的群組與對話</strong>。以下每一條都有實測或官方文件依據。</p>
+<ol class="pit">
+  <li>
+    <h3>訊息會先經過作者伺服器，才到模型</h3>
+    <p class="why">所有第三方 bot 都是「你 → bot 作者的伺服器 → 模型」。也就是說，你貼的截圖、文件、對話，作者那一端看得到。</p>
+    <p class="do">做法：個資、病歷、公司文件不要丟；先看它有沒有隱私政策與「清除歷史」入口，兩者都沒有就別用於工作群。</p>
+  </li>
+  <li>
+    <h3>權限給太大，等於把伺服器交出去</h3>
+    <p class="why">很多 bot 預設要 Administrator，實際只需要「發訊息＋管理訊息」。被盜帳號或被供應鏈攻擊時，權限就是你損失的上限。</p>
+    <p class="do">做法：用最小權限邀請；把它放在專用頻道；管理類 bot 只給管管群，不要全伺服器。</p>
+  </li>
+  <li>
+    <h3>免費層幾乎都有上限，官方文案不會寫</h3>
+    <p class="why">常見是每日 10–30 則就碰壁、或免費層偷偷換成小模型。第三方目錄的實測就抓到「同一題免費層回答的模型版本不同」。</p>
+    <p class="do">做法：進群前先用 /help 或置頂訊息確認上限；長期天天用，直接比價官方訂閱，別為了包裝付更貴。</p>
+  </li>
+  <li>
+    <h3>「同名不同物」—— 認 handle，不要認名字</h3>
+    <p class="why">EggBot、Alice、ChatGPT 這類名字在 Telegram／Discord 上各有幾十個同名變體，山寨版會抄名字與頭像。</p>
+    <p class="do">做法：只從官方網站或目錄的驗證標記進入；記 @handle 與 client ID，不記顯示名稱。</p>
+  </li>
+  <li>
+    <h3>「人數」可以買，星數不會</h3>
+    <p class="why">Discord 伺服器數與 Telegram 月活是自報或可刷的；GitHub 星數相對難刷，但也可以買。</p>
+    <p class="do">做法：三個指標交叉看，再看最後更新時間——半年沒動的，再紅也別裝。</p>
+  </li>
+  <li>
+    <h3>清單型專案不等於可用的 bot</h3>
+    <p class="why">GitHub 上大量 repo 叫 xxx-bot，但其實是框架、模板或被封存的舊專案（Discord 改過 API 與意圖權限，老 bot 直接失效）。</p>
+    <p class="do">做法：看 pushed_at 是否在近 60 天內、README 有沒有「已停止維護」、issue 有沒有回。</p>
+  </li>
+  <li>
+    <h3>別把 token 貼進對話或放進公開 repo</h3>
+    <p class="why">bot token 等於完整控制權。放到公開 repo 幾分鐘內就會被掃到（GitHub 有 secret scanning，但你自己先外洩就來不及）。</p>
+    <p class="do">做法：一律環境變數／secret；懷疑外洩就立刻在 BotFather／Developer Portal 重置。</p>
+  </li>
+  <li>
+    <h3>交易、空投、代幣類 bot 先假設是詐騙</h3>
+    <p class="why">這類 bot 的最終一步幾乎都是「連接錢包」或「授權轉帳」。一旦 approve，資產可被清空，而且無法撤回。</p>
+    <p class="do">做法：不連錢包、不簽名、不輸入助記詞；真的要用，用一次性小額錢包。</p>
+  </li>
+  <li>
+    <h3>群組裡的 bot 也會被「提示注入」</h3>
+    <p class="why">官方文件已明講：會讀外部內容的 AI，可能被藏在網頁／訊息裡的指令操縱（prompt injection）。群組 bot 讀誰都能貼的訊息，風險更高。</p>
+    <p class="do">做法：不要讓有工具權限的 bot 直接讀陌生人的訊息；重要操作留人工確認。</p>
+  </li>
+  <li>
+    <h3>自架比訂閱安全，但要自己扛維護</h3>
+    <p class="why">自架（例如 Egg Shen Bot 這類開源專案）資料留自己機器，但 token、依賴、API 變更都要你顧。</p>
+    <p class="do">做法：只自架仍在更新的專案；用獨立帳號與獨立機器；先在小群測試再上主群。</p>
+  </li>
+</ol>
+
+<h2>抖音上在講的 bot</h2>
+<p>抖音沒有可查的 bot 榜，只有影片。這裡只放「在講哪些 bot」的線索，數字不進上面的排名。</p>
+<div class="dy" id="dy"></div>
+
+<footer>
+  <p>來源與口徑：<strong>GitHub</strong> 以 stars 為主（8 組搜尋主題，各取星數前列）；<strong>Discord</strong> 用 discord.bots.gg 公開 API 的 guildCount（伺服器數）；<strong>Telegram</strong> 用 telegram-store 目錄排序（無公開訂閱數）；<strong>人工核對</strong> 為 top.gg 評分與第三方實測分數，逐筆附出處連結。</p>
+  <p>綜合分為跨來源可比的 0–100：人數／星數取對數正規化，再加重驗證與近期活躍。它<strong>不是</strong>任何官方排名，只用來在同一頁把不同口徑的東西排在一起。原始指標請看每列的副標。</p>
+  <p class="mono" style="color:var(--muted)">生成：<a href="https://github.com/boy80711/skill-hub" target="_blank" rel="noopener">boy80711/skill-hub</a> · scripts/collect-bots.js</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var S = { all:[], plat:'', cat:'', q:'', sort:'score' };
+  var PC = { 'Discord':'#5865f2', 'Telegram':'#2a9dee', 'GitHub':'#6b4ea8', 'QQ':'#12b7f5', '多平台':'#6b7280', '人工核對':'#b3541e' };
+  var LBL = { github:'GitHub', discord:'Discord', telegram:'Telegram', curated:'人工核對' };
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function nf(v){ var n = Math.round(+n||0); return n >= 1e4 ? (n/1e4).toFixed(n>=1e6?1:2).replace(/\.?0+$/,'') + '萬' : String(n); }
+
+  function platOf(x){ return x.source === 'curated' ? (x.platform || '人工核對') : (x.source === 'github' ? 'GitHub' : LBL[x.source]); }
+  function colorOf(x){
+    if (x.source === 'curated') return PC['人工核對'];
+    if (x.source === 'github') return PC['GitHub'];
+    return PC[x.platform] || PC['多平台'];
+  }
+
+  function filtered(){
+    var list = S.all.filter(function(x){
+      if (S.plat && platOf(x) !== S.plat) return false;
+      if (S.cat && x.category !== S.cat) return false;
+      if (S.q){
+        var q = S.q.toLowerCase();
+        if ((x.name||'').toLowerCase().indexOf(q) < 0 && (x.desc||'').toLowerCase().indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    var k = S.sort;
+    list.sort(function(a,b){
+      if (k === 'name') return String(a.name).localeCompare(String(b.name),'zh-Hant');
+      if (k === 'users') return (b.users||0) - (a.users||0);
+      if (k === 'stars') return (b.stars||0) - (a.stars||0);
+      return (b.score||0) - (a.score||0);
+    });
+    return list;
+  }
+
+  function metric(x){
+    if (x.stars) return '<div class="metric">' + nf(x.stars) + '<small>GitHub 星</small></div>';
+    if (x.users) return '<div class="metric">' + nf(x.users) + '<small>' + (x.platform === 'Discord' ? '伺服器數' : '月活') + '</small></div>';
+    if (x.rankInSource) return '<div class="metric">#' + x.rankInSource + '<small>目錄排序</small></div>';
+    return '<div class="metric">—</div>';
+  }
+
+  function render(){
+    var list = filtered();
+    if (!list.length){ $('board').innerHTML = ''; $('state').hidden = false; $('state').textContent = '沒有符合的 bot，換個關鍵字或平台試試。'; return; }
+    $('state').hidden = true;
+    var html = '';
+    for (var i = 0; i < list.length; i++){
+      var x = list[i];
+      var sc = colorOf(x);
+      html += '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener" style="--sc:' + sc + '">' +
+        '<div class="rank">' + (i+1) + '</div>' +
+        '<div class="nm"><div class="name">' + esc(x.name) + (x.verified ? '<span class="vh">已驗證</span>' : '') + '</div>' +
+          '<div class="desc">' + esc(x.desc || (x.category ? x.category : '—')) + '</div></div>' +
+        '<div class="pf"><span class="dot"></span>' + esc(platOf(x)) + '</div>' + metric(x) +
+        '<div class="score"><span class="v">' + (x.score ? x.score.toFixed(0) : '—') + '</span>' +
+          '<span class="bar"><i style="width:' + Math.max(2, Math.min(100, +x.score||0)) + '%"></i></span></div>' +
+      '</a>';
+    }
+    $('board').innerHTML = html;
+  }
+
+  function renderChips(){
+    var counts = {};
+    S.all.forEach(function(x){ var p = platOf(x); counts[p] = (counts[p]||0) + 1; });
+    var keys = Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; });
+    var html = '<button class="chip" data-p="" aria-pressed="' + (!S.plat) + '" style="--c:#12171b">全部<span class="c">' + S.all.length + '</span></button>';
+    keys.forEach(function(p){
+      html += '<button class="chip" data-p="' + esc(p) + '" aria-pressed="' + (S.plat === p) + '" style="--c:' + (PC[p]||'#6b7280') + '">' +
+        '<span class="dot"></span>' + esc(p) + '<span class="c">' + counts[p] + '</span></button>';
+    });
+    $('chips').innerHTML = html;
+    $('chips').querySelectorAll('.chip').forEach(function(b){
+      b.addEventListener('click', function(){ S.plat = b.getAttribute('data-p'); renderChips(); render(); });
+    });
+  }
+
+  function renderCats(){
+    var cats = {};
+    S.all.forEach(function(x){ if (x.category) cats[x.category] = (cats[x.category]||0)+1; });
+    var opts = Object.keys(cats).sort(function(a,b){ return cats[b]-cats[a]; })
+      .map(function(c){ return '<option value="' + esc(c) + '">' + esc(c) + '（' + cats[c] + '）</option>'; }).join('');
+    $('cat').innerHTML = '<option value="">全部分類</option>' + opts;
+  }
+
+  function kpis(){
+    var c = { total: S.all.length, Discord:0, Telegram:0, GitHub:0, curated:0 };
+    S.all.forEach(function(x){
+      if (x.source === 'github') c.GitHub++;
+      else if (x.source === 'discord') c.Discord++;
+      else if (x.source === 'telegram') c.Telegram++;
+      else if (x.source === 'curated') c.curated++;
+    });
+    $('k-total').textContent = c.total.toLocaleString();
+    $('k-dc').textContent = c.Discord.toLocaleString();
+    $('k-tg').textContent = c.Telegram.toLocaleString();
+    $('k-gh').textContent = c.GitHub.toLocaleString();
+    $('k-cu').textContent = c.curated.toLocaleString();
+  }
+
+  function douyin(){
+    // 抖音只放線索卡片，不進排名
+    var q = encodeURIComponent('AI 机器人 bot 推荐');
+    $('dy').innerHTML =
+      '<a href="https://www.douyin.com/search/' + q + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：AI 機器人推薦</span><span class="m">平台內搜尋，結果為影片，不是可安裝的 bot</span></a>' +
+      '<a href="https://www.douyin.com/search/' + encodeURIComponent('tg bot 机器人') + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：TG bot</span><span class="m">多為搬運目錄站內容，數字不可信</span></a>' +
+      '<a href="https://www.douyin.com/search/' + encodeURIComponent('discord bot 搭建') + '" target="_blank" rel="noopener"><span class="t">抖音搜尋：Discord bot 搭建</span><span class="m">自架教學為主，適合想看部署影片的人</span></a>';
+  }
+
+  function bind(){
+    $('q').addEventListener('input', function(e){ S.q = e.target.value.trim(); render(); });
+    $('cat').addEventListener('change', function(e){ S.cat = e.target.value; render(); });
+    $('sort').addEventListener('change', function(e){ S.sort = e.target.value; render(); });
+  }
+
+  $('state').hidden = false; $('state').textContent = '載入榜單資料…';
+
+  fetch('../data/bots.json?t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(d){
+      S.all = d.items || [];
+      $('stamp').textContent = (d.generatedAt || '').slice(0,16).replace('T',' ');
+      kpis(); renderCats(); renderChips(); bind(); douyin(); render();
+    })
+    .catch(function(e){
+      $('state').textContent = '讀不到 data/bots.json（' + e.message + '）。請先跑 node scripts/collect-bots.js 產生資料。';
+    });
+})();
+</script>
+</body>
+</html>
