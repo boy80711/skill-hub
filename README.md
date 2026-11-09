@@ -26,6 +26,36 @@ DISCORD_LIMIT=300 TG_PAGES=8 node scripts/collect-bots.js   # 可調數量
 - **抖音**：`data/bots-douyin.json`，只放「在講哪些 bot」的線索卡與原影片連結，讚數不進排名（影片數字未核實）。
 - 綜合分 0–100：人數／星數取對數正規化，再加重驗證與近期活躍。各來源原始指標不同，頁面上分欄顯示，不混算。
 
+## Bot 聚合分析與模型適配（`data/bots-analysis.json`）
+
+```bash
+node scripts/analyze-bots.js
+```
+
+把榜單按用途分成 9 組（開源框架、角色扮演、社群管理、交易、翻譯、工具查詢、內容生成、AI 聊天助手、多模型聚合），逐組給「建議模型、成本、為什麼」。分類是**依用途與描述做規則判斷**，不是 bot 宣稱支援的模型清單。
+
+## 源碼安全掃描（`/risk/`、`data/risk-report.json`）
+
+```bash
+node scripts/scan-risk.js                 # 4～6 個 worker 可並跑：
+STRIDE=6 OFFSET=0 node scripts/scan-risk.js   # OFFSET 0..5
+MERGE=1 node scripts/scan-risk.js         # 合併各 worker 結果 → data/risk-report.json
+```
+
+- 只掃**有公開 GitHub 倉庫**的項目：`codeload.github.com` 下載 tarball、解到 `.scan-tmp/`、正則掃描，**不執行任何抓回來的程式碼**。
+- 依檔案層級給權重：使用者會實際執行的檔案（安裝腳本、`bin/`、`Dockerfile`、`package.json`）命中才算高風險；一般原始碼降一級；CI／測試／範例只記錄不升等級。
+- 規則涵蓋：遠端腳本餵 shell、混淆後執行（base64→eval）、讀 SSH／雲端憑證、外傳端點、把環境變數送出、破壞性刪除、排程／開機持久化、提示注入、零寬隱藏字元、postinstall 連網、命令拼字注入。
+- 進度寫在 `.scan-cache/`，可中斷續跑。
+- 覆蓋率誠實標示：閉源 bot 標「無法掃描」；命中不等於惡意，未命中也不等於安全。
+
+## 介面翻譯覆蓋測試
+
+```bash
+node scripts/test-i18n.js      # 產出 data/i18n-coverage.json
+```
+
+比對 11 種語言的 key 是否齊全、是否有殘留中文、程式碼用到但字典沒有的 key。
+
 ## 來源管理（新增／移除商店）
 
 右上角「商店來源」按鈕開面板：

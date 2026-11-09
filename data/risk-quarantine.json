@@ -1,0 +1,27 @@
+{
+ "generatedAt": "2026-11-09T21:34:38.070Z",
+ "total": 2,
+ "policy": "高風險項目預設從榜單隱藏（隔離），不刪資料；確認後可從 data/bots.json 移除該筆，或把 quarantined 改回 false。",
+ "items": [
+  {
+   "id": "gh:wanikua/danghuangshang",
+   "name": "danghuangshang",
+   "platform": "Discord",
+   "url": "https://github.com/wanikua/danghuangshang",
+   "reasons": [
+    "寫入開機／排程持久化（scripts/setup-autostart.sh:41）"
+   ],
+   "action": "hold"
+  },
+  {
+   "id": "gh:V4NSH4J/discord-mass-DM-GO",
+   "name": "discord-mass-DM-GO",
+   "platform": "Discord",
+   "url": "https://github.com/V4NSH4J/discord-mass-DM-GO",
+   "reasons": [
+    "隱藏字元（零寬／雙向控制字）（input/received.txt:1）"
+   ],
+   "action": "remove"
+  }
+ ]
+}

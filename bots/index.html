@@ -123,6 +123,30 @@
 <div class="state" id="state" hidden></div>
 <p class="note" id="note"></p>
 
+<h2>聚合分析：這 791 個 bot 到底在幹什麼</h2>
+<p>不是把名單丟給你，而是先攤開看結構：哪個平台在長、哪種用途最多、以及最關鍵的那一題——<strong>它該接哪個模型</strong>。同一頁往下就能對照。</p>
+<div class="an">
+  <div class="anbox"><h3>平台分布</h3><div id="anPlatform"></div></div>
+  <div class="anbox"><h3>綜合分分布</h3><div id="anBands"></div></div>
+</div>
+
+<h3 style="margin-top:22px">適合搭配哪一個模型（按用途分組）</h3>
+<p class="note" style="border-left-color:var(--accent)">這一欄是<strong>依用途推的建議</strong>，不是 bot 宣稱支援的模型清單。實際能接什麼，以它自己的文件為準。</p>
+<div class="fitwrap">
+  <table class="fit">
+    <colgroup><col style="width:20%"><col style="width:9%"><col style="width:26%"><col style="width:11%"><col style="width:34%"></colgroup>
+    <thead><tr><th>用途分組</th><th>數量</th><th>建議模型</th><th>成本</th><th>為什麼</th></tr></thead>
+    <tbody id="fitBody"><tr><td colspan="5" style="color:#5c6670">載入中…</td></tr></tbody>
+  </table>
+</div>
+<p class="note" id="fitNote"></p>
+
+<h2>源碼安全掃描</h2>
+<p>榜單裡<strong>有公開倉庫的項目，我整包抓下來、只讀不執行</strong>，掃這幾類：遠端腳本直接餵 shell、混淆後執行、讀 SSH／雲端憑證、往外部端點送資料、破壞性刪除、持久化、提示注入。命中不等於惡意，但值得你決定留著、隔離、還是刪掉。</p>
+<div class="riskbox" id="riskBox"><div class="rk"><b>—</b><span>掃描中</span></div></div>
+<p id="riskLine" class="note"></p>
+<p><a href="../risk/">→ 看完整報告（含檔名、行號與命中片段，可一鍵篩出高風險）</a></p>
+
 <h2>Bot 避坑指南</h2>
 <p>跟 Skill 不同，bot 的坑大多不在「裝太多」，而在<strong>你把它請進了你的群組與對話</strong>。以下每一條都有實測或官方文件依據。</p>
 <ol class="pit">
@@ -192,7 +216,7 @@
 <script>
 (function(){
   'use strict';
-  var S = { all:[], plat:'', cat:'', q:'', sort:'score' };
+  var S = { all:[], plat:'', cat:'', q:'', sort:'score', showQ:false };
   var PC = { 'Discord':'#5865f2', 'Telegram':'#2a9dee', 'GitHub':'#6b4ea8', 'QQ':'#12b7f5', '多平台':'#6b7280', '人工核對':'#b3541e' };
   var LBL = { github:'GitHub', discord:'Discord', telegram:'Telegram', curated:'人工核對' };
   var $ = function(id){ return document.getElementById(id); };
@@ -208,6 +232,7 @@
 
   function filtered(){
     var list = S.all.filter(function(x){
+      if (x.quarantined && !S.showQ) return false;
       if (S.plat && platOf(x) !== S.plat) return false;
       if (S.cat && x.category !== S.cat) return false;
       if (S.q){
@@ -243,7 +268,7 @@
       var sc = colorOf(x);
       html += '<a class="row" href="' + esc(x.url) + '" target="_blank" rel="noopener" style="--sc:' + sc + '">' +
         '<div class="rank">' + (i+1) + '</div>' +
-        '<div class="nm"><div class="name">' + esc(x.name) + (x.verified ? '<span class="vh">已驗證</span>' : '') + '</div>' +
+        '<div class="nm"><div class="name">' + esc(x.name) + (x.verified ? '<span class="vh">已驗證</span>' : '') + (x.quarantined ? '<span class="vh" style="background:#fbe9e7;color:#b3261e">已隔離</span>' : '') + '</div>' +
           '<div class="desc">' + esc(x.desc || (x.category ? x.category : '—')) + '</div></div>' +
         '<div class="pf"><span class="dot"></span>' + esc(platOf(x)) + '</div>' + metric(x) +
         '<div class="score"><span class="v">' + (x.score ? x.score.toFixed(0) : '—') + '</span>' +
@@ -262,9 +287,14 @@
       html += '<button class="chip" data-p="' + esc(p) + '" aria-pressed="' + (S.plat === p) + '" style="--c:' + (PC[p]||'#6b7280') + '">' +
         '<span class="dot"></span>' + esc(p) + '<span class="c">' + counts[p] + '</span></button>';
     });
+    var qn = S.all.filter(function(x){ return x.quarantined; }).length;
+    if (qn) {
+      html += '<button class="chip" data-q="1" aria-pressed="' + S.showQ + '" style="--c:#b3261e">已隔離<span class="c">' + qn + '</span></button>';
+    }
     $('chips').innerHTML = html;
     $('chips').querySelectorAll('.chip').forEach(function(b){
-      b.addEventListener('click', function(){ S.plat = b.getAttribute('data-p'); renderChips(); render(); });
+      if (b.getAttribute('data-q')) b.addEventListener('click', function(){ S.showQ = !S.showQ; renderChips(); render(); });
+      else b.addEventListener('click', function(){ S.plat = b.getAttribute('data-p'); renderChips(); render(); });
     });
   }
 
@@ -309,6 +339,55 @@
       .catch(function(){ $('dy').innerHTML = '<p class="note">抖音線索讀取失敗。</p>'; });
   }
 
+  function bars(el, rows, color){
+    var max = Math.max.apply(null, rows.map(function(r){ return r[1]; }).concat([1]));
+    el.innerHTML = rows.map(function(r){
+      var w = Math.round((r[1] / max) * 100);
+      return '<div class="bar"><span>' + esc(r[0]) + '</span><span class="track"><span class="fill" style="width:' + w + '%;background:' + (r[2] || color) + '"></span></span><span class="v">' + nf(r[1]) + '</span></div>';
+    }).join('');
+  }
+
+  function analysis(){
+    fetch('../data/bots-analysis.json?t=' + Date.now(), { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        var PC = { 'Discord':'#5865f2', 'Telegram':'#2a9dee', 'GitHub':'#6b4ea8', 'QQ':'#12b7f5', '多平台':'#b3541e' };
+        var plat = Object.keys(d.byPlatform).sort(function(a,b){ return d.byPlatform[b] - d.byPlatform[a]; })
+          .map(function(k){ return [k, d.byPlatform[k], PC[k] || '#1b4d6b']; });
+        bars($('anPlatform'), plat, '#1b4d6b');
+        var bd = Object.keys(d.bands).map(function(k){ return [k, d.bands[k], k === '90+' ? '#8c2f1f' : k === '80–89' ? '#b3541e' : '#4a6b7c']; });
+        bars($('anBands'), bd, '#4a6b7c');
+
+        $('fitBody').innerHTML = d.groups.map(function(g){
+          var lv = g.needLLM === true ? '<span style="color:#1b4d6b">需 LLM</span>' : g.needLLM === false ? '<span style="color:#6b7280">不需 LLM</span>' : '—';
+          return '<tr><td><strong>' + esc(g.label) + '</strong><br><span style="color:#5c6670;font-size:12px">' + esc(g.examples.slice(0,3).join('、')) + '</span></td>' +
+            '<td class="mono">' + nf(g.count) + '<br><span style="color:#5c6670;font-size:11px">' + g.share + '%</span></td>' +
+            '<td class="mdl">' + g.models.map(esc).join('<br>') + '<br>' + lv + '</td>' +
+            '<td>' + esc(g.cost) + '</td>' +
+            '<td>' + esc(g.why) + '</td></tr>';
+        }).join('');
+        $('fitNote').textContent = d.note + '　驗證標記 ' + d.verifiedShare + '%｜有公開源碼 ' + d.openShare + '%';
+      })
+      .catch(function(){});
+  }
+
+  function risksum(){
+    fetch('../data/risk-report.json?t=' + Date.now(), { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        var c = d.counts || {};
+        $('riskBox').innerHTML =
+          '<div class="rk"><b>' + nf(d.scanned) + '</b><span>已掃描倉庫</span></div>' +
+          '<div class="rk hi"><b>' + nf(c.high) + '</b><span>高風險</span></div>' +
+          '<div class="rk"><b>' + nf(c.med) + '</b><span>待覆核</span></div>' +
+          '<div class="rk"><b>' + nf(c.none) + '</b><span>無異常</span></div>';
+        $('riskLine').innerHTML = '掃描範圍：' + nf(d.catalogTotal) + ' 筆中 ' + nf(d.openSource) + ' 筆有公開倉庫，全部抓下來靜態掃描；其餘為閉源 bot，只能從權限判斷。' + esc(d.note || '');
+      })
+      .catch(function(){});
+  }
+
   function bind(){
     $('q').addEventListener('input', function(e){ S.q = e.target.value.trim(); render(); });
     $('cat').addEventListener('change', function(e){ S.cat = e.target.value; render(); });
@@ -322,7 +401,7 @@
     .then(function(d){
       S.all = d.items || [];
       $('stamp').textContent = (d.generatedAt || '').slice(0,16).replace('T',' ');
-      kpis(); renderCats(); renderChips(); bind(); douyin(); render();
+      kpis(); renderCats(); renderChips(); bind(); douyin(); analysis(); risksum(); render();
     })
     .catch(function(e){
       $('state').textContent = '讀不到 data/bots.json（' + e.message + '）。請先跑 node scripts/collect-bots.js 產生資料。';

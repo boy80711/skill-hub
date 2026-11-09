@@ -1,0 +1,351 @@
+{
+ "generatedAt": "2026-11-09T21:22:03.243Z",
+ "total": 791,
+ "byPlatform": {
+  "Telegram": 361,
+  "Discord": 351,
+  "多平台": 54,
+  "QQ": 25
+ },
+ "byCategory": {
+  "AI 助手": 47,
+  "角色扮演": 2,
+  "社群工具": 384,
+  "翻譯": 1,
+  "遊戲娛樂": 1,
+  "工具效率": 335,
+  "交易金融": 20,
+  "學習解題": 1
+ },
+ "bySource": {
+  "curated": 14,
+  "github": 157,
+  "discord": 300,
+  "telegram": 320
+ },
+ "bands": {
+  "90+": 6,
+  "80–89": 33,
+  "70–79": 99,
+  "60–69": 119,
+  "<60": 534
+ },
+ "verified": 302,
+ "openSource": 161,
+ "reachBig": 272,
+ "verifiedShare": 38.2,
+ "openShare": 20.4,
+ "bigShare": 34.4,
+ "groups": [
+  {
+   "key": "tool",
+   "label": "工具型查詢（機票／匯率／統計／遊戲數據）",
+   "count": 337,
+   "share": 42.6,
+   "needLLM": false,
+   "models": [
+    "不需要 LLM（API ＋ 規則）"
+   ],
+   "why": "這類 bot 的價值在資料源與通知時機，不在語言能力。接 LLM 只是多一層費用與延遲。",
+   "cost": "極低",
+   "examples": [
+    "EasyFortniteStats",
+    "WeKnora",
+    "OcelotBOT",
+    "ServerStats"
+   ],
+   "top": {
+    "name": "EasyFortniteStats",
+    "score": 85
+   }
+  },
+  {
+   "key": "assistant",
+   "label": "AI 聊天助手",
+   "count": 210,
+   "share": 26.5,
+   "needLLM": true,
+   "models": [
+    "日常：GPT-4o-mini / Gemini Flash",
+    "難題：GPT-4o / Claude Sonnet"
+   ],
+   "why": "這類 bot 的品質幾乎等於背後模型。日常問答用小模型省錢，需要長文推理時再切大模型。",
+   "cost": "低～中（看路由）",
+   "examples": [
+    "GPT4Telegram",
+    "Alice",
+    "*Purr*",
+    "chatbox"
+   ],
+   "top": {
+    "name": "GPT4Telegram",
+    "score": 96
+   }
+  },
+  {
+   "key": "moderation",
+   "label": "社群管理／邀請追蹤",
+   "count": 132,
+   "share": 16.7,
+   "needLLM": false,
+   "models": [
+    "不需要 LLM（規則型）",
+    "要摘要時：GPT-4o-mini / Gemini Flash"
+   ],
+   "why": "絕大多數是規則與資料庫操作，接 LLM 只會變慢變貴；只有「聊天摘要」「自動回覆」才需要小模型。",
+   "cost": "極低",
+   "examples": [
+    "QuantumBot",
+    "Invite Tracker",
+    "discord.js",
+    "whatsapp-web.js"
+   ],
+   "top": {
+    "name": "QuantumBot",
+    "score": 92.4
+   }
+  },
+  {
+   "key": "content",
+   "label": "內容生成（圖／影片／文案）",
+   "count": 29,
+   "share": 3.7,
+   "needLLM": true,
+   "models": [
+    "圖像：GPT-Image / Seedream / Midjourney",
+    "影片：Seedance / Veo",
+    "文案：GPT-4o / Gemini"
+   ],
+   "why": "生成品質取決於生成模型，不是聊天模型；編排與提示詞才交給 LLM。",
+   "cost": "中高（按張／按秒計價）",
+   "examples": [
+    "Syntx AI",
+    "Betty",
+    "Rythm",
+    "Jockie Music"
+   ],
+   "top": {
+    "name": "Syntx AI",
+    "score": 90
+   }
+  },
+  {
+   "key": "roleplay",
+   "label": "角色扮演／陪伴",
+   "count": 27,
+   "share": 3.4,
+   "needLLM": true,
+   "models": [
+    "Claude Sonnet",
+    "Gemini 2.5 Pro",
+    "GPT-4o"
+   ],
+   "why": "要吃長上下文與人格一致性，還要壓得住越界。上下文短、便宜的模型很容易「出戲」。",
+   "cost": "中高（每次對話都帶長角色設定）",
+   "examples": [
+    "Succubus",
+    "BoltBot",
+    "Eevee",
+    "RP Sentry"
+   ],
+   "top": {
+    "name": "Succubus",
+    "score": 94.4
+   }
+  },
+  {
+   "key": "framework",
+   "label": "開源框架（可自架）",
+   "count": 27,
+   "share": 3.4,
+   "needLLM": true,
+   "models": [
+    "自選：OpenAI / Claude / Gemini",
+    "本地：Ollama（Llama 3 / Qwen 3）"
+   ],
+   "why": "框架本身不帶模型，你接誰就是誰。想零成本、資料不出門就接本地模型；追效果就接雲端 API。",
+   "cost": "低（本地）～中（雲端 API）",
+   "examples": [
+    "nanobot",
+    "AstrBot",
+    "agentscope",
+    "kirara-ai"
+   ],
+   "top": {
+    "name": "nanobot",
+    "score": 84.3
+   }
+  },
+  {
+   "key": "trading",
+   "label": "交易／金融",
+   "count": 22,
+   "share": 2.8,
+   "needLLM": false,
+   "models": [
+    "規則／回測引擎（不接 LLM）",
+    "LLM 只做研究摘要：Claude / GPT-4o"
+   ],
+   "why": "下單與風控不能交給會幻覺的模型。LLM 適合讀新聞、寫研究筆記，不適合執行。",
+   "cost": "低（不接 LLM 時）",
+   "examples": [
+    "freqtrade",
+    "ccxt",
+    "Bconomy",
+    "Lean"
+   ],
+   "top": {
+    "name": "freqtrade",
+    "score": 84.9
+   }
+  },
+  {
+   "key": "translate",
+   "label": "翻譯",
+   "count": 4,
+   "share": 0.5,
+   "needLLM": false,
+   "models": [
+    "DeepL API",
+    "Google Cloud Translation",
+    "LLM 次選：GPT-4o-mini / Claude Haiku"
+   ],
+   "why": "專用翻譯 API 在穩定度與成本上都贏過 LLM；LLM 只在「帶語氣、帶術語表」時有優勢。",
+   "cost": "低",
+   "examples": [
+    "iTranslator",
+    "Interaction Bot",
+    "Brain Bot",
+    "Fergun"
+   ],
+   "top": {
+    "name": "iTranslator",
+    "score": 87.8
+   }
+  },
+  {
+   "key": "multi",
+   "label": "多模型切換／聚合",
+   "count": 3,
+   "share": 0.4,
+   "needLLM": true,
+   "models": [
+    "多模型路由：OpenAI ＋ Claude ＋ Gemini ＋ DeepSeek"
+   ],
+   "why": "這類 bot 本體就是路由層，價值在「同一個餘額／同一個入口」；挑最便宜的通道做日常，貴的留給難題。",
+   "cost": "中（看你怎麼路由）",
+   "examples": [
+    "orca",
+    "gpt4free",
+    "dsh-im"
+   ],
+   "top": {
+    "name": "orca",
+    "score": 88.9
+   }
+  }
+ ],
+ "picks": {
+  "framework": [
+   {
+    "name": "nanobot",
+    "platform": "Discord",
+    "score": 84.3,
+    "url": "https://github.com/HKUDS/nanobot"
+   },
+   {
+    "name": "AstrBot",
+    "platform": "QQ",
+    "score": 83.9,
+    "url": "https://github.com/AstrBotDevs/AstrBot"
+   },
+   {
+    "name": "agentscope",
+    "platform": "多平台",
+    "score": 82.5,
+    "url": "https://github.com/agentscope-ai/agentscope"
+   }
+  ],
+  "roleplay": [
+   {
+    "name": "Succubus",
+    "platform": "Discord",
+    "score": 94.4,
+    "url": "https://top.gg/tag/ai"
+   },
+   {
+    "name": "BoltBot",
+    "platform": "Discord",
+    "score": 91.9,
+    "url": "https://top.gg/tag/ai"
+   },
+   {
+    "name": "Eevee",
+    "platform": "Discord",
+    "score": 90.5,
+    "url": "https://top.gg/tag/ai"
+   }
+  ],
+  "moderation": [
+   {
+    "name": "QuantumBot",
+    "platform": "Discord",
+    "score": 92.4,
+    "url": "https://top.gg/tag/ai"
+   },
+   {
+    "name": "Invite Tracker",
+    "platform": "Discord",
+    "score": 85,
+    "url": "https://invite-tracker.com/"
+   },
+   {
+    "name": "discord.js",
+    "platform": "Discord",
+    "score": 81,
+    "url": "https://github.com/discordjs/discord.js"
+   }
+  ],
+  "trading": [
+   {
+    "name": "freqtrade",
+    "platform": "Telegram",
+    "score": 84.9,
+    "url": "https://github.com/freqtrade/freqtrade"
+   },
+   {
+    "name": "ccxt",
+    "platform": "多平台",
+    "score": 83.7,
+    "url": "https://github.com/ccxt/ccxt"
+   },
+   {
+    "name": "Bconomy",
+    "platform": "Discord",
+    "score": 80.7,
+    "url": "https://bcoins.xyz"
+   }
+  ],
+  "translate": [
+   {
+    "name": "iTranslator",
+    "platform": "Discord",
+    "score": 87.8,
+    "url": "https://top.gg/tag/ai"
+   },
+   {
+    "name": "Interaction Bot",
+    "platform": "Discord",
+    "score": 74.3,
+    "url": "https://interaction-bot.com/?utm_source=dbl"
+   },
+   {
+    "name": "Brain Bot",
+    "platform": "Telegram",
+    "score": 70,
+    "url": "https://hotbots.online/bots/ai/chatgpt/"
+   }
+  ]
+ },
+ "note": "模型適配是依 bot 的用途與描述做規則分類，不是它宣稱支援的模型清單；實際可用模型以各 bot 文件為準。"
+}

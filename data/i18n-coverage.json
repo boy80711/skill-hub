@@ -1,0 +1,111 @@
+{
+ "generatedAt": "2026-11-09T21:24:22.883Z",
+ "languages": 11,
+ "baseKeys": 68,
+ "usedKeys": 68,
+ "orphan": [],
+ "langs": [
+  {
+   "lang": "zh-Hant",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 0,
+   "cjkValues": 0
+  },
+  {
+   "lang": "zh-Hans",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 0,
+   "cjkValues": 0
+  },
+  {
+   "lang": "en",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 1,
+   "cjkValues": 0
+  },
+  {
+   "lang": "ja",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 2,
+   "cjkValues": 0
+  },
+  {
+   "lang": "ko",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 0,
+   "cjkValues": 0
+  },
+  {
+   "lang": "es",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 1,
+   "cjkValues": 0
+  },
+  {
+   "lang": "de",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 1,
+   "cjkValues": 0
+  },
+  {
+   "lang": "fr",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 1,
+   "cjkValues": 0
+  },
+  {
+   "lang": "pt",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 1,
+   "cjkValues": 0
+  },
+  {
+   "lang": "ru",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 0,
+   "cjkValues": 0
+  },
+  {
+   "lang": "ar",
+   "keys": 68,
+   "missing": 0,
+   "sameAsBase": 0,
+   "cjkValues": 0
+  }
+ ],
+ "missing": {},
+ "fallbackToEnglish": {},
+ "sameAsBase": {
+  "en": [
+   "hSkill"
+  ],
+  "ja": [
+   "hSkill",
+   "failed"
+  ],
+  "es": [
+   "hSkill"
+  ],
+  "de": [
+   "hSkill"
+  ],
+  "fr": [
+   "hSkill"
+  ],
+  "pt": [
+   "hSkill"
+  ]
+ },
+ "cjkLeft": {},
+ "ok": true
+}

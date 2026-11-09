@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>源碼安全掃描 · Bot 榜單</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Cpath d='M8 16l5 5 11-11' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f6f5f2; --panel:#fff; --ink:#16181d; --muted:#5f6470; --line:#e2e0da;
+    --hi:#b3261e; --md:#a86a00; --lo:#4a5a77; --ok:#1f6b4a; --accent:#0f6f62;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 64px}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+  .crumb{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  .crumb a{color:var(--accent);text-decoration:none}
+  h1{font-size:clamp(26px,4.4vw,40px);line-height:1.15;margin:0 0 10px;letter-spacing:-.02em;font-weight:800}
+  .lede{max-width:70ch;color:var(--muted);font-size:14px;margin:0}
+  .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:22px 0}
+  @media(min-width:720px){.kpis{grid-template-columns:repeat(5,1fr)}}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi b{display:block;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+  .kpi span{font-size:12px;color:var(--muted)}
+  .kpi.hi b{color:var(--hi)}.kpi.md b{color:var(--md)}.kpi.ok b{color:var(--ok)}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0}
+  .chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;color:var(--ink)}
+  .chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+  .chip .n{opacity:.6;margin-left:6px;font-variant-numeric:tabular-nums}
+  input[type=search]{flex:1 1 220px;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel);font-size:15px}
+  .note{font-size:12.5px;color:var(--muted);background:#fffdf5;border-left:3px solid var(--md);padding:10px 12px;border-radius:0 8px 8px 0;margin:14px 0}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .item[data-lv="high"]{border-left:4px solid var(--hi)}
+  .item[data-lv="med"]{border-left:4px solid var(--md)}
+  .item[data-lv="low"]{border-left:4px solid var(--lo)}
+  .item[data-lv="none"]{border-left:4px solid var(--ok)}
+  .item[data-lv="error"],.item[data-lv="skip"]{border-left:4px solid #b9b6ae}
+  .hd{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;padding:13px 15px;cursor:pointer}
+  .lv{font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:5px;white-space:nowrap}
+  .lv.high{background:#fbe9e7;color:var(--hi)}
+  .lv.med{background:#fdf1dc;color:var(--md)}
+  .lv.low{background:#eaeef5;color:var(--lo)}
+  .lv.none{background:#e6f2ec;color:var(--ok)}
+  .lv.error,.lv.skip{background:#efeee9;color:#6b6860}
+  .nm{font-weight:700;font-size:15px}
+  .meta{font-size:12.5px;color:var(--muted)}
+  .multi{flex:1 1 100%;font-size:12.5px;color:var(--muted)}
+  .bd{display:none;border-top:1px dashed var(--line);padding:12px 15px 16px;background:#fbfbf9}
+  .item.open .bd{display:block}
+  .hit{padding:8px 0;border-bottom:1px dotted var(--line);font-size:13px}
+  .hit:last-child{border-bottom:0}
+  .rule{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;background:#eee;margin-right:6px;color:#333}
+  .where{color:var(--muted);font-size:12px}
+  code{background:#f0efea;padding:1.5px 5px;border-radius:4px;font-size:12px;word-break:break-all}
+  .snip{display:block;margin-top:5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#3d4148;background:#f4f3ef;padding:6px 8px;border-radius:6px;overflow-x:auto;white-space:pre-wrap}
+  .act{margin-top:8px;font-size:12.5px;color:var(--muted)}
+  .act b{color:var(--ink)}
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--muted)}
+  footer p{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="crumb"><a href="../">Skill 商店工作台</a> / <a href="../bots/">Bot 榜單</a> / 源碼安全掃描</div>
+  <h1>源碼安全掃描</h1>
+  <p class="lede">把榜單裡「有公開倉庫」的項目整包抓下來，只讀不執行，用規則掃一遍：遠端腳本直接餵 shell、混淆後執行、讀憑證、往外部端點送資料、破壞性刪除、持久化、提示注入。命中不等於惡意，但值得你決定「留著、隔離、還是刪掉」。</p>
+</header>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="controls">
+  <button class="chip" data-lv="all" aria-pressed="true">全部 <span class="n" id="nAll">—</span></button>
+  <button class="chip" data-lv="high">高風險 <span class="n" id="nHigh">—</span></button>
+  <button class="chip" data-lv="med">待覆核 <span class="n" id="nMed">—</span></button>
+  <button class="chip" data-lv="low">提示 <span class="n" id="nLow">—</span></button>
+  <button class="chip" data-lv="none">無異常 <span class="n" id="nNone">—</span></button>
+  <input type="search" id="q" placeholder="搜尋名稱、規則、檔案路徑">
+</div>
+
+<p class="note" id="scope">正在載入掃描結果…</p>
+<div id="qband"></div>
+<div class="list" id="list"></div>
+
+<footer>
+  <p><strong>怎麼讀這份報告</strong>：高風險＝在使用者會實際執行的檔案（安裝腳本、bin/、Dockerfile、package.json）裡命中規則；待覆核＝同樣的規則只在一般原始碼命中，或只在說明文件命中；提示＝eval／對外 API／提示要求輸出系統提示這類需要看一眼的訊號。CI 設定、測試與範例裡出現的 <code>curl | bash</code> 只記錄、不升等級。</p>
+  <p><strong>掃不到的地方</strong>：只掃有公開 GitHub 倉庫的項目；閉源的 Discord／Telegram bot 只能從「它要求哪些權限」判斷，這份報告對它們標為「無法掃描」。沒被掃到不等於安全，掃過沒命中也不等於安全。</p>
+  <p>規則與腳本：<a href="https://github.com/boy80711/skill-hub/blob/main/scripts/scan-risk.js" target="_blank" rel="noopener">scripts/scan-risk.js</a>　原始資料：<a href="../data/risk-report.json" target="_blank" rel="noopener">data/risk-report.json</a>　資料時間：<span id="stamp">—</span></p>
+</footer>
+</div>
+
+<script>
+var LVL = { high: {t:'高風險', rec:'建議隔離或直接移除'}, med: {t:'待覆核', rec:'先別上生產環境，人工看完再決定'}, low: {t:'提示', rec:'可保留，但要知道它在做什麼'}, none: {t:'無異常', rec:'可用，仍建議先看權限'}, error: {t:'掃描失敗', rec:'改用人工檢查'}, skip: {t:'無法掃描', rec:'閉源／非 GitHub，只能看授權範圍'} };
+var DATA = null, LV = 'all', Q = '';
+
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
+function nf(v){ var n = Math.round(+v || 0); if (n >= 10000) return (n/10000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/,'') + '萬'; return n.toLocaleString(); }
+
+function hitsOf(it){
+  var hs = (it.hits || []).filter(function(h){ return h.sev === 'high' || h.sev === 'med'; });
+  return hs.length ? hs : (it.hits || []);
+}
+
+function rulesSummary(it){
+  var b = it.byRule || {}, parts = [];
+  Object.keys(b).forEach(function(k){ parts.push(k + '×' + b[k]); });
+  return parts.join(' · ');
+}
+
+function render(){
+  var items = (DATA.items || []).slice();
+  items.sort(function(a,b){
+    var r = {high:4, med:3, error:2, skip:2, low:1, none:0};
+    var d = (r[b.level]||0) - (r[a.level]||0);
+    if (d) return d;
+    return (b.hitCount||0) - (a.hitCount||0);
+  });
+  if (LV !== 'all') items = items.filter(function(x){ return x.level === LV; });
+  if (Q) {
+    var q = Q.toLowerCase();
+    items = items.filter(function(x){
+      var hay = (x.name + ' ' + (x.url||'') + ' ' + (x.note||'') + ' ' + rulesSummary(x) + ' ' + (x.hits||[]).map(function(h){return h.file + ' ' + h.name;}).join(' ')).toLowerCase();
+      return hay.indexOf(q) >= 0;
+    });
+  }
+  document.getElementById('list').innerHTML = items.length ? items.map(function(it){
+    var lv = LVL[it.level] || LVL.none;
+    var hits = hitsOf(it);
+    var body = hits.length ? hits.slice(0, 8).map(function(h){
+      return '<div class="hit"><span class="rule">' + esc(h.rule) + '</span>' + esc(h.name) +
+        ' <span class="where">' + esc(h.file) + ':' + h.line + ' · ' + esc(h.sev) + (h.tier ? ' · ' + esc(h.tier) : '') + '</span>' +
+        '<span class="snip">' + esc(h.snippet) + '</span></div>';
+    }).join('') + (hits.length > 8 ? '<div class="hit where">…另有 ' + (hits.length - 8) + ' 筆命中未列出</div>' : '')
+      : '<div class="hit where">' + esc(it.note || '沒有命中規則。') + '</div>';
+    return '<article class="item" data-lv="' + it.level + '">' +
+      '<div class="hd"><span class="lv ' + it.level + '">' + lv.t + '</span>' +
+      '<span class="nm">' + esc(it.name) + '</span>' +
+      '<span class="meta">' + esc(it.platform || '') + ' · 分 ' + (it.score != null ? it.score : '—') + ' · 掃 ' + (it.files || 0) + ' 檔 · 命中 ' + (it.hitCount || 0) + '</span>' +
+      '<span class="multi">' + esc(rulesSummary(it) || it.note || '') + '　建議：' + lv.rec + '</span></div>' +
+      '<div class="bd">' + body +
+      '<div class="act"><b>原始倉庫</b>：<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.url) + '</a></div>' +
+      '<div class="act"><b>處置建議</b>：' + lv.rec + '。要隔離就在榜單頁把它標記為隔離，要刪就從 <code>data/bots.json</code> 移除該筆後重跑部署。</div>' +
+      '</div></article>';
+  }).join('') : '<p class="note">這個條件下沒有項目。</p>';
+
+  Array.prototype.forEach.call(document.querySelectorAll('.hd'), function(h){
+    h.addEventListener('click', function(){ h.parentNode.classList.toggle('open'); });
+  });
+}
+
+function kpis(){
+  var c = DATA.counts || {};
+  document.getElementById('kpis').innerHTML =
+    '<div class="kpi"><b>' + nf(DATA.scanned) + '</b><span>已掃描倉庫</span></div>' +
+    '<div class="kpi hi"><b>' + nf(c.high) + '</b><span>高風險</span></div>' +
+    '<div class="kpi md"><b>' + nf(c.med) + '</b><span>待覆核</span></div>' +
+    '<div class="kpi"><b>' + nf(c.low) + '</b><span>提示</span></div>' +
+    '<div class="kpi ok"><b>' + nf(c.none) + '</b><span>無異常</span></div>';
+  document.getElementById('nAll').textContent = nf((DATA.items||[]).length);
+  ['high','med','low','none'].forEach(function(k){ document.getElementById('n' + k[0].toUpperCase() + k.slice(1)).textContent = nf(c[k]); });
+  document.getElementById('stamp').textContent = (DATA.generatedAt || '').slice(0, 16).replace('T', ' ');
+  document.getElementById('scope').innerHTML = '<strong>掃描範圍</strong>：榜單收錄 ' + nf(DATA.catalogTotal) + ' 筆，其中 ' + nf(DATA.openSource) + ' 筆有公開 GitHub 倉庫，本輪已掃 ' + nf(DATA.scanned) + ' 筆；其餘為閉源或非 GitHub 項目，標為「無法掃描」。' + esc(DATA.note || '');
+}
+
+function bind(){
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(b){
+    b.addEventListener('click', function(){
+      LV = b.getAttribute('data-lv');
+      Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+  document.getElementById('q').addEventListener('input', function(e){ Q = e.target.value.trim(); render(); });
+}
+
+fetch('../data/risk-quarantine.json?t=' + Date.now(), { cache:'no-store' })
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(q){
+    if (!q || !q.items || !q.items.length) return;
+    document.getElementById('qband').innerHTML =
+      '<div class="note" style="border-left-color:#b3261e;background:#fdf3f2"><strong>已隔離 ' + q.items.length + ' 筆</strong>（預設從榜單隱藏，資料沒有刪）<br>' +
+      q.items.map(function(x){
+        return '· <strong>' + esc(x.name) + '</strong> ' + esc(x.platform) + '　→ ' + (x.action === 'remove' ? '<span style="color:#b3261e">建議直接移除</span>' : '<span style="color:#a86a00">先保留觀察</span>') +
+          '<br><span style="color:#5f6470">' + esc(x.reasons.join('；')) + '</span>';
+      }).join('<br>') +
+      '<br><br><span style="color:#5f6470">移除方式：從 <code>data/bots.json</code> 刪掉該筆 → 重新部署；要恢復就把它 <code>quarantined</code> 設為 false。</span></div>';
+  })
+  .catch(function(){});
+
+fetch('../data/risk-report.json?t=' + Date.now(), { cache:'no-store' })
+  .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function(d){ DATA = d; kpis(); render(); bind(); })
+  .catch(function(){ document.getElementById('scope').textContent = '掃描結果讀取失敗（data/risk-report.json 尚未生成）。'; });
+</script>
+</body>
+</html>
