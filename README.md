@@ -152,3 +152,21 @@ TRANSLATE_PROVIDER=libre TRANSLATE_BASE=http://localhost:5000 node scripts/trans
 - **Pages 只能靜態**：任何需要後端的東西（登入、上傳、收藏、即時查詢）這版做不到。
 - **CocoLoop 介面非官方**：對方改版可能導致該來源抓取失敗；workflow 有逐源錯誤處理，單源失敗時其他兩源照樣部署，`data/skills.json` 的 `sources` 欄位會標記 `ok:false`，頁面來源卡會顯示紅點。
 - 若三個來源全掛，腳本會 `exit 1`，Pages 保留上一次成功的快照。
+
+## 翻譯：三種可行通道
+
+實測結論（2026-11，本機與雲端資料中心 IP）：`translate.googleapis.com`、`translate.google.com`、
+`clients5.google.com` 全部 timeout；`lingva.ml` 403（Cloudflare）；MyMemory 429（每日額度）；
+LibreTranslate 六個鏡像 502／403／憑證錯誤；Microsoft Edge 免 token 端點 404；Yandex 403。
+**資料中心 IP 基本被這些免費服務封鎖，靠本機腳本直翻走不通。**
+
+可行路徑三條：
+
+1. **GitHub Actions runner（推薦）** — `.github/workflows/translate.yml`，用 `TRANSLATE_PROVIDER=gtx`
+   （免金鑰，逐一呼叫 Google 公開端點、3 次退避重試、失敗保留原文），跑完自動 commit `data/i18n/*.json`。
+   注意：倉庫 token 需有 `workflow` scope 才推得上去，沒有時請在 GitHub 網頁手動新增此檔。
+2. **有付費 key** — `TRANSLATE_PROVIDER=deepl|google|azure|openai`，一條命令跑完 1,249 筆 × N 語。
+3. **瀏覽器端「翻譯描述」按鈕（免金鑰、免部署）** — 前端用 MyMemory 直翻，結果寫 localStorage，
+   額度用完會停，隔天再按會從中斷處續跑（`skh-mt:<lang>` 快取）。
+
+介面文案（73 個 key × 11 語）已 100% 覆蓋，可用 `node scripts/test-i18n.js` 重跑驗證。

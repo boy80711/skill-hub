@@ -1,83 +1,83 @@
 {
- "generatedAt": "2026-11-09T21:24:22.883Z",
+ "generatedAt": "2026-11-09T22:23:53.964Z",
  "languages": 11,
- "baseKeys": 68,
- "usedKeys": 68,
+ "baseKeys": 73,
+ "usedKeys": 73,
  "orphan": [],
  "langs": [
   {
    "lang": "zh-Hant",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 0,
    "cjkValues": 0
   },
   {
    "lang": "zh-Hans",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 0,
    "cjkValues": 0
   },
   {
    "lang": "en",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 1,
    "cjkValues": 0
   },
   {
    "lang": "ja",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 2,
    "cjkValues": 0
   },
   {
    "lang": "ko",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 0,
    "cjkValues": 0
   },
   {
    "lang": "es",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 1,
    "cjkValues": 0
   },
   {
    "lang": "de",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 1,
    "cjkValues": 0
   },
   {
    "lang": "fr",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 1,
    "cjkValues": 0
   },
   {
    "lang": "pt",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 1,
    "cjkValues": 0
   },
   {
    "lang": "ru",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 0,
    "cjkValues": 0
   },
   {
    "lang": "ar",
-   "keys": 68,
+   "keys": 73,
    "missing": 0,
    "sameAsBase": 0,
    "cjkValues": 0

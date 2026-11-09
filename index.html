@@ -196,6 +196,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
         <span id="refreshLabel">重新整理</span>
       </button>
+      <button class="btn" id="btnMT" title="用瀏覽器直接翻（機器翻譯）">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9"/><path d="M8.5 5c.6 4 2.4 7 5.5 9"/><path d="M14 9l-5 10"/><path d="M14 19l5-10 5 10"/><path d="M16 16h6"/></svg>
+        <span id="mtLabel">翻譯描述</span>
+      </button>
     </div>
   </header>
 
@@ -279,7 +283,8 @@
       footSnap:'目前讀取 GitHub Actions 產生的靜態快照（每 6 小時更新一次）',
       footLive:'目前直連本機後端，快取 {n} 分鐘',
       footNote:'各商店星數與下載量口徑不同（skills.sh 僅有安裝數）；Skill 名稱與描述保留各商店原始語言。'
-    },
+    ,
+    mtBtn: "翻譯描述", mtRunning: "翻譯中 {n}/{t}", mtDone: "已翻譯 {n} 筆", mtQuota: "今日額度用完，明天再按一次會從中斷處續跑", mtNative: "目前就是中文"},
     'zh-Hans': {
       title:'Skill 商店聚合工作台',
       subtitle:'CocoLoop · ClawHub · skills.sh 三源合一，按星数／下载量排序',
@@ -300,8 +305,10 @@
       footSnap:'当前读取 GitHub Actions 生成的静态快照（每 6 小时更新一次）',
       footLive:'当前直连本机后端，缓存 {n} 分钟',
       footNote:'各商店星数与下载量口径不同（skills.sh 仅有安装数）；Skill 名称与描述保留各商店原始语言。'
-    },
+    ,
+    mtBtn: "翻译描述", mtRunning: "翻译中 {n}/{t}", mtDone: "已翻译 {n} 条", mtQuota: "今日额度用完，明天再按一次会从中断处续跑", mtNative: "当前就是中文"},
     en: {
+      mtBtn:'Translate descriptions', mtRunning:'Translating {n}/{t}', mtDone:'Translated {n}', mtQuota:'Daily quota used up — press again tomorrow to resume', mtNative:'Already in Chinese',
       title:'Skill Store Workbench',
       subtitle:'CocoLoop · ClawHub · skills.sh in one view, sorted by stars or downloads',
       langLabel:'Language', countLabel:'Matching', itemsUnit:'items', data:'data', snapshot:' (snapshot)',
@@ -323,6 +330,7 @@
       footNote:'Star and download counts use different definitions per store (skills.sh reports installs only). Skill names and descriptions stay in the store\u2019s original language.'
     },
     ja: {
+      mtBtn:'説明を翻訳', mtRunning:'翻訳中 {n}/{t}', mtDone:'{n} 件翻訳済み', mtQuota:'本日の上限に達しました。明日もう一度押すと続きから再開します', mtNative:'現在は中国語です',
       title:'Skill ストア統合ワークベンチ',
       subtitle:'CocoLoop · ClawHub · skills.sh を一画面に集約、スター数／ダウンロード数で並べ替え',
       langLabel:'言語', countLabel:'該当', itemsUnit:'件', data:'データ', snapshot:'（スナップショット）',
@@ -344,6 +352,7 @@
       footNote:'スター数とダウンロード数はストアごとに定義が異なります（skills.sh はインストール数のみ）。Skill 名と説明は各ストアの原文のまま表示します。'
     },
     ko: {
+      mtBtn:'설명 번역', mtRunning:'번역 중 {n}/{t}', mtDone:'{n}개 번역 완료', mtQuota:'오늘 할당량이 끝났습니다. 내일 다시 누르면 이어서 진행됩니다', mtNative:'현재 중국어입니다',
       title:'스킬 스토어 통합 워크벤치',
       subtitle:'CocoLoop · ClawHub · skills.sh를 한 화면에 모아 스타·다운로드 순으로 정렬',
       langLabel:'언어', countLabel:'조건 일치', itemsUnit:'개', data:'데이터', snapshot:' (스냅샷)',
@@ -365,6 +374,7 @@
       footNote:'스타와 다운로드 수는 스토어마다 기준이 다릅니다(skills.sh는 설치 수만 제공). 스킬 이름과 설명은 각 스토어의 원문 언어로 표시됩니다.'
     },
     es: {
+      mtBtn:'Traducir descripciones', mtRunning:'Traduciendo {n}/{t}', mtDone:'{n} traducidas', mtQuota:'Cuota diaria agotada: vuelve mañana para continuar', mtNative:'Ya está en chino',
       title:'Banco de trabajo de skills',
       subtitle:'CocoLoop · ClawHub · skills.sh en una sola vista, ordenado por estrellas o descargas',
       langLabel:'Idioma', countLabel:'Coincidencias', itemsUnit:'elementos', data:'datos', snapshot:' (instantánea)',
@@ -386,6 +396,7 @@
       footNote:'Las estrellas y descargas se definen de forma distinta en cada tienda (skills.sh solo informa instalaciones). Los nombres y descripciones se mantienen en el idioma original de la tienda.'
     },
     de: {
+      mtBtn:'Beschreibungen übersetzen', mtRunning:'Übersetze {n}/{t}', mtDone:'{n} übersetzt', mtQuota:'Tageskontingent erschöpft – morgen erneut tippen, um fortzufahren', mtNative:'Bereits auf Chinesisch',
       title:'Skill-Store-Arbeitsbereich',
       subtitle:'CocoLoop · ClawHub · skills.sh in einer Ansicht, sortiert nach Sternen oder Downloads',
       langLabel:'Sprache', countLabel:'Treffer', itemsUnit:'Einträge', data:'Daten', snapshot:' (Snapshot)',
@@ -407,6 +418,7 @@
       footNote:'Sterne und Downloads sind pro Store unterschiedlich definiert (skills.sh meldet nur Installationen). Skill-Namen und Beschreibungen bleiben in der Originalsprache der Store.'
     },
     fr: {
+      mtBtn:'Traduire les descriptions', mtRunning:'Traduction {n}/{t}', mtDone:'{n} traduites', mtQuota:'Quota du jour épuisé — relancez demain pour reprendre', mtNative:'Déjà en chinois',
       title:'Atelier des boutiques de skills',
       subtitle:'CocoLoop · ClawHub · skills.sh dans une seule vue, triés par étoiles ou téléchargements',
       langLabel:'Langue', countLabel:'Correspondances', itemsUnit:'éléments', data:'données', snapshot:' (instantané)',
@@ -428,6 +440,7 @@
       footNote:'Les étoiles et les téléchargements sont définis différemment selon la boutique (skills.sh ne compte que les installations). Les noms et descriptions restent dans la langue d\u2019origine.'
     },
     pt: {
+      mtBtn:'Traduzir descrições', mtRunning:'Traduzindo {n}/{t}', mtDone:'{n} traduzidas', mtQuota:'Cota diária esgotada — tente novamente amanhã para continuar', mtNative:'Já está em chinês',
       title:'Bancada de skills',
       subtitle:'CocoLoop · ClawHub · skills.sh numa só vista, ordenado por estrelas ou downloads',
       langLabel:'Idioma', countLabel:'Correspondências', itemsUnit:'itens', data:'dados', snapshot:' (instantâneo)',
@@ -449,6 +462,7 @@
       footNote:'Estrelas e downloads têm definições diferentes em cada loja (skills.sh informa apenas instalações). Nomes e descrições permanecem no idioma original da loja.'
     },
     ru: {
+      mtBtn:'Перевести описания', mtRunning:'Перевод {n}/{t}', mtDone:'Переведено {n}', mtQuota:'Дневная квота исчерпана — нажмите завтра, чтобы продолжить', mtNative:'Уже на китайском',
       title:'Рабочая панель магазинов навыков',
       subtitle:'CocoLoop · ClawHub · skills.sh в одном окне, сортировка по звёздам или загрузкам',
       langLabel:'Язык', countLabel:'Совпадений', itemsUnit:'записей', data:'данные', snapshot:' (снимок)',
@@ -470,6 +484,7 @@
       footNote:'Звёзды и загрузки считаются по-разному в каждом магазине (skills.sh сообщает только установки). Названия и описания остаются на исходном языке магазина.'
     },
     ar: {
+      mtBtn:'ترجمة الأوصاف', mtRunning:'جارٍ الترجمة {n}/{t}', mtDone:'تمت ترجمة {n}', mtQuota:'انتهت حصة اليوم — اضغط غدًا للمتابعة', mtNative:'المحتوى بالصينية بالفعل',
       title:'منصة تجميع متاجر المهارات',
       subtitle:'CocoLoop و ClawHub و skills.sh في صفحة واحدة، مرتّبة حسب النجوم أو التنزيلات',
       langLabel:'اللغة', countLabel:'المطابقات', itemsUnit:'عنصرًا', data:'البيانات', snapshot:' (لقطة)',
@@ -814,13 +829,58 @@
     return code;
   }
 
+  function mtKey(lang) { return 'skh-mt:' + lang; }
+  function mtLoad(lang) {
+    try { var raw = localStorage.getItem(mtKey(lang)); return raw ? JSON.parse(raw) : {}; } catch (e) { return {}; }
+  }
+  function mtSave(lang, obj) {
+    try { localStorage.setItem(mtKey(lang), JSON.stringify(obj)); } catch (e) {}
+  }
+
+  function mtState() { $('mtLabel').textContent = t('mtBtn'); }
+
+  function mtRun() {
+    var lang = S.lang;
+    if (lang === 'zh-Hant' || lang === 'zh-Hans') { $('mtLabel').textContent = t('mtNative'); return; }
+    var store = S.tr[lang] || mtLoad(lang);
+    var todo = allItems().filter(function (x) { return x.summary && !store[x.id]; });
+    if (!todo.length) { $('mtLabel').textContent = t('mtDone', { n: Object.keys(store).length }); render(); return; }
+    var done = 0, stop = false;
+    $('btnMT').disabled = true;
+    $('mtLabel').textContent = t('mtRunning', { n: 0, t: todo.length });
+    var langPair = 'zh-TW|' + ({ en:'en', ja:'ja', ko:'ko', es:'es', de:'de', fr:'fr', pt:'pt', ru:'ru', ar:'ar' }[lang] || lang);
+    (function next(i) {
+      if (stop || i >= todo.length) {
+        $('btnMT').disabled = false;
+        $('mtLabel').textContent = stop ? t('mtQuota') : t('mtDone', { n: done });
+        mtSave(lang, store); S.tr[lang] = store; render();
+        return;
+      }
+      var x = todo[i];
+      fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(x.summary.slice(0, 480)) + '&langpair=' + langPair)
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          var code = (j && j.responseStatus) || 0;
+          if (code === 429 || (j && /MYMEMORY WARNING/i.test(j.responseDetails || ''))) { stop = true; return; }
+          var txt = j && j.responseData && j.responseData.translatedText;
+          if (txt && !/MYMEMORY WARNING/i.test(txt)) { store[x.id] = { name: x.name, summary: txt }; done++; }
+          if (done % 5 === 0) { mtSave(lang, store); S.tr[lang] = store; render(); }
+          $('mtLabel').textContent = t('mtRunning', { n: done, t: todo.length });
+        })
+        .catch(function () { stop = true; })
+        .then(function () { setTimeout(function () { next(i + 1); }, 220); });
+    })(0);
+  }
+
   function ensureOverlay(lang, cb) {
     if (!lang || S.trLoaded[lang]) return;
     S.trLoaded[lang] = 'pending';
     fetch('./data/i18n/' + lang + '.json?t=' + Date.now(), { cache:'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) {
-        if (j && j.items && Object.keys(j.items).length) { S.tr[lang] = j.items; S.trProvider = j.provider; }
+        var local = mtLoad(lang);
+        var merged = Object.assign({}, (j && j.items) || {}, local);
+        if (Object.keys(merged).length) { S.tr[lang] = merged; S.trProvider = j && j.provider; }
         S.trLoaded[lang] = 'done';
         if (cb) cb();
       })
@@ -974,6 +1034,7 @@
     S.lang = lang;
     if (persist) { try { localStorage.setItem('skh-lang', lang); } catch (e) {} }
     applyStatic(); buildSortSelect(); buildLangSelect();
+    mtState();
     if (S.all.length || S.customItems.length) { renderSources(); renderChips(); render(); }
     else if (!S.loading) { showState(S.errored ? 'error' : 'empty'); }
     renderManager();
@@ -988,6 +1049,7 @@
   }
 
   $('refresh').addEventListener('click', function () { load(true); });
+  $('btnMT').addEventListener('click', mtRun);
   $('langSel').addEventListener('change', function (e) { applyLang(e.target.value, true); });
   $('btnSrcMan').addEventListener('click', function () { toggleSrcMan(); });
   $('btnManClose').addEventListener('click', function () { toggleSrcMan(false); });

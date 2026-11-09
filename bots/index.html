@@ -121,6 +121,7 @@
 
 <div class="board" id="board"></div>
 <div class="state" id="state" hidden></div>
+<p class="note" id="sortHint" style="margin-top:10px;border-left-color:var(--accent)"></p>
 <p class="note" id="note"></p>
 
 <h2>聚合分析：這 791 個 bot 到底在幹什麼</h2>
@@ -241,12 +242,18 @@
       }
       return true;
     });
-    var k = S.sort;
+    var k = S.sort || 'score';
     list.sort(function(a,b){
-      if (k === 'name') return String(a.name).localeCompare(String(b.name),'zh-Hant');
-      if (k === 'users') return (b.users||0) - (a.users||0);
-      if (k === 'stars') return (b.stars||0) - (a.stars||0);
-      return (b.score||0) - (a.score||0);
+      var d = 0;
+      if (k === 'name') { d = String(a.name).localeCompare(String(b.name),'zh-Hant'); }
+      else if (k === 'users') { d = (b.users||0) - (a.users||0); }
+      else if (k === 'stars') { d = (b.stars||0) - (a.stars||0); }
+      else { d = (b.score||0) - (a.score||0); }
+      // 同分時依序比人數、星數、名稱，讓名次穩定且不會看起來亂
+      if (d === 0 && k !== 'name') d = (b.users||0) - (a.users||0);
+      if (d === 0 && k !== 'name') d = (b.stars||0) - (a.stars||0);
+      if (d === 0 && k !== 'name') d = String(a.name).localeCompare(String(b.name),'en');
+      return d;
     });
     return list;
   }
@@ -391,6 +398,7 @@
   function bind(){
     $('q').addEventListener('input', function(e){ S.q = e.target.value.trim(); render(); });
     $('cat').addEventListener('change', function(e){ S.cat = e.target.value; render(); });
+    $('sort').value = S.sort;
     $('sort').addEventListener('change', function(e){ S.sort = e.target.value; render(); });
   }
 

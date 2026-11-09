@@ -60,6 +60,30 @@ async function translateBatch(texts, lang) {
       { text: texts, target_lang: code });
     return j.translations.map(t => t.text);
   }
+  if (PROVIDER === 'gtx') {
+    // Google 翻譯的公開 endpoint（GitHub Actions runner 或一般家用網路通常可達；資料中心 IP 常被擋）
+    const out = [];
+    for (const t of texts) {
+      let ok = false, tries = 0;
+      while (!ok && tries < 3) {
+        tries++;
+        try {
+          const u = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-TW&tl=' +
+            encodeURIComponent(code) + '&dt=t&q=' + encodeURIComponent(t);
+          const r = await fetch(u, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          const j = await r.json();
+          const s2 = (j && j[0] ? j[0].map(x => x && x[0]).filter(Boolean).join('') : '');
+          out.push(s2 || t);
+          ok = true;
+        } catch (e) {
+          if (tries >= 3) { out.push(t); ok = true; }
+          else await new Promise(res => setTimeout(res, 800 * tries));
+        }
+      }
+    }
+    return out;
+  }
   if (PROVIDER === 'google') {
     const j = await post('https://translation.googleapis.com/language/translate/v2?key=' + encodeURIComponent(KEY),
       { 'Content-Type': 'application/json' },
@@ -89,7 +113,7 @@ async function translateBatch(texts, lang) {
     if (!Array.isArray(arr) || arr.length !== texts.length) throw new Error('openai 回傳長度不符');
     return arr.map(String);
   }
-  throw new Error('未設定 TRANSLATE_PROVIDER（deepl/google/azure/openai/libre）');
+  throw new Error('未設定 TRANSLATE_PROVIDER（deepl/google/azure/openai/libre/gtx）');
 }
 
 async function pool(items, n, worker) {
