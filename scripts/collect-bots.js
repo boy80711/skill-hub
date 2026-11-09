@@ -77,7 +77,7 @@ async function fromGithub() {
           lang: r.language || '',
           updatedAt: r.pushed_at,
           tags: (r.topics || []).slice(0, 5),
-          score: Math.round((65 * lg(stars, 80000) + 20 * fresh + (stars > 5000 ? 15 : 6)) * 10) / 10
+          score: Math.round((62 * lg(stars, 150000) + 14 * fresh + 8 * (stars > 3000 ? 1 : 0) + 6 * (stars > 15000 ? 1 : 0)) * 10) / 10
         });
       }
       log(`  github ${item.q} → ${(j.items || []).length}`);
@@ -111,7 +111,7 @@ async function fromDiscord() {
           online: b.status === 'online',
           sourceRepo: b.openSource || '',
           updatedAt: b.lastOnlineChange,
-          score: Math.round((62 * lg(guilds, 60000) + 16 * (b.verified ? 1 : 0) + 12 * fresh + 10 * (b.status === 'online' ? 1 : 0)) * 10) / 10
+          score: Math.round((55 * lg(guilds, 80000) + 13 * (b.verified ? 1 : 0) + 9 * fresh + 8 * (b.status === 'online' ? 1 : 0)) * 10) / 10
         });
       }
       if ((j.bots || []).length < 100) break;
@@ -160,7 +160,7 @@ async function fromTelegram() {
           verified: false,
           rankInSource: pos,
           updatedAt: null,
-          score: Math.round((58 - 40 * Math.pow(Math.min(1, (pos - 1) / 640), 0.4)) * 10) / 10
+          score: Math.round((56 - 38 * Math.pow(Math.min(1, (pos - 1) / 640), 0.45)) * 10) / 10
         });
         pos++;
       }
