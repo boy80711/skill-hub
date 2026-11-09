@@ -197,7 +197,7 @@
   var LBL = { github:'GitHub', discord:'Discord', telegram:'Telegram', curated:'人工核對' };
   var $ = function(id){ return document.getElementById(id); };
   function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
-  function nf(v){ var n = Math.round(+n||0); return n >= 1e4 ? (n/1e4).toFixed(n>=1e6?1:2).replace(/\.?0+$/,'') + '萬' : String(n); }
+  function nf(v){ var n = Math.round(+v||0); return n >= 1e4 ? (n/1e4).toFixed(n>=1e6?1:2).replace(/\.?0+$/,'') + '萬' : String(n); }
 
   function platOf(x){ return x.source === 'curated' ? (x.platform || '人工核對') : (x.source === 'github' ? 'GitHub' : LBL[x.source]); }
   function colorOf(x){
