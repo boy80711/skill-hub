@@ -89,6 +89,12 @@
     .toolbar p{display:none}
     .nm{flex-basis:100%}
   }
+
+  .anTable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
+  .anTable th{text-align:left;font-weight:600;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  .anTable td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .anTable a{color:inherit;text-decoration:underline}
+  .anTable tr:last-child td{border-bottom:0}
 </style>
 </head>
 <body>
@@ -207,6 +213,10 @@
 <p>抖音沒有可查的 bot 榜，只有影片。這裡放我實際搜到的內容——每張卡都能點回原影片，數字不進上面的排名。</p>
 <div class="dy" id="dy"></div>
 
+<h2>其他商店能不能抓回來</h2>
+<p>三家外部索引站都試過直接抓，結果如下——能抓的只有走 GitHub 的；索引站不是沒 API，就是用 Cloudflare 擋住，靜態頁面跨網域也讀不到。</p>
+<div class="anbox" style="overflow:auto"><table id="storeTbl" class="anTable"></table></div>
+
 <footer>
   <p>來源與口徑：<strong>GitHub</strong> 以 stars 為主（8 組搜尋主題，各取星數前列）；<strong>Discord</strong> 用 discord.bots.gg 公開 API 的 guildCount（伺服器數）；<strong>Telegram</strong> 用 telegram-store 目錄排序（無公開訂閱數）；<strong>人工核對</strong> 為 top.gg 評分與第三方實測分數，逐筆附出處連結。</p>
   <p>綜合分為跨來源可比的 0–100：人數／星數取對數正規化，再加重驗證與近期活躍。它<strong>不是</strong>任何官方排名，只用來在同一頁把不同口徑的東西排在一起。原始指標請看每列的副標。</p>
@@ -237,6 +247,17 @@
     if (d) return z || d;
     var cat = x.category ? ('分類：' + x.category) : '';
     return z || (cat ? cat + '（原專案未寫描述）' : '原專案未寫描述');
+  }
+
+  function renderStores(items){
+    var rows = items.map(function (x) {
+      return '<tr><td><a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + '</a></td>' +
+        '<td>' + esc(x.kind) + '</td>' +
+        '<td>' + (x.pullable ? '可抓' : '抓不到') + '</td>' +
+        '<td>' + esc(x.api || '—') + '</td>' +
+        '<td>' + esc(x.note || '') + '</td></tr>';
+    }).join('');
+    $('storeTbl').innerHTML = '<thead><tr><th>名稱</th><th>類型</th><th>能不能抓</th><th>接口</th><th>實測結果</th></tr></thead><tbody>' + rows + '</tbody>';
   }
 
   function filtered(){
@@ -363,7 +384,12 @@
   }
 
   function analysis(){
-    fetch('../data/bots-analysis.json?t=' + Date.now(), { cache:'no-store' })
+    fetch('../data/store-index.json?t=' + Date.now(), { cache:'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && j.items) renderStores(j.items); })
+    .catch(function () {});
+
+  fetch('../data/bots-analysis.json?t=' + Date.now(), { cache:'no-store' })
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
         if (!d) return;

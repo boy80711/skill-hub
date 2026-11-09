@@ -1,0 +1,69 @@
+{
+ "checkedAt": "2026-11-10",
+ "items": [
+  {
+   "name": "CocoLoop",
+   "url": "https://hub.cocoloop.cn/",
+   "kind": "商店",
+   "pullable": true,
+   "note": "本站已在抓（主站三源之一）",
+   "api": "站內 JSON"
+  },
+  {
+   "name": "ClawHub",
+   "url": "https://clawhub.ai/",
+   "kind": "商店",
+   "pullable": true,
+   "note": "本站已在抓（主站三源之一）",
+   "api": "站內 JSON"
+  },
+  {
+   "name": "skills.sh",
+   "url": "https://skills.sh/",
+   "kind": "商店",
+   "pullable": true,
+   "note": "本站已在抓（主站三源之一）",
+   "api": "站內 JSON"
+  },
+  {
+   "name": "Anthropic 官方 skills",
+   "url": "https://github.com/anthropics/skills",
+   "kind": "GitHub 倉庫",
+   "pullable": true,
+   "note": "官方範例 skill，可用 raw.githubusercontent 直接抓",
+   "api": "GitHub raw／API"
+  },
+  {
+   "name": "skillmarketplace.ai",
+   "url": "https://skillmarketplace.ai/",
+   "kind": "索引站",
+   "pullable": false,
+   "note": "只有網頁，無公開 JSON；前端抓會被 CORS 擋",
+   "api": "無"
+  },
+  {
+   "name": "skillsmp（Skills Marketplace）",
+   "url": "https://skillsmp.com/",
+   "kind": "索引站",
+   "pullable": false,
+   "note": "Cloudflare 擋（403），且無公開 API",
+   "api": "無"
+  },
+  {
+   "name": "agskills.dev",
+   "url": "https://agskills.dev/",
+   "kind": "索引站",
+   "pullable": false,
+   "note": "Next.js 動態頁，/api/skills 回 404",
+   "api": "無"
+  },
+  {
+   "name": "ComposioHQ/awesome-claude-skills",
+   "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+   "kind": "GitHub 清單",
+   "pullable": true,
+   "note": "README 為 markdown 清單，需自行解析；repo 已改名／搬遷時可能 404",
+   "api": "GitHub raw"
+  }
+ ]
+}
