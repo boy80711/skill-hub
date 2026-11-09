@@ -28,7 +28,7 @@ const GH_QUERIES = [
   { q: '"telegram bot" in:name,description stars:>200', platform: 'Telegram', category: '工具效率' },
   { q: 'topic:qqbot', platform: 'QQ', category: '社群工具' },
   { q: 'topic:chatbot stars:>1000', platform: '多平台', category: 'AI 助手' },
-  { q: 'topic:ai-agent stars:>800', platform: '多平台', category: 'AI 助手' },
+  { q: 'topic:bot stars:>1000', platform: '多平台', category: '社群工具' },
   { q: 'topic:trading-bot stars:>500', platform: '多平台', category: '交易金融' }
 ];
 
@@ -59,7 +59,10 @@ async function fromGithub() {
       '&sort=stars&order=desc&per_page=' + GH_PER_PAGE;
     try {
       const j = await getJSON(url);
-      for (const r of j.items || []) {
+      const NOISE = /system prompts?|checklist|awesome[-_ ]|book|指南|教程|course|cookbook|interview|roadmap|cheat ?sheet|notes?\b|leak/i;
+    for (const r of j.items || []) {
+        const probe = ((r.name || '') + ' ' + (r.description || '')).slice(0, 260);
+        if (NOISE.test(probe)) continue;
         const stars = num(r.stargazers_count);
         const fresh = daysAgo(r.pushed_at) < 60 ? 1 : 0;
         out.push({

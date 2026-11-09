@@ -10,6 +10,22 @@ data/skills.json              Actions 產生的快照（目前 1,249 筆，約 4
 .nojekyll                     避免 Pages 跑 Jekyll 處理
 ```
 
+## Bot 榜單（`/bots/`）
+
+跨平台 bot 的合併榜單，跟商店工作台同一個站、獨立一頁（`bots/index.html`，資料 `data/bots.json`）。
+
+```bash
+node scripts/collect-bots.js            # 收 GitHub / Discord / Telegram / 人工核對
+DISCORD_LIMIT=300 TG_PAGES=8 node scripts/collect-bots.js   # 可調數量
+```
+
+- **GitHub**：8 組搜尋主題（discord-bot、telegram-bot、qqbot、chatbot、bot、trading-bot 等），依 stars 取前列；會過濾書／清單／prompt 洩漏類非 bot 專案。
+- **Discord**：`discord.bots.gg` 公開 API，取 `guildCount`（伺服器數）、`verified`、上線狀態。
+- **Telegram**：`telegram-store.com/catalog/bots` 目錄（JSON-LD，約 7,074 筆），依目錄排序換算分數；該站不公開訂閱數。
+- **人工核對**：`data/bots-seed.json`，逐筆附出處（top.gg 評分、第三方實測分數）。
+- **抖音**：`data/bots-douyin.json`，只放「在講哪些 bot」的線索卡與原影片連結，讚數不進排名（影片數字未核實）。
+- 綜合分 0–100：人數／星數取對數正規化，再加重驗證與近期活躍。各來源原始指標不同，頁面上分欄顯示，不混算。
+
 ## 來源管理（新增／移除商店）
 
 右上角「商店來源」按鈕開面板：
