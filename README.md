@@ -170,3 +170,17 @@ LibreTranslate 六個鏡像 502／403／憑證錯誤；Microsoft Edge 免 token 
    額度用完會停，隔天再按會從中斷處續跑（`skh-mt:<lang>` 快取）。
 
 介面文案（73 個 key × 11 語）已 100% 覆蓋，可用 `node scripts/test-i18n.js` 重跑驗證。
+
+## SkillsMP 抓取（需瀏覽器工作階段）
+
+`skillsmp.com` 全站在 Cloudflare 後面：curl／資料中心 IP 一律 403，也沒有公開文件化的 API。
+但前端自己用 `GET /api/skills?occupation=<slug>&limit=48&page=N&sortBy=stars`（limit 上限 48），
+回傳 `{skills:[{id,name,author,description,githubUrl,stars,forks,updatedAt,...}],pagination:{...}}`。
+
+做法：用已通過驗證的瀏覽器工作階段，在頁面內 `fetch` 逐頁抓（`hasNext` 為 true 就續抓，30 頁為上限），
+把結果組成一份 JSON（`{skills:[...]}` 即可），再跑：
+
+    node scripts/collect-skillsmp.js <dump.json> --label 財金營運職類
+
+腳本會轉成站內格式（`source: smp`）併進 `data/skills.json`。2026-11 首輪抓了
+`business-and-financial-operations-occupations` 共 480 筆。
