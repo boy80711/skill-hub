@@ -45,9 +45,9 @@
    "name": "skillsmp（Skills Marketplace）",
    "url": "https://skillsmp.com/",
    "kind": "索引站",
-   "pullable": false,
-   "note": "Cloudflare 擋（403），且無公開 API",
-   "api": "無"
+   "pullable": true,
+   "note": "Cloudflare 擋 curl，但可用已驗證的瀏覽器會話逐頁抓（首輪已併入 2,496 筆）",
+   "api": "已找到 /api/skills?occupation=…&limit=48（需瀏覽器工作階段）"
   },
   {
    "name": "agskills.dev",
